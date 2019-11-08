@@ -2,12 +2,12 @@ package io.github.hotspacode.neeza.test.mock;
 
 import io.github.hotspacode.neeza.core.annotation.NeezaMock;
 
-import io.github.hotspacode.neeza.core.config.SimpleMockConfig;
+import io.github.hotspacode.neeza.core.config.NeezaMockConfig;
 
 @NeezaMock
 public class MockForReturnTypeServiceTest {
     public static void main(String[] args) {
-        SimpleMockConfig.init();
+        NeezaMockConfig.init();
         MockForReturnTypeService mockService = new MockForReturnTypeService();
         CommonMessageService commonMessageService = new CommonMessageService();
 //        commonMessageService.testOrderResult();

@@ -1,7 +1,7 @@
 package io.github.hotspacode.neeza.core.api;
 
 import com.alibaba.fastjson.JSON;
-import io.github.hotspacode.neeza.core.SimpleMockConstant;
+import io.github.hotspacode.neeza.core.NeezaMockConstant;
 import io.github.hotspacode.neeza.core.dto.MethodSpiResponseDTO;
 import io.github.hotspacode.neeza.core.dto.MockDataDTO;
 
@@ -17,7 +17,7 @@ public final class MockApi {
         System.out.println("调用到mock");
         MethodSpiResponseDTO responseDTO = new MethodSpiResponseDTO(false);
         try {
-            if (null == System.getProperty(io.github.hotspacode.neeza.core.SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
+            if (null == System.getProperty(NeezaMockConstant.SIMPLE_MOCK_VM_SERVER_URL)) {
                 responseDTO.setMocked(false);
                 return responseDTO;
             }
@@ -29,7 +29,7 @@ public final class MockApi {
                     responseDTO.getMethodReturnClass().isPrimitive();
 
                     //调用mock server
-                    String mockUrl = System.getProperty(SimpleMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + cl.getName() + "." + method.getName();
+                    String mockUrl = System.getProperty(NeezaMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + cl.getName() + "." + method.getName();
                     String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
 
                     //todo 全局参数mock报错是否支持继续
