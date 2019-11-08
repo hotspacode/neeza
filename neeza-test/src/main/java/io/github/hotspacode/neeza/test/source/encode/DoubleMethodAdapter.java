@@ -26,7 +26,7 @@ public class DoubleMethodAdapter extends AdviceAdapter {
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false);
         mv.visitInsn(ICONST_1);
         mv.visitInsn(AALOAD);
-        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/core/api/MockApi", "getMockData", "(Ljava/lang/StackTraceElement;)Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;", false);
+        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/core/api/MockApi", "getMockData", "(Ljava/lang/StackTraceElement;)Lio/github/hotspacode/neeza/core/dtoMethodSpiResponseDTO;", false);
         mv.visitVarInsn(ASTORE, 1);
         Label l1 = new Label();
         mv.visitLabel(l1);
@@ -41,7 +41,7 @@ public class DoubleMethodAdapter extends AdviceAdapter {
         mv.visitVarInsn(ALOAD, 1);
         mv.visitInsn(POP);
         mv.visitVarInsn(ALOAD, 1);
-        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO", "getObject", "(Ltop/moxingwang/simplemock/core/dto/MethodSpiResponseDTO;)Ljava/lang/Object;", false);
+        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO", "getObject", "(Lio/github/hotspacode/neeza/core/dtoMethodSpiResponseDTO;)Ljava/lang/Object;", false);
         mv.visitTypeInsn(CHECKCAST, "java/lang/Double");
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Double", "doubleValue", "()D", false);
         mv.visitInsn(DRETURN);
