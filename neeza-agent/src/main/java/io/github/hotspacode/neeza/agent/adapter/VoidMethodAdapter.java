@@ -25,20 +25,20 @@ public class VoidMethodAdapter extends AdviceAdapter {
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false);
         mv.visitInsn(ICONST_1);
         mv.visitInsn(AALOAD);
-        mv.visitMethodInsn(INVOKESTATIC, "top/moxingwang/simplemock/core/api/MockApi", "getMockData", "(Ljava/lang/StackTraceElement;)Lio/github/hotspacode/neeza/core/dtoMethodSpiResponseDTO;", false);
+        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/core/api/MockApi", "getMockData", "(Ljava/lang/StackTraceElement;)Lio/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO;", false);
         mv.visitVarInsn(ASTORE, argumentTypeSize);
         Label l1 = new Label();
         mv.visitLabel(l1);
         mv.visitLineNumber(11, l1);
         mv.visitVarInsn(ALOAD, argumentTypeSize);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/core/dtoMethodSpiResponseDTO", "isMocked", "()Z", false);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO", "isMocked", "()Z", false);
         Label l2 = new Label();
         mv.visitJumpInsn(IFEQ, l2);
         Label l3 = new Label();
         mv.visitLabel(l3);
         mv.visitLineNumber(12, l3);
         mv.visitVarInsn(ALOAD, argumentTypeSize);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/core/dtoMethodSpiResponseDTO", "isReturnVoid", "()Z", false);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO", "isReturnVoid", "()Z", false);
         mv.visitJumpInsn(IFEQ, l2);
         Label l4 = new Label();
         mv.visitLabel(l4);
@@ -46,7 +46,7 @@ public class VoidMethodAdapter extends AdviceAdapter {
         mv.visitInsn(RETURN);
         mv.visitLabel(l2);
         mv.visitLineNumber(18, l2);
-        mv.visitFrame(F_APPEND, 1, new Object[]{"io/github/hotspacode/neeza/core/dtoMethodSpiResponseDTO"}, 0, null);
+        mv.visitFrame(F_APPEND, 1, new Object[]{"io/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO"}, 0, null);
 
     }
 }
