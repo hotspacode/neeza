@@ -10,6 +10,7 @@ public class MockForReturnTypeServiceTest {
         NeezaMockConfig.init();
         MockForReturnTypeService mockService = new MockForReturnTypeService();
         CommonMessageService commonMessageService = new CommonMessageService();
+        commonMessageService.getString();
 //        commonMessageService.testOrderResult();
 
 //        Map<String, String> map = mockService.testMap();
@@ -20,6 +21,7 @@ public class MockForReturnTypeServiceTest {
 //        Double aDouble = mockService.testDouble();
 //        double testdouble = mockService.testdouble();
 //        List list = mockService.testArrayList();
+
         System.out.println("done");
     }
 

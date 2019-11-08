@@ -30,19 +30,21 @@ public class AgentTransformer implements ClassFileTransformer {
             }
 
             if (Objects.nonNull(targetClassName)) {
-                if (!Objects.equals(targetClassName.replace(".","/"), className)) {
+                if (!Objects.equals(targetClassName.replace(".", "/"), className)) {
                     return null;
                 }
             }
 
-            System.out.println("最终执行："+className+"------targetClassName："+targetClassName);
 
             String packageName = System.getProperty("SIMPLE_MOCK_VM_PACKAGE_NAME");
 
 
-//            if (packageName == null || packageName.trim().length() <= 0 || !className.startsWith(packageName)) {
-//                return null;
-//            }
+            if (packageName == null || packageName.trim().length() <= 0 || !className.startsWith(packageName)) {
+                return null;
+            }
+
+            System.out.println("最终执行：" + className + "------targetClassName：" + targetClassName);
+
 
             ClassReader cr = new ClassReader(className);
             ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);

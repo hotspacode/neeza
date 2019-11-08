@@ -10,6 +10,10 @@ import io.github.hotspacode.neeza.core.annotation.NeezaMock;
 @NeezaMock
 public class CommonMessageService {
 
+    public String getString (){
+        System.out.println("方法未被mock");
+        return "OK";
+    }
 
 
 
