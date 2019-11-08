@@ -11,7 +11,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>top.moxingwang.simple-mock</groupId>
+    <groupId>top.moxingwang.neeza</groupId>
     <artifactId>neeza-server</artifactId>
     <version>1.0.1-SNAPSHOT</version>
 
@@ -33,8 +33,8 @@
         </dependency>
 
         <dependency>
-            <groupId>top.moxingwang.simple-mock</groupId>
-            <artifactId>simple-mock-core</artifactId>
+            <groupId>top.moxingwang.neeza</groupId>
+            <artifactId>neeza-core</artifactId>
             <version>1.0.1-SNAPSHOT</version>
         </dependency>
 

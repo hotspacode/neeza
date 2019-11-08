@@ -4,21 +4,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>top.moxingwang.simple-mock</groupId>
-    <artifactId>simple-mock</artifactId>
+    <groupId>top.moxingwang.neeza</groupId>
+    <artifactId>neeza</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
 
     <modules>
-        <module>simple-mock-core</module>
-        <module>simple-mock-spy</module>
-        <module>simple-mock-agent</module>
-        <module>simple-mock-integration</module>
-        <module>simple-mock-client</module>
-        <module>simple-mock-server</module>
-        <module>simple-mock-test</module>
-        <module>simple-mock-sample</module>
+        <module>neeza-core</module>
+        <module>neeza-spy</module>
+        <module>neeza-agent</module>
+        <module>neeza-commander</module>
+        <module>neeza-client</module>
+        <module>neeza-server</module>
+        <module>neeza-test</module>
+        <module>neeza-sample</module>
     </modules>
 
 

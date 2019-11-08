@@ -14,7 +14,7 @@ public class JVMTIThread {
         for (VirtualMachineDescriptor vmd : list) {
             if (vmd.displayName().endsWith("Application")) {
                 VirtualMachine virtualMachine = VirtualMachine.attach(vmd.id());
-                virtualMachine.loadAgent("C:\\workspace\\simple-mock\\simple-mock-agent\\target\\simple-mock-agent-1.0.1-SNAPSHOT-jar-with-dependencies.jar",
+                virtualMachine.loadAgent("C:\\workspace\\neeza\\neeza-agent\\target\\neeza-agent-1.0.1-SNAPSHOT-jar-with-dependencies.jar",
                         "com.chinaredstar.ordercenter.service.ali.AliRefundOrderService");
                 System.out.println("ok");
                 virtualMachine.detach();

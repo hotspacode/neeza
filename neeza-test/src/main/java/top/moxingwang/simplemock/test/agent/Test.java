@@ -31,7 +31,7 @@ public final class Test {
                         virtualmachine = VirtualMachine.attach(JUtil.getPid());
 
                         // 让JVM加载jmx Agent
-                        String jmxAgent = "C:\\workspace\\simple-mock\\simple-mock-agent\\target\\simple-mock-agent-1.0.1-SNAPSHOT.jar";
+                        String jmxAgent = "C:\\workspace\\neeza\\neeza-agent\\target\\neeza-agent-1.0.1-SNAPSHOT.jar";
                         String home = virtualmachine.getSystemProperties().getProperty("java.home");
                         String agent = home + File.separator + "lib" + File.separator
                                 + "management-agent.jar";

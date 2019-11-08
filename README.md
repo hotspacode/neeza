@@ -1,4 +1,4 @@
-# Simple-mock: 让MOCK变得更简单
+# neeza: 让MOCK变得更简单
 
 ## Introduction
 
@@ -7,7 +7,7 @@
 # Quick Start
 
 - mvn clean package 
-- -javaagent:simple-mock-agent/target/simple-mock-agent-1.0.1-SNAPSHOT.jar
+- -javaagent:neeza-agent/target/neeza-agent-1.0.1-SNAPSHOT.jar
 
 
 # Plan

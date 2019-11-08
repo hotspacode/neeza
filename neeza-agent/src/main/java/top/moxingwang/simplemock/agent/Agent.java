@@ -24,7 +24,7 @@ public class Agent {
         System.out.println("aaaaaaaaaaaaaaaaaaaaaa" + aa);
         {
             try {
-                URL url = new URL("file:C:\\workspace\\simple-mock\\simple-mock-spy\\target\\simple-mock-spy-1.0.1-SNAPSHOT-jar-with-dependencies.jar");
+                URL url = new URL("file:C:\\workspace\\neeza\\neeza-spy\\target\\neeza-spy-1.0.1-SNAPSHOT-jar-with-dependencies.jar");
                 URLClassLoader urlClassLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
                 Method add = URLClassLoader.class.getDeclaredMethod("addURL", new Class[]{URL.class});
                 add.setAccessible(true);
