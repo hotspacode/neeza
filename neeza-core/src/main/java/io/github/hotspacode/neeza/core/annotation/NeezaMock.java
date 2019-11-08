@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE,ElementType.METHOD,ElementType.TYPE_USE})
+@Target({ElementType.TYPE})
 public @interface NeezaMock {
     /**
      * default extension name
