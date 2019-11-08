@@ -56,9 +56,9 @@
                             <addClasspath>true</addClasspath>
                         </manifest>
                         <manifestEntries>
-                            <Premain-Class>Agent</Premain-Class>
-                            <Main-Class>Agent</Main-Class>
-                            <Agent-Class>Agent</Agent-Class>
+                            <Premain-Class>io.github.hotspacode.neeza.agent.Agent</Premain-Class>
+                            <Main-Class>io.github.hotspacode.neeza.agent.Agent</Main-Class>
+                            <Agent-Class>io.github.hotspacode.neeza.agent.Agent</Agent-Class>
                             <Class-Path>tools.jar</Class-Path>
                             <Can-Retransform-Classes>true</Can-Retransform-Classes>
                         </manifestEntries>

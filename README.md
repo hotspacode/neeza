@@ -13,6 +13,6 @@
 # Quick Start
 
 - mvn clean package 
-- -javaagent:neeza-agent/target/neeza-agent-1.0.1-SNAPSHOT.jar
+- -javaagent:neeza-agent/target/neeza-agent-1.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 
