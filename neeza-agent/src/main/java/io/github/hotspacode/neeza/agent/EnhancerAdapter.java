@@ -3,16 +3,16 @@ package io.github.hotspacode.neeza.agent;
 import io.github.hotspacode.neeza.agent.adapter.ObjectMethodAdapter;
 import io.github.hotspacode.neeza.agent.adapter.PrimitiveMethodAdapter;
 import io.github.hotspacode.neeza.agent.adapter.VoidMethodAdapter;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
+import io.github.hotspacode.neeza.core.annotation.NeezaMock;
+import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
 
 
 public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
     private boolean isInterface;
+    private boolean isAnnotationType = false;
+
 
     public EnhancerAdapter(ClassVisitor classVisitor) {
         super(ASM7, classVisitor);
@@ -23,6 +23,30 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
         super.visit(version, access, name, signature, superName, interfaces);
         isInterface = (access & ACC_INTERFACE) != 0;
+    }
+
+    public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
+        System.out.println("访问注解1" + descriptor);
+
+        System.out.println(descriptor);
+
+        if (descriptor.contains(NeezaMock.class.toString().replace(".", "/").replace("interface ", ""))) {
+            isAnnotationType = true;
+        }
+        return this.cv != null ? this.cv.visitAnnotation(descriptor, visible) : null;
+    }
+
+    public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
+        System.out.println("访问注解2" + descriptor);
+        if (descriptor.contains(NeezaMock.class.toString().replace(".", "/").replace("interface ", ""))) {
+            isAnnotationType = true;
+        }
+
+        if (this.api < ASM7) {
+            throw new UnsupportedOperationException("This feature requires ASM6");
+        } else {
+            return this.cv != null ? this.cv.visitTypeAnnotation(typeRef, typePath, descriptor, visible) : null;
+        }
     }
 
 

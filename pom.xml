@@ -6,7 +6,7 @@
 
     <groupId>io.github.hotspacode</groupId>
     <artifactId>neeza</artifactId>
-    <version>${neeza.version}</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
 
     <properties>

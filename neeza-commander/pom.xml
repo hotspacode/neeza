@@ -8,13 +8,17 @@
     <artifactId>neeza-commander</artifactId>
     <version>${neeza.version}</version>
 
+    <properties>
+        <neeza.version>1.0.1-SNAPSHOT</neeza.version>
+        <java.version>1.8</java.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>io.github.hotspacode</groupId>
             <artifactId>neeza-core</artifactId>
             <version>${neeza.version}</version>
         </dependency>
-
     </dependencies>
 
     <build>

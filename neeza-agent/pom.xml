@@ -8,6 +8,11 @@
     <artifactId>neeza-agent</artifactId>
     <version>${neeza.version}</version>
 
+    <properties>
+        <neeza.version>1.0.1-SNAPSHOT</neeza.version>
+        <java.version>1.8</java.version>
+    </properties>
+
     <dependencies>
 <!--        <dependency>
             <groupId>org.ow2.asm</groupId>
@@ -18,6 +23,12 @@
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm-commons</artifactId>
             <version>7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.hotspacode</groupId>
+            <artifactId>neeza-core</artifactId>
+            <version>${neeza.version}</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
