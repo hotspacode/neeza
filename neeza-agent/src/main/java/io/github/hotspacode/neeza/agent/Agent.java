@@ -1,19 +1,10 @@
 package io.github.hotspacode.neeza.agent;
 
 
-import java.io.File;
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.net.URLClassLoader;
 
 public class Agent {
-    static int aa = 1;
-
-    static {
-        aa = aa + 1;
-    }
 
     public static void premain(String agentArgs, Instrumentation inst) {
         System.out.println(" premain(String args, Instrumentation inst) ");
@@ -21,19 +12,6 @@ public class Agent {
     }
 
     public static void agentmain(String args, Instrumentation inst) {
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaa" + aa);
-        {
-            try {
-                URL url = new URL("file:C:\\workspace\\neeza\\neeza-spy\\target\\neeza-spy-1.0.1-SNAPSHOT-jar-with-dependencies.jar");
-                URLClassLoader urlClassLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
-                Method add = URLClassLoader.class.getDeclaredMethod("addURL", new Class[]{URL.class});
-                add.setAccessible(true);
-                add.invoke(urlClassLoader, new Object[]{url});
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
 
         System.out.println(" agentmain(String args, Instrumentation inst) ");
         inst.addTransformer(new AgentTransformer(1, args, null), true);

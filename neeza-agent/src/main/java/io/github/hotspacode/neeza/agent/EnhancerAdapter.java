@@ -1,13 +1,13 @@
 package io.github.hotspacode.neeza.agent;
 
+import io.github.hotspacode.neeza.agent.adapter.ObjectMethodAdapter;
+import io.github.hotspacode.neeza.agent.adapter.PrimitiveMethodAdapter;
+import io.github.hotspacode.neeza.agent.adapter.VoidMethodAdapter;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.AdviceAdapter;
-import io.github.hotspacode.neeza.agent.adapter.ObjectMethodAdapter;
-import io.github.hotspacode.neeza.agent.adapter.PrimitiveMethodAdapter;
-import io.github.hotspacode.neeza.agent.adapter.VoidMethodAdapter;
 
 
 public class EnhancerAdapter extends ClassVisitor implements Opcodes {
@@ -47,7 +47,6 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
             System.out.println("真正访问方法: " + Type.getReturnType(descriptor).getSort() + "--" + name + "--" + descriptor + "--" + "返回class:" +
                     Type.getReturnType(descriptor).getClassName() + "---" + "分发methodReturnType：" + methodReturnType + "returnClassType：" + returnClassName);
-
 
 
             //byte、short、int、long、float、double、char、boolean 、void 、object 、Array
