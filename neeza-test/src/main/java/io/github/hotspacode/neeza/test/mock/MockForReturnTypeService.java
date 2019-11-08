@@ -1,11 +1,12 @@
 package io.github.hotspacode.neeza.test.mock;
 
-import io.github.hotspacode.neeza.core.annotation.SimpleMock;
+import io.github.hotspacode.neeza.core.annotation.NeezaMock;
+
 
 import java.util.HashMap;
 import java.util.Map;
 
-@SimpleMock
+@NeezaMock
 public class MockForReturnTypeService {
 
     public void testVoid() {

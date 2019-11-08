@@ -1,9 +1,10 @@
 package io.github.hotspacode.neeza.test.mock;
 
-import io.github.hotspacode.neeza.core.annotation.SimpleMock;
+import io.github.hotspacode.neeza.core.annotation.NeezaMock;
+
 import io.github.hotspacode.neeza.core.config.SimpleMockConfig;
 
-@SimpleMock
+@NeezaMock
 public class MockForReturnTypeServiceTest {
     public static void main(String[] args) {
         SimpleMockConfig.init();
