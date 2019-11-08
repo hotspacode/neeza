@@ -1,4 +1,5 @@
-package io.github.hotspacode.neeza.test.agent;
+/*
+package io.github.hotspacode.neeza.test.detach;
 
 import com.sun.tools.attach.*;
 import io.github.hotspacode.neeza.test.service.UserTest;
@@ -21,3 +22,4 @@ public class JVMTIThread {
         }
     }
 }
+*/

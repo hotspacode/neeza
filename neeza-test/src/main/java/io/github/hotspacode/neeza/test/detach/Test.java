@@ -1,5 +1,6 @@
+/*
 
-package io.github.hotspacode.neeza.test.agent;
+package io.github.hotspacode.neeza.test.detach;
 
 
 import com.sun.tools.attach.AgentInitializationException;
@@ -59,3 +60,4 @@ public final class Test {
 
     }
 }
+*/

@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.test.agent;
+package io.github.hotspacode.neeza.test.detach;
 
 import io.github.hotspacode.neeza.test.service.UserTest;
 
