@@ -6,9 +6,12 @@
 
     <groupId>top.moxingwang.neeza</groupId>
     <artifactId>neeza</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>${neeza.version}</version>
     <packaging>pom</packaging>
 
+    <properties>
+        <neeza.version>1.0.1-SNAPSHOT</neeza.version>
+    </properties>
 
     <modules>
         <module>neeza-core</module>

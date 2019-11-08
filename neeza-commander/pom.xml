@@ -6,19 +6,15 @@
 
     <groupId>top.moxingwang.neeza</groupId>
     <artifactId>neeza-commander</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>${neeza.version}</version>
 
     <dependencies>
         <dependency>
             <groupId>top.moxingwang.neeza</groupId>
-            <artifactId>neeza-agent</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <artifactId>neeza-core</artifactId>
+            <version>${neeza.version}</version>
         </dependency>
-        <dependency>
-            <groupId>top.moxingwang.neeza</groupId>
-            <artifactId>neeza-spy</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
-        </dependency>
+
     </dependencies>
 
     <build>

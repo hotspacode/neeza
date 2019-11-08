@@ -6,26 +6,19 @@
 
     <groupId>top.moxingwang.neeza</groupId>
     <artifactId>neeza-test</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>${neeza.version}</version>
 
     <dependencies>
         <dependency>
             <groupId>top.moxingwang.neeza</groupId>
             <artifactId>neeza-core</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>${neeza.version}</version>
         </dependency>
         <dependency>
             <groupId>com.esotericsoftware</groupId>
             <artifactId>kryo</artifactId>
             <version>4.0.1</version>
         </dependency>
-<!--
-        <dependency>
-            <groupId>com.chinaredstar</groupId>
-            <artifactId>p-trade-oc-api</artifactId>
-            <version>3.0.04.RELEASE</version>
-        </dependency>
--->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

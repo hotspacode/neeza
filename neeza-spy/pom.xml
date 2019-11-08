@@ -6,13 +6,13 @@
 
     <groupId>top.moxingwang.neeza</groupId>
     <artifactId>neeza-spy</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>${neeza.version}</version>
 
     <dependencies>
         <dependency>
             <groupId>top.moxingwang.neeza</groupId>
             <artifactId>neeza-core</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>${neeza.version}</version>
         </dependency>
     </dependencies>
 

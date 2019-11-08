@@ -6,7 +6,7 @@
 
     <groupId>top.moxingwang.neeza</groupId>
     <artifactId>neeza-core</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>${neeza.version}</version>
     <packaging>jar</packaging>
 
     <dependencies>
