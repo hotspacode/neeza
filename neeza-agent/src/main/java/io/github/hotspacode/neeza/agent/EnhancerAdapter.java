@@ -26,7 +26,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
     }
 
     public AnnotationVisitor visitAnnotation(String descriptor, boolean visible) {
-        System.out.println("访问注解1" + descriptor);
+        System.out.println("访问注解" + descriptor);
 
         System.out.println(descriptor);
 
@@ -34,19 +34,6 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
             isAnnotationType = true;
         }
         return this.cv != null ? this.cv.visitAnnotation(descriptor, visible) : null;
-    }
-
-    public AnnotationVisitor visitTypeAnnotation(int typeRef, TypePath typePath, String descriptor, boolean visible) {
-        System.out.println("访问注解2" + descriptor);
-        if (descriptor.contains(NeezaMock.class.toString().replace(".", "/").replace("interface ", ""))) {
-            isAnnotationType = true;
-        }
-
-        if (this.api < ASM7) {
-            throw new UnsupportedOperationException("This feature requires ASM6");
-        } else {
-            return this.cv != null ? this.cv.visitTypeAnnotation(typeRef, typePath, descriptor, visible) : null;
-        }
     }
 
 
@@ -58,7 +45,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
         System.out.println("准备访问方法: " + Type.getReturnType(descriptor).getSort() + "--" + name + "--" + descriptor);
 
 
-        if (!isInterface && mv != null && !name.equals("<init>") && !name.equals("<clinit>")) {
+        if (isAnnotationType && !isInterface && mv != null && !name.equals("<init>") && !name.equals("<clinit>")) {
 
             int methodReturnType = Type.getReturnType(descriptor).getSort();
 
