@@ -14,6 +14,7 @@
     </properties>
 
     <modules>
+        <module>neeza-deputy</module>
         <module>neeza-core</module>
         <module>neeza-spy</module>
         <module>neeza-agent</module>
