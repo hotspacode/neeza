@@ -39,7 +39,7 @@ public class MockSpyService implements IMockSpyService {
                 }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         return mockTransport;
