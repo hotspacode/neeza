@@ -1,12 +1,12 @@
 package io.github.hotspacode.neeza.ide.controller;
 
 import com.alibaba.fastjson.JSON;
+import io.github.hotspacode.neeza.ide.service.StaticMockService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import io.github.hotspacode.neeza.core.dto.MockDataDTO;
-import io.github.hotspacode.neeza.server.service.StaticMockService;
 
 @RestController
 @RequestMapping("/mock")

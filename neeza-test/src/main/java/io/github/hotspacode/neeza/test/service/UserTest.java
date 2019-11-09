@@ -1,7 +1,7 @@
 package io.github.hotspacode.neeza.test.service;
 
 
-import io.github.hotspacode.neeza.core.annotation.NeezaMock;
+import io.github.hotspacode.neeza.deputy.annotation.NeezaMock;
 
 @NeezaMock
 public class UserTest {

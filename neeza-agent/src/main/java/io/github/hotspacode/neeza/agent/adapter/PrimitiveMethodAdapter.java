@@ -28,13 +28,13 @@ public class PrimitiveMethodAdapter extends AdviceAdapter {
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false);
         mv.visitInsn(ICONST_1);
         mv.visitInsn(AALOAD);
-        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/core/api/MockApi", "getMockData", "(Ljava/lang/StackTraceElement;)Lio/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO;", false);
+        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/deputy/core/MockSpy", "getMockData", "(Ljava/lang/StackTraceElement;)Lio/github/hotspacode/neeza/deputy/dto/MockTransport;", false);
         mv.visitVarInsn(ASTORE, argumentTypeSize);
         Label l1 = new Label();
         mv.visitLabel(l1);
         mv.visitLineNumber(11, l1);
         mv.visitVarInsn(ALOAD, argumentTypeSize);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO", "isMocked", "()Z", false);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/deputy/dto/MockTransport", "isMocked", "()Z", false);
         Label l2 = new Label();
         mv.visitJumpInsn(IFEQ, l2);
         Label l3 = new Label();
@@ -43,7 +43,7 @@ public class PrimitiveMethodAdapter extends AdviceAdapter {
         mv.visitVarInsn(ALOAD, argumentTypeSize);
         mv.visitInsn(POP);
         mv.visitVarInsn(ALOAD, argumentTypeSize);
-        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO", "getObject", "(Lio/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO;)Ljava/lang/Object;", false);
+        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/deputy/dto/MockTransport", "getObject", "(Lio/github/hotspacode/neeza/deputy/dto/MockTransport;)Ljava/lang/Object;", false);
         String returnClassName = returnClass.getName().replace(".", "/");
         mv.visitTypeInsn(CHECKCAST, returnClassName);
 
@@ -76,6 +76,6 @@ public class PrimitiveMethodAdapter extends AdviceAdapter {
 
         mv.visitLabel(l2);
         mv.visitLineNumber(15, l2);
-        mv.visitFrame(F_APPEND, 1, new Object[]{"io/github/hotspacode/neeza/core/dto/MethodSpiResponseDTO"}, 0, null);
+        mv.visitFrame(F_APPEND, 1, new Object[]{"io/github/hotspacode/neeza/deputy/dto/MockTransport"}, 0, null);
     }
 }

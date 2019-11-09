@@ -1,10 +1,9 @@
-package io.github.hotspacode.neeza.core.dto;
+package io.github.hotspacode.neeza.deputy.dto;
 
-import com.alibaba.fastjson.JSONObject;
 
 import java.io.Serializable;
 
-public class MethodSpiResponseDTO implements Serializable {
+public class MockTransport implements Serializable {
 
     private boolean mocked = false;
     private String response;
@@ -14,21 +13,24 @@ public class MethodSpiResponseDTO implements Serializable {
     private boolean returnNull = false;
     private boolean returnVoid = false;
 
-    public MethodSpiResponseDTO() {
+    public MockTransport() {
     }
 
-    public MethodSpiResponseDTO(boolean mocked) {
+    public MockTransport(boolean mocked) {
         this.mocked = mocked;
     }
 
-    public static <T> T getObject(MethodSpiResponseDTO methodSpiResponseDTO) {
+    public static <T> T getObject(MockTransport methodSpiResponseDTO) {
         if (methodSpiResponseDTO.isReturnNull()) {
             return null;
         }
         if (null == methodSpiResponseDTO.getResponse()) {
             return null;
         }
-        return JSONObject.parseObject(methodSpiResponseDTO.getResponse().getBytes(), methodSpiResponseDTO.getMethodReturnClass());
+//        return JSONObject.parseObject(methodSpiResponseDTO.getResponse().getBytes(), methodSpiResponseDTO.getMethodReturnClass());
+
+        //todo
+        return null;
     }
 
     public boolean isReturnNull() {

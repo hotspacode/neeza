@@ -1,8 +1,8 @@
-package io.github.hotspacode.neeza.core.dto;
+package io.github.hotspacode.neeza.deputy.dto;
 
 import java.io.Serializable;
 
-public class MockDataDTO implements Serializable {
+public class MockData implements Serializable {
 
     private Type type;
     private String body;
@@ -11,10 +11,10 @@ public class MockDataDTO implements Serializable {
         NONE,ReturnBody, VoidReturn, ReturnNull
     }
 
-    public MockDataDTO() {
+    public MockData() {
     }
 
-    public MockDataDTO(Type type, String body) {
+    public MockData(Type type, String body) {
         this.type = type;
         this.body = body;
     }

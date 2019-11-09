@@ -1,6 +1,6 @@
 package io.github.hotspacode.neeza.test.mock;
 
-import io.github.hotspacode.neeza.core.annotation.NeezaMock;
+import io.github.hotspacode.neeza.deputy.annotation.NeezaMock;
 
 import io.github.hotspacode.neeza.core.config.NeezaMockConfig;
 

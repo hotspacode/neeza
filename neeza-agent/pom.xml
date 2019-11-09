@@ -14,11 +14,6 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>
-            <groupId>org.ow2.asm</groupId>
-            <artifactId>asm</artifactId>
-            <version>7.0</version>
-        </dependency>-->
         <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm-commons</artifactId>
@@ -26,7 +21,7 @@
         </dependency>
         <dependency>
             <groupId>io.github.hotspacode</groupId>
-            <artifactId>neeza-core</artifactId>
+            <artifactId>neeza-deputy</artifactId>
             <version>${neeza.version}</version>
             <scope>compile</scope>
         </dependency>
