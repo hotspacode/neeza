@@ -5,26 +5,20 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.hotspacode</groupId>
-    <artifactId>neeza</artifactId>
-    <version>1.0.1</version>
+    <artifactId>neeza-transport</artifactId>
+    <version>${neeza.version}</version>
     <packaging>pom</packaging>
 
     <properties>
         <neeza.version>1.0.1-SNAPSHOT</neeza.version>
     </properties>
 
+
     <modules>
-        <module>neeza-deputy</module>
-        <module>neeza-core</module>
-        <module>neeza-spy</module>
-        <module>neeza-agent</module>
-        <module>neeza-client</module>
-        <module>neeza-transport</module>
-        <module>neeza-ide</module>
-        <module>neeza-commander</module>
-        <module>neeza-test</module>
-        <module>neeza-sample</module>
+        <module>neeza-transport-common</module>
+        <module>neeza-transport-netty-http</module>
     </modules>
+
 
 
 </project>
