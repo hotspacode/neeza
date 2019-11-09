@@ -2,7 +2,6 @@ package io.github.hotspacode.neeza.deputy.service;
 
 
 import io.github.hotspacode.neeza.deputy.api.IMockSpyService;
-import io.github.hotspacode.neeza.deputy.api.INeezaSerialization;
 import io.github.hotspacode.neeza.deputy.common.SpiLoader;
 
 public final class MockSpyServiceProvider {

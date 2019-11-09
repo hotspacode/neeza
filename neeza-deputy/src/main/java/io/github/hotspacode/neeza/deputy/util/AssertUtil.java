@@ -2,11 +2,6 @@ package io.github.hotspacode.neeza.deputy.util;
 
 import java.util.Collection;
 
-/**
- * Util class for checking arguments.
- *
- * @author Eric Zhao
- */
 public class AssertUtil {
 
     private AssertUtil(){}
