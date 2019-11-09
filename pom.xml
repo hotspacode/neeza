@@ -20,7 +20,7 @@
         <module>neeza-agent</module>
         <module>neeza-commander</module>
         <module>neeza-client</module>
-        <module>neeza-server</module>
+        <module>neeza-ide</module>
         <module>neeza-test</module>
         <module>neeza-sample</module>
     </modules>

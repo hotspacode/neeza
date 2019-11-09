@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.server.controller;
+package io.github.hotspacode.neeza.ide.controller;
 
 import com.alibaba.fastjson.JSON;
 import org.springframework.web.bind.annotation.GetMapping;

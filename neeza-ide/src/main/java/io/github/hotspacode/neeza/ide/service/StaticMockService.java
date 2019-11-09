@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.server.service;
+package io.github.hotspacode.neeza.ide.service;
 
 public interface StaticMockService {
     String mapMock = "{\"@type\":\"java.util.HashMap\",\"key1\":\"string1\",\"key2\":\"string2\",\"key3\":\"string3\"}";

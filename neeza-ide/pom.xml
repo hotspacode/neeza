@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>io.github.hotspacode</groupId>
-    <artifactId>neeza-server</artifactId>
+    <artifactId>neeza-ide</artifactId>
     <version>${neeza.version}</version>
 
     <properties>

@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.server.controller;
+package io.github.hotspacode.neeza.ide.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
