@@ -1,12 +1,13 @@
-package io.github.hotspacode.neeza.core.serialization;
+package io.github.hotspacode.neeza.core.service.serialization;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import io.github.hotspacode.neeza.deputy.api.INeezaSerialization;
 
-public class FastJSONSerialization implements MockSerialization {
+public class FastJSONSerialization implements INeezaSerialization {
     public byte[] serialize(Object data) {
         ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
 

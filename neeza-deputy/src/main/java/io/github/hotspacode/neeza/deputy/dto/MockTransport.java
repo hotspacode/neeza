@@ -1,6 +1,8 @@
 package io.github.hotspacode.neeza.deputy.dto;
 
 
+import io.github.hotspacode.neeza.deputy.api.INeezaSerialization;
+
 import java.io.Serializable;
 
 public class MockTransport implements Serializable {
@@ -12,6 +14,8 @@ public class MockTransport implements Serializable {
     private boolean primitive = false;
     private boolean returnNull = false;
     private boolean returnVoid = false;
+
+    private INeezaSerialization neezaSerialization;
 
     public MockTransport() {
     }
@@ -27,10 +31,7 @@ public class MockTransport implements Serializable {
         if (null == methodSpiResponseDTO.getResponse()) {
             return null;
         }
-//        return JSONObject.parseObject(methodSpiResponseDTO.getResponse().getBytes(), methodSpiResponseDTO.getMethodReturnClass());
-
-        //todo
-        return null;
+        return (T) methodSpiResponseDTO.getNeezaSerialization().deserialize(methodSpiResponseDTO.getResponse().getBytes(), methodSpiResponseDTO.getMethodReturnClass());
     }
 
     public boolean isReturnNull() {
@@ -61,6 +62,10 @@ public class MockTransport implements Serializable {
         if (this.isPrimitive() && this.returnNull) {
             return false;
         }
+        if (null == neezaSerialization) {
+            return false;
+        }
+
         return mocked;
     }
 
@@ -82,5 +87,13 @@ public class MockTransport implements Serializable {
 
     public void setResponse(String response) {
         this.response = response;
+    }
+
+    public INeezaSerialization getNeezaSerialization() {
+        return neezaSerialization;
+    }
+
+    public void setNeezaSerialization(INeezaSerialization neezaSerialization) {
+        this.neezaSerialization = neezaSerialization;
     }
 }
