@@ -61,6 +61,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
 
             //byte、short、int、long、float、double、char、boolean 、void 、object 、Array
+//            mv.visitLocalVariable();
 
 
             if (Type.VOID == methodReturnType) {

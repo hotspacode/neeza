@@ -23,7 +23,7 @@ public class ObjectMethodAdapter extends AdviceAdapter {
     protected void onMethodEnter() {
         Label l0 = new Label();
         mv.visitLabel(l0);
-        mv.visitLineNumber(12, l0);
+//        mv.visitLineNumber(12, l0);
         mv.visitMethodInsn(INVOKESTATIC, "java/lang/Thread", "currentThread", "()Ljava/lang/Thread;", false);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Thread", "getStackTrace", "()[Ljava/lang/StackTraceElement;", false);
         mv.visitInsn(ICONST_1);
@@ -32,14 +32,14 @@ public class ObjectMethodAdapter extends AdviceAdapter {
         mv.visitVarInsn(ASTORE, argumentTypeSize);
         Label l1 = new Label();
         mv.visitLabel(l1);
-        mv.visitLineNumber(13, l1);
+//        mv.visitLineNumber(13, l1);
         mv.visitVarInsn(ALOAD, argumentTypeSize);
         mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/deputy/dto/MockTransport", "isMocked", "()Z", false);
         Label l2 = new Label();
         mv.visitJumpInsn(IFEQ, l2);
         Label l3 = new Label();
         mv.visitLabel(l3);
-        mv.visitLineNumber(14, l3);
+//        mv.visitLineNumber(14, l3);
         mv.visitVarInsn(ALOAD, argumentTypeSize);
         mv.visitInsn(POP);
         mv.visitVarInsn(ALOAD, argumentTypeSize);
@@ -47,8 +47,17 @@ public class ObjectMethodAdapter extends AdviceAdapter {
         mv.visitTypeInsn(CHECKCAST, returnClass.getName().replace(".", "/"));
         mv.visitInsn(ARETURN);
         mv.visitLabel(l2);
-        mv.visitLineNumber(18, l2);
+//        mv.visitLineNumber(18, l2);
         mv.visitFrame(F_APPEND, 1, new Object[]{"io/github/hotspacode/neeza/deputy/dto/MockTransport"}, 0, null);
 
+    }
+
+    @Override
+    public void visitLocalVariable(String name, String desc, String signature,
+                                   Label start, Label end, int index) {
+        if("this".equals(name)) {
+            return;
+        }
+        System.out.println("访问到方法参数名称：" + name);
     }
 }

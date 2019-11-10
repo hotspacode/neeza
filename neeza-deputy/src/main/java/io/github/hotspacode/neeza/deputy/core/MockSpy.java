@@ -7,12 +7,17 @@ import io.github.hotspacode.neeza.deputy.service.MockSpyServiceProvider;
 import io.github.hotspacode.neeza.deputy.service.NeezaSerializationProvider;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
 public class MockSpy {
 
     private static INeezaSerialization neezaSerialization = NeezaSerializationProvider.getInstance();
     private static IMockSpyService mockSpyService = MockSpyServiceProvider.getInstance();
 
+    public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable){
+
+        return null;
+    }
     /**
      * @param stackTraceElement
      * @return
