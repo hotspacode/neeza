@@ -5,20 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.hotspacode</groupId>
-    <artifactId>neeza-client</artifactId>
+    <artifactId>neeza-store-mysql</artifactId>
     <version>${neeza.version}</version>
 
     <properties>
         <neeza.version>1.0.1-SNAPSHOT</neeza.version>
         <java.version>1.8</java.version>
     </properties>
-
-
-
-    <modules>
-        <module>neeza-client-plugin-idea</module>
-        <module>neeza-commander</module>
-    </modules>
 
 
 

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.hotspacode</groupId>
-    <artifactId>neeza-client</artifactId>
+    <artifactId>neeza-client-plugin-idea</artifactId>
     <version>${neeza.version}</version>
 
     <properties>
@@ -13,12 +13,6 @@
         <java.version>1.8</java.version>
     </properties>
 
-
-
-    <modules>
-        <module>neeza-client-plugin-idea</module>
-        <module>neeza-commander</module>
-    </modules>
 
 
 

@@ -5,26 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.hotspacode</groupId>
-    <artifactId>neeza</artifactId>
-    <version>1.0.1</version>
-    <packaging>pom</packaging>
+    <artifactId>neeza-store</artifactId>
+    <version>${neeza.version}</version>
 
     <properties>
         <neeza.version>1.0.1-SNAPSHOT</neeza.version>
+        <java.version>1.8</java.version>
     </properties>
 
+
     <modules>
-        <module>neeza-deputy</module>
-        <module>neeza-agent</module>
-        <module>neeza-core</module>
-        <module>neeza-spy</module>
-        <module>neeza-transport</module>
-        <module>neeza-store</module>
-        <module>neeza-server</module>
-        <module>neeza-client</module>
-        <module>neeza-sample</module>
-        <module>neeza-test</module>
+        <module>neeza-store-common</module>
+        <module>neeza-store-memory</module>
+        <module>neeza-store-file</module>
+        <module>neeza-store-mysql</module>
     </modules>
+
+
 
 
 </project>
