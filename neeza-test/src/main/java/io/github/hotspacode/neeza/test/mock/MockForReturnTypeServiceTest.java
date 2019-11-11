@@ -10,7 +10,9 @@ public class MockForReturnTypeServiceTest {
 //        MockForReturnTypeService mockService = new MockForReturnTypeService();
         CommonMessageService commonMessageService = new CommonMessageService();
         System.out.println("执行结果:" + commonMessageService.getString("1111111111","fsdddddddddd"));
-//        commonMessageService.testOrderResult();
+        System.out.println("执行结果:" + commonMessageService.getInt("1111111111","fsdddddddddd"));
+        commonMessageService.getVoid("1111111111","fsdddddddddd");
+        //        commonMessageService.testOrderResult();
 
 //        Map<String, String> map = mockService.testMap();
 //        OrderResult orderResult = mockService.testOrderResult(null);

@@ -2,11 +2,6 @@ package io.github.hotspacode.neeza.test.mock;
 
 
 import io.github.hotspacode.neeza.deputy.annotation.NeezaMock;
-import io.github.hotspacode.neeza.deputy.core.MockSpy;
-import io.github.hotspacode.neeza.deputy.dto.MockTransport;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @description:
@@ -15,7 +10,7 @@ import java.util.List;
 @NeezaMock
 public class CommonMessageService {
 
-    public String getString (String aa,String ddd){
+    public String getString(String aa, String ddd) {
 
 
         System.out.println("方法未被mock");
@@ -23,5 +18,17 @@ public class CommonMessageService {
     }
 
 
+    public int getInt(String aa, String ddd) {
+
+
+        System.out.println("方法未被mock");
+        return 1;
+    }
+
+    public void getVoid(String aa, String ddd) {
+
+
+        System.out.println("方法未被mock");
+    }
 
 }

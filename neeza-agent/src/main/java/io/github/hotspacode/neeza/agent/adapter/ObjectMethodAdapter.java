@@ -30,12 +30,7 @@ public class ObjectMethodAdapter extends AdviceAdapter {
         mv.visitMethodInsn(INVOKESPECIAL, "java/util/ArrayList", "<init>", "()V", false);
         mv.visitVarInsn(ASTORE, argumentTypeSize);
 
-      /*  Label l1 = new Label();
-        mv.visitLabel(l1);
-        mv.visitVarInsn(ALOAD, argumentTypeSize);
-        mv.visitVarInsn(ALOAD, 1);
-        mv.visitMethodInsn(INVOKEINTERFACE, "java/util/List", "add", "(Ljava/lang/Object;)Z", true);
-        mv.visitInsn(POP);*/
+
 
         for (int i = 0; i < argumentTypeSize-1; i++) {
             mv.visitLabel(new Label());
@@ -44,14 +39,6 @@ public class ObjectMethodAdapter extends AdviceAdapter {
             mv.visitMethodInsn(INVOKEINTERFACE, "java/util/List", "add", "(Ljava/lang/Object;)Z", true);
             mv.visitInsn(POP);
         }
-
-  /*     Label l2 = new Label();
-        mv.visitLabel(l2);
-
-        mv.visitVarInsn(ALOAD, 3);
-        mv.visitVarInsn(ALOAD, 2);
-        mv.visitMethodInsn(INVOKEINTERFACE, "java/util/List", "add", "(Ljava/lang/Object;)Z", true);
-        mv.visitInsn(POP);*/
 
 
 
