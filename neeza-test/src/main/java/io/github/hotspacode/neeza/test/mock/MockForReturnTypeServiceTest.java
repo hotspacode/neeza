@@ -7,9 +7,9 @@ import io.github.hotspacode.neeza.deputy.annotation.NeezaMock;
 public class MockForReturnTypeServiceTest {
     public static void main(String[] args) {
         NeezaMockConfig.init();
-        MockForReturnTypeService mockService = new MockForReturnTypeService();
+//        MockForReturnTypeService mockService = new MockForReturnTypeService();
         CommonMessageService commonMessageService = new CommonMessageService();
-        System.out.println("执行结果:" + commonMessageService.getString());
+        System.out.println("执行结果:" + commonMessageService.getString("1111111111","fsdddddddddd"));
 //        commonMessageService.testOrderResult();
 
 //        Map<String, String> map = mockService.testMap();

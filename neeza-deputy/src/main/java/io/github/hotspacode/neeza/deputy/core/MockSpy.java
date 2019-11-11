@@ -15,8 +15,10 @@ public class MockSpy {
     private static IMockSpyService mockSpyService = MockSpyServiceProvider.getInstance();
 
     public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable){
+        System.out.println("调用到mock");
+        MockTransport mockTransport = new MockTransport(false);;
 
-        return null;
+        return mockTransport;
     }
     /**
      * @param stackTraceElement
