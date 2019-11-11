@@ -1,8 +1,8 @@
-package io.github.hotspacode.neeza.ide.controller;
+package io.github.hotspacode.neeza.server.controller;
 
 import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.deputy.dto.MockData;
-import io.github.hotspacode.neeza.ide.service.StaticMockService;
+import io.github.hotspacode.neeza.server.service.StaticMockService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

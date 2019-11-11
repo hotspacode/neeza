@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.ide;
+package io.github.hotspacode.neeza.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

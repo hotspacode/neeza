@@ -19,7 +19,7 @@
         <module>neeza-core</module>
         <module>neeza-spy</module>
         <module>neeza-transport</module>
-        <module>neeza-ide</module>
+        <module>neeza-server</module>
         <module>neeza-client</module>
         <module>neeza-commander</module>
         <module>neeza-test</module>

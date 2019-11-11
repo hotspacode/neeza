@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.ide.service;
+package io.github.hotspacode.neeza.server.service;
 
 
 import org.springframework.stereotype.Service;
