@@ -1,6 +1,6 @@
-package io.github.hotspacode.neeza.server.controller;
+package io.github.hotspacode.neeza.server.standalone.controller;
 
-import io.github.hotspacode.neeza.server.service.MockIndexService;
+import io.github.hotspacode.neeza.server.standalone.service.MockIndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

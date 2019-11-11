@@ -1,13 +1,13 @@
-package io.github.hotspacode.neeza.server;
+package io.github.hotspacode.neeza.server.standalone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class IDEApplication {
+public class ServerStandaloneApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(IDEApplication.class, args);
+        SpringApplication.run(ServerStandaloneApplication.class, args);
     }
 
 }
