@@ -14,7 +14,7 @@ public class MockSpy {
     private static INeezaSerialization neezaSerialization = NeezaSerializationProvider.getInstance();
     private static IMockSpyService mockSpyService = MockSpyServiceProvider.getInstance();
 
-    public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable){
+    public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable) {
         System.out.println("调用到mock");
         MockTransport mockTransport = null;
 
@@ -23,7 +23,7 @@ public class MockSpy {
             Class targetClass = Class.forName(stackTraceElement.getClassName());
             String targetMethodName = stackTraceElement.getMethodName();
 
-            mockTransport = mockSpyService.transport(targetClass.getName(), targetMethodName,localVariable);
+            mockTransport = mockSpyService.transport(targetClass.getName(), targetMethodName, localVariable);
 
             if (null == mockTransport) {
                 mockTransport = new MockTransport(false);
@@ -37,6 +37,7 @@ public class MockSpy {
                     mockTransport.setMethodReturnClass(method.getReturnType());
                     mockTransport.setPrimitive(method.getReturnType().isPrimitive());
                     mockTransport.getMethodReturnClass().isPrimitive();
+                    break;
                 }
             }
         } catch (Exception e) {
