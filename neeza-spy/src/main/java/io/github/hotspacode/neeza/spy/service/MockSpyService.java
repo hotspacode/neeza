@@ -6,12 +6,14 @@ import io.github.hotspacode.neeza.deputy.api.IMockSpyService;
 import io.github.hotspacode.neeza.deputy.dto.MockData;
 import io.github.hotspacode.neeza.deputy.dto.MockTransport;
 
+import java.util.List;
+
 public class MockSpyService implements IMockSpyService {
     private static FastJSONSerialization neezaSerialization = new FastJSONSerialization();
 
 
     @Override
-    public MockTransport transport(String targetClassName, String targetMethodName) {
+    public MockTransport transport(String targetClassName, String targetMethodName, List<Object> localVariable) {
         MockTransport mockTransport = new MockTransport(false);
 
 

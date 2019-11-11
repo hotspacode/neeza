@@ -16,16 +16,6 @@ public class MockSpy {
 
     public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable){
         System.out.println("调用到mock");
-        MockTransport mockTransport = new MockTransport(false);;
-
-        return mockTransport;
-    }
-    /**
-     * @param stackTraceElement
-     * @return
-     */
-    public static MockTransport getMockData(StackTraceElement stackTraceElement) {
-        System.out.println("调用到mock");
         MockTransport mockTransport = null;
 
         try {
@@ -33,7 +23,7 @@ public class MockSpy {
             Class targetClass = Class.forName(stackTraceElement.getClassName());
             String targetMethodName = stackTraceElement.getMethodName();
 
-            mockTransport = mockSpyService.transport(targetClass.getName(), targetMethodName);
+            mockTransport = mockSpyService.transport(targetClass.getName(), targetMethodName,localVariable);
 
             if (null == mockTransport) {
                 mockTransport = new MockTransport(false);
@@ -59,4 +49,5 @@ public class MockSpy {
 
         return mockTransport;
     }
+
 }

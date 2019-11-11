@@ -58,10 +58,10 @@ public class ObjectSource2 {
         methodParams.add(c);
         methodParams.add(d);
 
-        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1]);
+   /*     MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1]);
         if (mockResponse.isMocked()) {
             return mockResponse.getObject(mockResponse);
-        }
+        }*/
 
 
         System.out.println("我在正常执行...");

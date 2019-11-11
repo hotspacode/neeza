@@ -8,10 +8,10 @@ public class DoubleSource {
 
 
     public double createSource() {
-        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1]);
+       /* MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1]);
         if (mockResponse.isMocked()) {
             return mockResponse.getObject(mockResponse);
-        }
+        }*/
 
         System.out.println("AAAAAAAAAA");
         return 1 ;
