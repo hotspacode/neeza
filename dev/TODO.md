@@ -8,9 +8,9 @@
 
 # 2019年11月11日计划
 - web IDE页面开发
-- 通信neeza-transport-netty-http通用实现
+- 通信neeza-transport-netty-http通用实现 
 - 存储neeza-store-mysql（JPA）通用实现实现
-- neeza-server-standalone restful接口定义
+- neeza-server-standalone restful接口定义 
     - 获取project列表
     - 按照树形的方式返回project对应的所有的资源
     - 按照className获取所有资源详情
