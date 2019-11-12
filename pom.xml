@@ -23,7 +23,6 @@
         <module>neeza-server</module>
         <module>neeza-client</module>
         <module>neeza-sample</module>
-        <module>neeza-test</module>
     </modules>
 
 

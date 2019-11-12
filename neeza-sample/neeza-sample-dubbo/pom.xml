@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.hotspacode</groupId>
-    <artifactId>neeza-sample</artifactId>
+    <artifactId>neeza-sample-dubbo</artifactId>
     <version>${neeza.version}</version>
 
     <properties>
@@ -14,11 +14,7 @@
     </properties>
 
 
-    <modules>
-        <module>neeza-test</module>
-        <module>neeza-sample-spring-boot</module>
-        <module>neeza-sample-dubbo</module>
-    </modules>
+
 
 
 
