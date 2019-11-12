@@ -7,6 +7,7 @@
     <groupId>io.github.hotspacode</groupId>
     <artifactId>neeza-client</artifactId>
     <version>${neeza.version}</version>
+    <packaging>pom</packaging>
 
     <properties>
         <neeza.version>1.0.1-SNAPSHOT</neeza.version>
