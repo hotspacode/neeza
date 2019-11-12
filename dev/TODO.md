@@ -11,5 +11,12 @@
 - 通信neeza-transport-netty-http通用实现
 - 存储neeza-store-mysql（JPA）通用实现实现
 - neeza-server-standalone restful接口定义
+    - 获取project列表
+    - 按照树形的方式返回project对应的所有的资源
+    - 按照className获取所有资源详情
+    - 根据descriptor获取资源的操作历史
 - 数据对象设计
+    - 每个资源定义为一个Entity，每个资源可以关联多个Rule
 - 抽象接口定义设计
+    - 存储spi api定义
+    - spy和server通信spi api定义
