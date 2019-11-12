@@ -1,7 +1,7 @@
 package io.github.hotspacode.neeza.spy.service;
 
 import io.github.hotspacode.neeza.core.NeezaMockConstant;
-import io.github.hotspacode.neeza.core.service.serialization.FastJSONSerialization;
+import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
 import io.github.hotspacode.neeza.deputy.api.IMockSpyService;
 import io.github.hotspacode.neeza.deputy.dto.MockData;
 import io.github.hotspacode.neeza.deputy.dto.MockTransport;
