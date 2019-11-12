@@ -23,6 +23,15 @@ public class MockSpy {
             Class targetClass = Class.forName(stackTraceElement.getClassName());
             String targetMethodName = stackTraceElement.getMethodName();
 
+            Method targetMethod = null;
+            for (Method method : targetClass.getDeclaredMethods()) {
+                if (method.getName().equals(targetMethodName) && localVariable.size() == method.getParameterCount()) {
+                    targetMethod = method;
+                    break;
+                }
+            }
+
+
             mockTransport = mockSpyService.transport(targetClass.getName(), targetMethodName, localVariable);
 
             if (null == mockTransport) {
@@ -30,16 +39,12 @@ public class MockSpy {
                 return mockTransport;
             }
 
+            mockTransport.setMethodReturnClass(targetMethod.getReturnType());
+            mockTransport.setPrimitive(targetMethod.getReturnType().isPrimitive());
+            mockTransport.getMethodReturnClass().isPrimitive();
+
             mockTransport.setNeezaSerialization(neezaSerialization);
 
-            for (Method method : targetClass.getMethods()) {
-                if (method.getName().equals(targetMethodName)) {
-                    mockTransport.setMethodReturnClass(method.getReturnType());
-                    mockTransport.setPrimitive(method.getReturnType().isPrimitive());
-                    mockTransport.getMethodReturnClass().isPrimitive();
-                    break;
-                }
-            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
