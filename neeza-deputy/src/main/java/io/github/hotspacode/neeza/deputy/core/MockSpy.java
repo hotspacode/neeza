@@ -32,7 +32,7 @@ public class MockSpy {
             }
 
 
-            mockTransport = mockSpyService.transport(targetClass.getName(), targetMethodName, localVariable);
+            mockTransport = mockSpyService.transport(targetMethod, localVariable);
 
             if (null == mockTransport) {
                 mockTransport = new MockTransport(false);

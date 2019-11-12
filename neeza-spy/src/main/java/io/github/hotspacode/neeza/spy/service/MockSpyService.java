@@ -6,6 +6,7 @@ import io.github.hotspacode.neeza.deputy.api.IMockSpyService;
 import io.github.hotspacode.neeza.deputy.dto.MockData;
 import io.github.hotspacode.neeza.deputy.dto.MockTransport;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class MockSpyService implements IMockSpyService {
@@ -13,13 +14,14 @@ public class MockSpyService implements IMockSpyService {
 
 
     @Override
-    public MockTransport transport(String targetClassName, String targetMethodName, List<Object> localVariable) {
+    public MockTransport transport(Method targetMethod , List<Object> localVariable) {
         MockTransport mockTransport = new MockTransport(false);
 
 
         try {
             //调用mock server
-            String mockUrl = System.getProperty(NeezaMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetClassName + "." + targetMethodName;
+            //todo 指定为方法签名
+            String mockUrl = System.getProperty(NeezaMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetMethod.getDeclaringClass().getName() + "." + targetMethod.getName();
             String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
 
             //todo 全局参数mock报错是否支持继续
