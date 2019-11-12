@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.hotspacode</groupId>
-    <artifactId>neeza-server</artifactId>
+    <artifactId>neeza-server-api</artifactId>
     <version>${neeza.version}</version>
 
     <properties>
@@ -15,11 +15,6 @@
 
 
 
-    <modules>
-        <module>neeza-server-api</module>
-        <module>neeza-server-standalone</module>
-        <module>neeza-server-integration-tomcat</module>
-    </modules>
 
 
 
