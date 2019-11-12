@@ -1,7 +1,7 @@
 package io.github.hotspacode.neeza.client.serialization;
 
 import org.junit.Test;
-import io.github.hotspacode.neeza.core.service.serialization.FastJSONSerialization;
+import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
 
 import java.util.ArrayList;
 import java.util.List;
