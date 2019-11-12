@@ -1,1 +1,1 @@
-io.github.hotspacode.neeza.core.service.serialization.FastJSONSerialization
+io.github.hotspacode.neeza.core.serialization.FastJSONSerialization
