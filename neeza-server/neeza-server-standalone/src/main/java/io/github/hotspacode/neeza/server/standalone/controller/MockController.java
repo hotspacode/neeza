@@ -44,7 +44,7 @@ public class MockController {
             mockDataDTO.setBody(StaticMockService.testArrayList);
         } else {
             mockDataDTO.setType(MockData.Type.ReturnBody);
-            mockDataDTO.setBody(StaticMockService.orderResultMock);
+            mockDataDTO.setBody(StaticMockService.mapMock);
         }
 
 
