@@ -15,7 +15,7 @@
 
 
     <modules>
-        <module>neeza-store-common</module>
+        <module>neeza-store-api</module>
         <module>neeza-store-memory</module>
         <module>neeza-store-file</module>
         <module>neeza-store-mysql</module>

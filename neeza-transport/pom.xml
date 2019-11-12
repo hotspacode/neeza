@@ -15,7 +15,7 @@
 
 
     <modules>
-        <module>neeza-transport-common</module>
+        <module>neeza-transport-api</module>
         <module>neeza-transport-netty-http</module>
     </modules>
 
