@@ -14,7 +14,10 @@ public class MethodInvokerHandler {
     private static ArrayBlockingQueue invokeQueue = null;
     private static ConcurrentHashMap mapContainer = null;
 
-    public static synchronized void init() {
+    private MethodInvokerHandler() {
+    }
+
+    static synchronized void init() {
         if (Objects.nonNull(invokeQueue)) {
             invokeQueue = new ArrayBlockingQueue(MAX_CONTAINER_SIZE);
 
@@ -25,7 +28,7 @@ public class MethodInvokerHandler {
         }
     }
 
-    public static boolean offer(Method targetMethod, List<Object> localVariable) {
+    static boolean offer(Method targetMethod, List<Object> localVariable) {
         if (Objects.isNull(invokeQueue) || Objects.isNull(targetMethod)) {
             return false;
         }
