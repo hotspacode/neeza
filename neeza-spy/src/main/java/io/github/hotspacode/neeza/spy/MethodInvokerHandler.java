@@ -17,9 +17,11 @@ public class MethodInvokerHandler {
     public static synchronized void init() {
         if (Objects.nonNull(invokeQueue)) {
             invokeQueue = new ArrayBlockingQueue(MAX_CONTAINER_SIZE);
-        }
-        if (Objects.nonNull(mapContainer)) {
+
             mapContainer = new ConcurrentHashMap();
+
+            Thread taskThread = new Thread(new InvokeTask());
+            taskThread.start();
         }
     }
 
@@ -32,14 +34,7 @@ public class MethodInvokerHandler {
         return false;
     }
 
-    class InvokeTask implements Runnable {
-        Method targetMethod;
-        List<Object> localVariable;
-
-        public InvokeTask(Method targetMethod, List<Object> localVariable) {
-            this.targetMethod = targetMethod;
-            this.localVariable = localVariable;
-        }
+    static class InvokeTask implements Runnable {
 
         @Override
         public void run() {
