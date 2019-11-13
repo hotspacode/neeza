@@ -8,6 +8,8 @@
 
 # 2019年11月11日计划
 - web IDE页面开发
+    - 可参考
+        - [nocode](https://liugq5713.github.io/vue-element-nocode-admin/#/form)
 - 通信neeza-transport-netty-http通用实现 
 - 存储neeza-store-mysql（JPA）通用实现实现
 - neeza-server-standalone restful接口定义 
