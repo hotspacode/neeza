@@ -19,6 +19,8 @@ public class MockSpyService implements IMockSpyService {
 
 
         try {
+            //调用本地内存
+
             //调用mock server
             //todo 指定为方法签名
             String mockUrl = System.getProperty(NeezaMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetMethod.getDeclaringClass().getName() + "." + targetMethod.getName();
