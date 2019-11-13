@@ -41,7 +41,7 @@ public class MethodInvokerHandler {
 
         @Override
         public void run() {
-            if (mapContainer.size() > MAX_CONTAINER_SIZE) {
+            if (mapContainer.size() >= MAX_CONTAINER_SIZE) {
                 //卸载掉部分数据
                 int count = 0;
                 for (Object o : mapContainer.keySet()) {
