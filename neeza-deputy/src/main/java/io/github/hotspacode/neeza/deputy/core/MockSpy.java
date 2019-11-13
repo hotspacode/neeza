@@ -14,6 +14,11 @@ public class MockSpy {
     private static INeezaSerialization neezaSerialization = NeezaSerializationProvider.getInstance();
     private static IMockSpyService mockSpyService = MockSpyServiceProvider.getInstance();
 
+    public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable,String methodName) {
+        System.out.println("调用到mocknew");
+        MockTransport mockTransport = new MockTransport(false);
+        return mockTransport;
+    }
     public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable) {
         System.out.println("调用到mock");
         MockTransport mockTransport = null;

@@ -33,6 +33,7 @@ public class MethodInvokerHandler {
             return false;
         }
 
+        InvokeQueueObj invokeQueueObj = new InvokeQueueObj(targetMethod,localVariable);
 
         return false;
     }
@@ -54,6 +55,15 @@ public class MethodInvokerHandler {
             }
 
 
+        }
+    }
+
+    static class InvokeQueueObj{
+        Method targetMethod;List<Object> localVariable;
+
+        public InvokeQueueObj(Method targetMethod, List<Object> localVariable) {
+            this.targetMethod = targetMethod;
+            this.localVariable = localVariable;
         }
     }
 
