@@ -1,25 +1,35 @@
 package io.github.hotspacode.neeza.deputy.core;
 
 import io.github.hotspacode.neeza.deputy.api.IMockSpyService;
-import io.github.hotspacode.neeza.deputy.api.INeezaSerialization;
 import io.github.hotspacode.neeza.deputy.dto.MockTransport;
 import io.github.hotspacode.neeza.deputy.service.MockSpyServiceProvider;
-import io.github.hotspacode.neeza.deputy.service.NeezaSerializationProvider;
 
-import java.lang.reflect.Method;
 import java.util.List;
 
 public class MockSpy {
 
-    private static INeezaSerialization neezaSerialization = NeezaSerializationProvider.getInstance();
     private static IMockSpyService mockSpyService = MockSpyServiceProvider.getInstance();
 
-    public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable,String methodName) {
-        System.out.println("调用到mocknew");
-        MockTransport mockTransport = new MockTransport(false);
+    public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable, String argumentTypeDescriptors) {
+        System.out.println("调用到mock");
+        MockTransport mockTransport = null;
+
+        try {
+            mockTransport = mockSpyService.transport(stackTraceElement.getClassName(), stackTraceElement.getMethodName(), argumentTypeDescriptors, localVariable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (null == mockTransport) {
+                mockTransport = new MockTransport(false);
+            }
+        }
+
         return mockTransport;
     }
-    public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable) {
+
+
+
+  /*  public static MockTransport getMockData(StackTraceElement stackTraceElement, List<Object> localVariable) {
         System.out.println("调用到mock");
         MockTransport mockTransport = null;
 
@@ -31,6 +41,7 @@ public class MockSpy {
             Method targetMethod = null;
             for (Method method : targetClass.getDeclaredMethods()) {
                 if (method.getName().equals(targetMethodName) && localVariable.size() == method.getParameterCount()) {
+
                     targetMethod = method;
                     break;
                 }
@@ -59,6 +70,6 @@ public class MockSpy {
         }
 
         return mockTransport;
-    }
+    }*/
 
 }

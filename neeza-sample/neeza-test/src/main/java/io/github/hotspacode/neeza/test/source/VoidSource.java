@@ -14,7 +14,7 @@ public class VoidSource {
         methodParams.add(a);
         methodParams.add(b);
 
-        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams);
+        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams,"");
         if (mockResponse.isMocked()) {
             if (mockResponse.isReturnVoid()) {
                 return;

@@ -9,11 +9,13 @@ public class ObjectMethodAdapter extends AdviceAdapter {
 
     private Class returnClass;
     private int argumentTypeSize;
+    private String argumentTypeDescriptors;
 
-    public ObjectMethodAdapter(MethodVisitor mv, int access, String name, String desc, Class returnClass, int argumentTypeSize) {
+    public ObjectMethodAdapter(MethodVisitor mv, int access, String name, String desc, Class returnClass, int argumentTypeSize,String argumentTypeDescriptors) {
         super(ASM7, mv, access, name, desc);
         this.returnClass = returnClass;
         this.argumentTypeSize = argumentTypeSize;
+        this.argumentTypeDescriptors = argumentTypeDescriptors;
     }
 
     /**
@@ -50,7 +52,8 @@ public class ObjectMethodAdapter extends AdviceAdapter {
         mv.visitInsn(ICONST_1);
         mv.visitInsn(AALOAD);
         mv.visitVarInsn(ALOAD, argumentTypeSize);
-        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/deputy/core/MockSpy", "getMockData", "(Ljava/lang/StackTraceElement;Ljava/util/List;)Lio/github/hotspacode/neeza/deputy/dto/MockTransport;", false);
+        mv.visitLdcInsn(argumentTypeDescriptors);
+        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/deputy/core/MockSpy", "getMockData", "(Ljava/lang/StackTraceElement;Ljava/util/List;Ljava/lang/String;)Lio/github/hotspacode/neeza/deputy/dto/MockTransport;", false);
         mv.visitVarInsn(ASTORE, argumentTypeSize +1);
         Label l4 = new Label();
         mv.visitLabel(l4);

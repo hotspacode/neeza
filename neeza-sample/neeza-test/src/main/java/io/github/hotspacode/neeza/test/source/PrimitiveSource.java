@@ -12,7 +12,7 @@ public class PrimitiveSource {
         methodParams.add(a);
         methodParams.add(b);
 
-        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams);
+        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams,null);
         if (mockResponse.isMocked()) {
             return mockResponse.getObject(mockResponse);
         }

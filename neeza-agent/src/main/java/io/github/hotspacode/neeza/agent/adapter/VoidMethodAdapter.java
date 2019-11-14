@@ -8,9 +8,12 @@ import org.objectweb.asm.commons.AdviceAdapter;
 public class VoidMethodAdapter extends AdviceAdapter {
 
     private int argumentTypeSize;
-    public VoidMethodAdapter(MethodVisitor mv, int access, String name, String desc,int argumentTypeSize) {
+    private String argumentTypeDescriptors;
+
+    public VoidMethodAdapter(MethodVisitor mv, int access, String name, String desc,int argumentTypeSize,String argumentTypeDescriptors) {
         super(ASM7, mv, access, name, desc);
         this.argumentTypeSize = argumentTypeSize;
+        this.argumentTypeDescriptors = argumentTypeDescriptors;
     }
 
     /**
@@ -45,7 +48,8 @@ public class VoidMethodAdapter extends AdviceAdapter {
         mv.visitInsn(ICONST_1);
         mv.visitInsn(AALOAD);
         mv.visitVarInsn(ALOAD, argumentTypeSize );
-        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/deputy/core/MockSpy", "getMockData", "(Ljava/lang/StackTraceElement;Ljava/util/List;)Lio/github/hotspacode/neeza/deputy/dto/MockTransport;", false);
+        mv.visitLdcInsn(argumentTypeDescriptors);
+        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/deputy/core/MockSpy", "getMockData", "(Ljava/lang/StackTraceElement;Ljava/util/List;Ljava/lang/String;)Lio/github/hotspacode/neeza/deputy/dto/MockTransport;", false);
         mv.visitVarInsn(ASTORE, argumentTypeSize +1);
         Label l4 = new Label();
         mv.visitLabel(l4);

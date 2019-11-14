@@ -23,7 +23,7 @@ public class ObjectSource2 {
     public Map createSource0() {
         List<Object> methodParams = new ArrayList<>();
 
-        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams);
+        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams,null);
         if (mockResponse.isMocked()) {
             return mockResponse.getObject(mockResponse);
         }
@@ -39,7 +39,7 @@ public class ObjectSource2 {
        methodParams.add(a);
        methodParams.add(b);
 
-       MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams);
+       MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams,null);
        if (mockResponse.isMocked()) {
            return mockResponse.getObject(mockResponse);
        }

@@ -12,7 +12,7 @@ public class ObjectSource {
     public Map<String, String> createSource1(String aaa) {
         List<Object> localVariable = new ArrayList<>();
         localVariable.add(aaa);
-        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],localVariable);
+        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],localVariable,null);
         if (mockResponse.isMocked()) {
             return mockResponse.getObject(mockResponse);
         }
@@ -28,7 +28,7 @@ public class ObjectSource {
         localVariable.add(aaa);
         localVariable.add(list);
         localVariable.add(ddd);
-        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],localVariable);
+        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],localVariable,null);
         if (mockResponse.isMocked()) {
             return mockResponse.getObject(mockResponse);
         }

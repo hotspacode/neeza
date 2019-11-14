@@ -3,6 +3,9 @@ package io.github.hotspacode.neeza.test.mock;
 
 import io.github.hotspacode.neeza.deputy.annotation.NeezaMock;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * @description:
  * @author: MoXingwang 2019-07-02 17:28
@@ -18,7 +21,7 @@ public class CommonMessageService {
     }
 
 
-    public int getInt(String aa, String ddd) {
+    public int getInt(String aa, List<Set<Object>> b) {
 
 
         System.out.println("方法未被mock");

@@ -7,6 +7,9 @@ import io.github.hotspacode.neeza.deputy.annotation.NeezaMock;
 import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
@@ -60,12 +63,17 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
                     Type.getReturnType(descriptor).getClassName() + "---" + "分发methodReturnType：" + methodReturnType + "returnClassType：" + returnClassName);
 
 
+            String argumentTypeDescriptors = "";
+            if(argumentTypes.length > 0 ){
+                argumentTypeDescriptors = Stream.of(argumentTypes).map(Type::getDescriptor).collect(Collectors.joining(","));
+            }
+
             //byte、short、int、long、float、double、char、boolean 、void 、object 、Array
 //            mv.visitLocalVariable();
 
 
             if (Type.VOID == methodReturnType) {
-                adviceAdapter = new VoidMethodAdapter(mv, access, name, descriptor, argumentTypeSize);
+                adviceAdapter = new VoidMethodAdapter(mv, access, name, descriptor, argumentTypeSize,argumentTypeDescriptors);
             } else {
                 Class returnClass = null;
 
@@ -101,9 +109,9 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
                 }
 
                 if (isPrimitive) {
-                    adviceAdapter = new PrimitiveMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize);
+                    adviceAdapter = new PrimitiveMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize,argumentTypeDescriptors);
                 } else {
-                    adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize);
+                    adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize,argumentTypeDescriptors);
                 }
             }
 

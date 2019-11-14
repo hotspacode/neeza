@@ -12,7 +12,7 @@ public class ObjectSource3 {
     public Map createSource2(String a, String b) {
         List<Object> methodParams = new ArrayList<>();
 
-        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams);
+        MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams,null);
         if (mockResponse.isMocked()) {
             return mockResponse.getObject(mockResponse);
         }

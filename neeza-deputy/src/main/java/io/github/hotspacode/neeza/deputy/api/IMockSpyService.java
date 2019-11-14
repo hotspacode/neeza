@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface IMockSpyService {
 
-    MockTransport transport(Method targetMethod , List<Object> localVariable);
+    MockTransport transport(String targetClassName,String targetMethodName ,String argumentTypeDescriptors, List<Object> localVariable);
 
 }

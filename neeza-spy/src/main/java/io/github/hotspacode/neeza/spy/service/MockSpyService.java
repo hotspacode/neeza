@@ -5,20 +5,55 @@ import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
 import io.github.hotspacode.neeza.deputy.api.IMockSpyService;
 import io.github.hotspacode.neeza.deputy.dto.MockData;
 import io.github.hotspacode.neeza.deputy.dto.MockTransport;
+import org.objectweb.asm.Type;
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Objects;
 
 public class MockSpyService implements IMockSpyService {
     private static FastJSONSerialization neezaSerialization = new FastJSONSerialization();
 
-
     @Override
-    public MockTransport transport(Method targetMethod , List<Object> localVariable) {
+    public MockTransport transport(String targetClassName,String targetMethodName ,String argumentTypeDescriptors, List<Object> localVariable) {
         MockTransport mockTransport = new MockTransport(false);
 
-
         try {
+            Class targetClass = Class.forName(targetClassName);
+
+            String[] argumentTypeDescriptorsArray = argumentTypeDescriptors.split(",");
+
+            Method targetMethod = null;
+            for (Method method : targetClass.getDeclaredMethods()) {
+                if (method.getName().equals(targetMethodName) && localVariable.size() == method.getParameterCount()) {
+                    if (argumentTypeDescriptorsArray.length == 0) {
+                        targetMethod = method;
+                        break;
+                    } else {
+                        Type[] argumentTypes = Type.getArgumentTypes(method);
+                        for (Type argumentType : argumentTypes) {
+                            for (String argumentTypeDescriptor : argumentTypeDescriptorsArray) {
+                                if (!Objects.equals(argumentType.getDescriptor(), argumentTypeDescriptor)) {
+                                    continue;
+                                }
+                            }
+                        }
+                        targetMethod = method;
+                        break;
+                    }
+                }
+            }
+
+            if (null == targetMethod) {
+                return mockTransport;
+            }else {
+                mockTransport.setMethodReturnClass(targetMethod.getReturnType());
+                mockTransport.setPrimitive(targetMethod.getReturnType().isPrimitive());
+                mockTransport.getMethodReturnClass().isPrimitive();
+                mockTransport.setNeezaSerialization(neezaSerialization);
+            }
+
+
             //调用本地内存
 
             //调用mock server
