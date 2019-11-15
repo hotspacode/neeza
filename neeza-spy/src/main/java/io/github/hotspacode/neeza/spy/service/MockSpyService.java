@@ -58,7 +58,7 @@ public class MockSpyService implements IMockSpyService {
 
             //调用mock server
             //todo 指定为方法签名
-            String mockUrl = System.getProperty(NeezaMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetMethod.getDeclaringClass().getName() + "." + targetMethod.getName();
+            String mockUrl = System.getProperty(NeezaMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
             String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
 
             //todo 全局参数mock报错是否支持继续
