@@ -19,6 +19,7 @@
     <modules>
         <module>neeza-server-api</module>
         <module>neeza-server-standalone</module>
+        <module>neeza-server-embedded-tomcat</module>
     </modules>
 
 
