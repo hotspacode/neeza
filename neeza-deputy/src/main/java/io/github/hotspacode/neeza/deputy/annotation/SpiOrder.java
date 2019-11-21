@@ -2,10 +2,6 @@ package io.github.hotspacode.neeza.deputy.annotation;
 
 import java.lang.annotation.*;
 
-/**
- * @author Eric Zhao
- * @since 1.6.0
- */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Documented

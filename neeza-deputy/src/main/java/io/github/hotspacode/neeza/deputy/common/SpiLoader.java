@@ -2,6 +2,8 @@ package io.github.hotspacode.neeza.deputy.common;
 
 import io.github.hotspacode.neeza.deputy.annotation.SpiOrder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.ServiceLoader;
 import java.util.concurrent.ConcurrentHashMap;
@@ -19,6 +21,10 @@ public final class SpiLoader {
                 SERVICE_LOADER_MAP.put(key, serviceLoader);
             }
 
+            if (serviceLoader == null) {
+                return null;
+            }
+
             SpiOrderWrapper<T> w = null;
             for (T spi : serviceLoader) {
                 int order = SpiOrderResolver.resolveOrder(spi);
@@ -33,11 +39,29 @@ public final class SpiLoader {
         }
     }
 
+    public static <T> List<T> loadInstanceList(Class<T> clazz) {
+        try {
+            String key = clazz.getName();
+            ServiceLoader<T> serviceLoader = SERVICE_LOADER_MAP.get(key);
+            if (serviceLoader == null) {
+                serviceLoader = ServiceLoader.load(clazz, clazz.getClassLoader());
+                SERVICE_LOADER_MAP.put(key, serviceLoader);
+            }
+
+            List<T> list = new ArrayList<>();
+            for (T spi : serviceLoader) {
+                list.add(spi);
+            }
+            return list;
+        } catch (Throwable t) {
+            t.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
 
     private static class SpiOrderResolver {
         private static <T> int resolveOrder(T spi) {
             if (!spi.getClass().isAnnotationPresent(SpiOrder.class)) {
-                // Lowest precedence by default.
                 return SpiOrder.LOWEST_PRECEDENCE;
             } else {
                 return spi.getClass().getAnnotation(SpiOrder.class).value();
