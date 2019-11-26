@@ -1,7 +1,7 @@
 package io.github.hotspacode.neeza.transport.netty.http.netty;
 
 /**
- * @author Mo Xingwang
+ * @author moxingwang
  */
 public class HttpServer {
 
