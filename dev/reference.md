@@ -15,3 +15,4 @@
 - [jvm java运行时如何获取方法的参数名和参数值](https://www.oschina.net/question/2356075_241498)
 - [logo from](https://logotypemaker.com/app?logo_name=hotspacode)
 - [Sentinel原理：全解析](https://github.com/all4you/sentinel-tutorial/blob/master/sentinel-principle/sentinel-overall-introduce/sentinel-overall-introduce.md)
+- [从0发布一个构建到 Maven 中央仓库](http://gumutianqi.github.io/blog/2018/07/10/deploy-to-sonatype/)
