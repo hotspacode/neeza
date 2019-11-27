@@ -7,6 +7,7 @@
 - 善用设计模式解决问题
 - 方法调用缓存内容使用SoftReference存储
 - 徽章生成[https://shields.io/](https://shields.io/)
+- [仓库申请](https://issues.sonatype.org/browse/OSSRH-53417)
 
 # 2019年11月11日计划
 - web IDE页面开发
