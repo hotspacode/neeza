@@ -5,6 +5,7 @@
 - 未来agent生效的情况才执行所有init操作
 - 预留invoke设计思路
 - 善用设计模式解决问题
+- 方法调用缓存内容使用SoftReference存储
 
 # 2019年11月11日计划
 - web IDE页面开发
