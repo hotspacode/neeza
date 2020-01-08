@@ -2,7 +2,7 @@ package io.github.hotspacode.neeza.transport.api;
 
 public interface TransportServerCenter {
 
-    void init() throws Exception;
+    void beforeStart() throws Exception;
 
     void start() throws Exception;
 

@@ -72,8 +72,16 @@ public class HttpServer {
 
     }
 
+
+    public void close() {
+        if (null != channel) {
+            channel.close();
+        }
+    }
+
     private int getNewPort(int basePort, int retryCount) {
         return basePort + retryCount / 3;
     }
+
 
 }
