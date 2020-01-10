@@ -31,7 +31,7 @@ import static io.netty.handler.codec.http.HttpResponseStatus.OK;
  * @author moxingwang
  */
 public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
-    private final Decoder decoder = new StringDecoder();
+//    private final Decoder decoder = new StringDecoder();
     private final Encoder encoder = new StringEncoder();
 
 
@@ -44,13 +44,31 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
         FullHttpRequest httpRequest = (FullHttpRequest) msg;
         try {
-
-
+            CommandRequest request = parseRequest(httpRequest);
+            if (StringUtil.isBlank(CommandUtil.getTarget(request))) {
+                writeErrorResponse(BAD_REQUEST.code(), "Invalid command", ctx);
+                return;
+            }
+            handleRequest(request, ctx, HttpUtil.isKeepAlive(httpRequest));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
+
+    private void handleRequest(CommandRequest request, ChannelHandlerContext ctx, boolean keepAlive)
+            throws Exception {
+        String commandName = CommandUtil.getTarget(request);
+        // Find the matching command handler.
+        CommandHandler<?> commandHandler = getHandler(commandName);
+        if (commandHandler != null) {
+            CommandResponse<?> response = commandHandler.handle(request);
+            writeResponse(response, ctx, keepAlive);
+        } else {
+            // No matching command handler.
+            writeErrorResponse(BAD_REQUEST.code(), String.format("Unknown command \"%s\"", commandName), ctx);
+        }
+    }
 
     private void writeErrorResponse(int statusCode, String message, ChannelHandlerContext ctx) {
         FullHttpResponse httpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
@@ -126,6 +144,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
                                 String value = httpData.getString();
                                 serverRequest.addParam(name, value);
                             } catch (IOException e) {
+                                e.printStackTrace();
                             }
                         }
                     }
