@@ -6,6 +6,10 @@ import io.github.hotspacode.neeza.transport.api.command.CommandHandler;
 import io.github.hotspacode.neeza.transport.api.command.CommandRequest;
 import io.github.hotspacode.neeza.transport.api.command.CommandResponse;
 import io.github.hotspacode.neeza.transport.api.util.CommandUtil;
+import io.github.hotspacode.neeza.transport.netty.http.codec.Decoder;
+import io.github.hotspacode.neeza.transport.netty.http.codec.Encoder;
+import io.github.hotspacode.neeza.transport.netty.http.codec.StringDecoder;
+import io.github.hotspacode.neeza.transport.netty.http.codec.StringEncoder;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -20,12 +24,17 @@ import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Map;
 
-import static io.netty.handler.codec.http.HttpResponseStatus.*;
+import static io.netty.handler.codec.http.HttpResponseStatus.BAD_REQUEST;
+import static io.netty.handler.codec.http.HttpResponseStatus.OK;
 
 /**
  * @author moxingwang
  */
 public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
+    private final Decoder decoder = new StringDecoder();
+    private final Encoder encoder = new StringEncoder();
+
+
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
         ctx.flush();
@@ -33,7 +42,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
-        FullHttpRequest httpRequest = (FullHttpRequest)msg;
+        FullHttpRequest httpRequest = (FullHttpRequest) msg;
         try {
 
 
@@ -60,14 +69,8 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
         byte[] body;
         if (response.isSuccess()) {
             if (response.getResult() == null) {
-                body = new byte[] {};
+                body = new byte[]{};
             } else {
-                Encoder encoder = pickEncoder(response.getResult().getClass());
-                if (encoder == null) {
-                    CommandCenterLog.warn("Error when encoding object",
-                            new IllegalStateException("No compatible encoder"));
-                    return;
-                }
                 body = encoder.encode(response.getResult());
             }
         } else {
