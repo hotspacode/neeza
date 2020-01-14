@@ -50,6 +50,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
             handleRequest(request, ctx, HttpUtil.isKeepAlive(httpRequest));
         } catch (Exception ex) {
             ex.printStackTrace();
+            writeErrorResponse(BAD_REQUEST.code(), String.format("Unknown command request !"), ctx);
         }
     }
 
