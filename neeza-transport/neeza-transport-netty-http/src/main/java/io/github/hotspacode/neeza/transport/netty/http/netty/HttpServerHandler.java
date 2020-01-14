@@ -6,9 +6,7 @@ import io.github.hotspacode.neeza.transport.api.command.CommandHandler;
 import io.github.hotspacode.neeza.transport.api.command.CommandRequest;
 import io.github.hotspacode.neeza.transport.api.command.CommandResponse;
 import io.github.hotspacode.neeza.transport.api.util.CommandUtil;
-import io.github.hotspacode.neeza.transport.netty.http.codec.Decoder;
 import io.github.hotspacode.neeza.transport.netty.http.codec.Encoder;
-import io.github.hotspacode.neeza.transport.netty.http.codec.StringDecoder;
 import io.github.hotspacode.neeza.transport.netty.http.codec.StringEncoder;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
@@ -31,7 +29,7 @@ import static io.netty.handler.codec.http.HttpResponseStatus.OK;
  * @author moxingwang
  */
 public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
-//    private final Decoder decoder = new StringDecoder();
+    //    private final Decoder decoder = new StringDecoder();
     private final Encoder encoder = new StringEncoder();
 
 
@@ -42,8 +40,8 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
-        FullHttpRequest httpRequest = (FullHttpRequest) msg;
         try {
+            FullHttpRequest httpRequest = (FullHttpRequest) msg;
             CommandRequest request = parseRequest(httpRequest);
             if (StringUtil.isBlank(CommandUtil.getTarget(request))) {
                 writeErrorResponse(BAD_REQUEST.code(), "Invalid command", ctx);
