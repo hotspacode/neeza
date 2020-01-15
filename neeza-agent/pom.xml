@@ -23,7 +23,6 @@
             <groupId>io.github.hotspacode</groupId>
             <artifactId>neeza-base</artifactId>
             <version>${neeza.version}</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 
