@@ -1,6 +1,6 @@
-package io.github.hotspacode.neeza.deputy.common;
+package io.github.hotspacode.neeza.base.common;
 
-import io.github.hotspacode.neeza.deputy.annotation.SpiOrder;
+import io.github.hotspacode.neeza.base.annotation.SpiOrder;
 
 import java.util.ArrayList;
 import java.util.List;

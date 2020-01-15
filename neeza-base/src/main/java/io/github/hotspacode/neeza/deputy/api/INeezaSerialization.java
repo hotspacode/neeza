@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.deputy.api;
+package io.github.hotspacode.neeza.base.api;
 
 public interface INeezaSerialization {
 

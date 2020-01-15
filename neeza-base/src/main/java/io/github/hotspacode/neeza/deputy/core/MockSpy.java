@@ -1,8 +1,8 @@
-package io.github.hotspacode.neeza.deputy.core;
+package io.github.hotspacode.neeza.base.core;
 
-import io.github.hotspacode.neeza.deputy.api.IMockSpyService;
-import io.github.hotspacode.neeza.deputy.dto.MockTransport;
-import io.github.hotspacode.neeza.deputy.service.MockSpyServiceProvider;
+import io.github.hotspacode.neeza.base.api.IMockSpyService;
+import io.github.hotspacode.neeza.base.dto.MockTransport;
+import io.github.hotspacode.neeza.base.service.MockSpyServiceProvider;
 
 import java.util.List;
 

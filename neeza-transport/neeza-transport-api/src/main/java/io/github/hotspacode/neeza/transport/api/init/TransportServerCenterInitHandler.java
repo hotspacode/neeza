@@ -1,6 +1,6 @@
 package io.github.hotspacode.neeza.transport.api.init;
 
-import io.github.hotspacode.neeza.deputy.common.SpiLoader;
+import io.github.hotspacode.neeza.base.common.SpiLoader;
 import io.github.hotspacode.neeza.transport.api.TransportServerCenter;
 
 public class TransportServerCenterInitHandler {

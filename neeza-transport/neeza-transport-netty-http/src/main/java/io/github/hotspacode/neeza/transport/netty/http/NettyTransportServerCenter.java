@@ -1,8 +1,8 @@
 package io.github.hotspacode.neeza.transport.netty.http;
 
 import io.github.hotspacode.neeza.core.concurrent.NamedThreadFactory;
-import io.github.hotspacode.neeza.deputy.annotation.SpiOrder;
-import io.github.hotspacode.neeza.deputy.common.SpiLoader;
+import io.github.hotspacode.neeza.base.annotation.SpiOrder;
+import io.github.hotspacode.neeza.base.common.SpiLoader;
 import io.github.hotspacode.neeza.transport.api.TransportServerCenter;
 import io.github.hotspacode.neeza.transport.api.command.CommandHandler;
 import io.github.hotspacode.neeza.transport.api.command.CommandHandlerProvider;

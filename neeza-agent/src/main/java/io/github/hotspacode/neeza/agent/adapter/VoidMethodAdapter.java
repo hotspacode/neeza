@@ -49,20 +49,20 @@ public class VoidMethodAdapter extends AdviceAdapter {
         mv.visitInsn(AALOAD);
         mv.visitVarInsn(ALOAD, argumentTypeSize );
         mv.visitLdcInsn(argumentTypeDescriptors);
-        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/deputy/core/MockSpy", "getMockData", "(Ljava/lang/StackTraceElement;Ljava/util/List;Ljava/lang/String;)Lio/github/hotspacode/neeza/deputy/dto/MockTransport;", false);
+        mv.visitMethodInsn(INVOKESTATIC, "io/github/hotspacode/neeza/base/core/MockSpy", "getMockData", "(Ljava/lang/StackTraceElement;Ljava/util/List;Ljava/lang/String;)Lio/github/hotspacode/neeza/base/dto/MockTransport;", false);
         mv.visitVarInsn(ASTORE, argumentTypeSize +1);
         Label l4 = new Label();
         mv.visitLabel(l4);
 
         mv.visitVarInsn(ALOAD, argumentTypeSize +1);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/deputy/dto/MockTransport", "isMocked", "()Z", false);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/base/dto/MockTransport", "isMocked", "()Z", false);
         Label l5 = new Label();
         mv.visitJumpInsn(IFEQ, l5);
         Label l6 = new Label();
         mv.visitLabel(l6);
 
         mv.visitVarInsn(ALOAD, argumentTypeSize +1);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/deputy/dto/MockTransport", "isReturnVoid", "()Z", false);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "io/github/hotspacode/neeza/base/dto/MockTransport", "isReturnVoid", "()Z", false);
         mv.visitJumpInsn(IFEQ, l5);
         Label l7 = new Label();
         mv.visitLabel(l7);
@@ -70,7 +70,7 @@ public class VoidMethodAdapter extends AdviceAdapter {
         mv.visitInsn(RETURN);
         mv.visitLabel(l5);
 
-        mv.visitFrame(F_APPEND, 2, new Object[]{"java/util/List", "io/github/hotspacode/neeza/deputy/dto/MockTransport"}, 0, null);
+        mv.visitFrame(F_APPEND, 2, new Object[]{"java/util/List", "io/github/hotspacode/neeza/base/dto/MockTransport"}, 0, null);
 
 
     }

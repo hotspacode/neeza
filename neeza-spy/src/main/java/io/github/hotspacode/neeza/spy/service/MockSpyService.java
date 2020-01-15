@@ -2,9 +2,9 @@ package io.github.hotspacode.neeza.spy.service;
 
 import io.github.hotspacode.neeza.core.NeezaMockConstant;
 import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
-import io.github.hotspacode.neeza.deputy.api.IMockSpyService;
-import io.github.hotspacode.neeza.deputy.dto.MockData;
-import io.github.hotspacode.neeza.deputy.dto.MockTransport;
+import io.github.hotspacode.neeza.base.api.IMockSpyService;
+import io.github.hotspacode.neeza.base.dto.MockData;
+import io.github.hotspacode.neeza.base.dto.MockTransport;
 import org.objectweb.asm.Type;
 
 import java.lang.reflect.Method;

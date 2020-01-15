@@ -1,7 +1,7 @@
 package io.github.hotspacode.neeza.test.source;
 
-import io.github.hotspacode.neeza.deputy.core.MockSpy;
-import io.github.hotspacode.neeza.deputy.dto.MockTransport;
+import io.github.hotspacode.neeza.base.core.MockSpy;
+import io.github.hotspacode.neeza.base.dto.MockTransport;
 
 public class IntegerSource {
 

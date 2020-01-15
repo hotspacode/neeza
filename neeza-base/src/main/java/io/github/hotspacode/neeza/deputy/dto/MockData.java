@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.deputy.dto;
+package io.github.hotspacode.neeza.base.dto;
 
 import java.io.Serializable;
 

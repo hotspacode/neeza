@@ -1,6 +1,6 @@
-package io.github.hotspacode.neeza.deputy.api;
+package io.github.hotspacode.neeza.base.api;
 
-import io.github.hotspacode.neeza.deputy.dto.MockTransport;
+import io.github.hotspacode.neeza.base.dto.MockTransport;
 
 import java.lang.reflect.Method;
 import java.util.List;

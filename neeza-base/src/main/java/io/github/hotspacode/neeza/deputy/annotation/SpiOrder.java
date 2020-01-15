@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.deputy.annotation;
+package io.github.hotspacode.neeza.base.annotation;
 
 import java.lang.annotation.*;
 

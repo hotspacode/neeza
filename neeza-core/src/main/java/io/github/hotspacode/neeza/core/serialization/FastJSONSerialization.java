@@ -5,7 +5,7 @@ import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import io.github.hotspacode.neeza.deputy.api.INeezaSerialization;
+import io.github.hotspacode.neeza.base.api.INeezaSerialization;
 
 public  class FastJSONSerialization implements INeezaSerialization {
     public byte[] serialize(Object data) {

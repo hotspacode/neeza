@@ -1,6 +1,6 @@
 package io.github.hotspacode.neeza.transport.netty.http;
 
-import io.github.hotspacode.neeza.deputy.annotation.SpiOrder;
+import io.github.hotspacode.neeza.base.annotation.SpiOrder;
 import io.github.hotspacode.neeza.transport.api.HeartbeatSender;
 
 @SpiOrder(SpiOrder.LOWEST_PRECEDENCE - 100)

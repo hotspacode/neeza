@@ -1,6 +1,6 @@
 package io.github.hotspacode.neeza.transport.netty.http.netty;
 
-import io.github.hotspacode.neeza.deputy.util.StringUtil;
+import io.github.hotspacode.neeza.base.util.StringUtil;
 import io.github.hotspacode.neeza.transport.api.command.CommandHandler;
 import io.github.hotspacode.neeza.transport.api.config.TransportConfig;
 import io.netty.bootstrap.ServerBootstrap;

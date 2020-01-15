@@ -3,7 +3,7 @@ package io.github.hotspacode.neeza.agent;
 import io.github.hotspacode.neeza.agent.adapter.ObjectMethodAdapter;
 import io.github.hotspacode.neeza.agent.adapter.PrimitiveMethodAdapter;
 import io.github.hotspacode.neeza.agent.adapter.VoidMethodAdapter;
-import io.github.hotspacode.neeza.deputy.annotation.NeezaMock;
+import io.github.hotspacode.neeza.base.annotation.NeezaMock;
 import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
 

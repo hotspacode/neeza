@@ -1,8 +1,8 @@
-package io.github.hotspacode.neeza.deputy.service;
+package io.github.hotspacode.neeza.base.service;
 
 
-import io.github.hotspacode.neeza.deputy.api.IMockSpyService;
-import io.github.hotspacode.neeza.deputy.common.SpiLoader;
+import io.github.hotspacode.neeza.base.api.IMockSpyService;
+import io.github.hotspacode.neeza.base.common.SpiLoader;
 
 public final class MockSpyServiceProvider {
 

@@ -1,7 +1,7 @@
 package io.github.hotspacode.neeza.test.mock;
 
 import io.github.hotspacode.neeza.core.config.NeezaMockConfig;
-import io.github.hotspacode.neeza.deputy.annotation.NeezaMock;
+import io.github.hotspacode.neeza.base.annotation.NeezaMock;
 
 @NeezaMock
 public class MockForReturnTypeServiceTest {

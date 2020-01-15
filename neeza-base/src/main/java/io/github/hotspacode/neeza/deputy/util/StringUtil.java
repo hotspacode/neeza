@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.deputy.util;
+package io.github.hotspacode.neeza.base.util;
 
 public final class StringUtil {
 

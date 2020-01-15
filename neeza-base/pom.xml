@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.hotspacode</groupId>
-    <artifactId>neeza-deputy</artifactId>
+    <artifactId>neeza-base</artifactId>
     <version>${neeza.version}</version>
     <packaging>jar</packaging>
 

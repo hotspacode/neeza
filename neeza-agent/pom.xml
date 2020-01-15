@@ -21,7 +21,7 @@
         </dependency>
         <dependency>
             <groupId>io.github.hotspacode</groupId>
-            <artifactId>neeza-deputy</artifactId>
+            <artifactId>neeza-base</artifactId>
             <version>${neeza.version}</version>
             <scope>compile</scope>
         </dependency>
