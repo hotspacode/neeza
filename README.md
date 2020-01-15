@@ -10,6 +10,10 @@
 
 基于ASM实现Java method mock，实现任意Java方法在线Mock
 
+- 设计图
+![整体架构 项目依赖关系 v1](https://user-images.githubusercontent.com/16358235/72414592-8ea0e380-37ad-11ea-9fa9-b363e1223f61.png)
+
+
 # Quick Start
 
 - mvn clean package 
