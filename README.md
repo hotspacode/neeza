@@ -11,7 +11,7 @@
 基于ASM实现Java method mock，实现任意Java方法在线Mock
 
 - 设计图
-![整体架构 项目依赖关系 v1 (2)](https://user-images.githubusercontent.com/16358235/72417239-6916d880-37b3-11ea-951a-af0f4c30e010.png)
+![整体架构 项目依赖关系 v1 (2)](https://imgkr.cn-bj.ufileos.com/5a7fea96-d1fd-45e2-8645-8637de27f467.png)
 
 
 
