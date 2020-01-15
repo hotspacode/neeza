@@ -1,6 +1,6 @@
 package io.github.hotspacode.neeza.transport.api.command;
 
-import io.github.hotspacode.neeza.core.util.StringUtil;
+import io.github.hotspacode.neeza.base.util.StringUtil;
 import io.github.hotspacode.neeza.base.common.SpiLoader;
 import io.github.hotspacode.neeza.transport.api.annotation.CommandMapping;
 

@@ -1,7 +1,7 @@
 package io.github.hotspacode.neeza.transport.netty.http.netty;
 
-import io.github.hotspacode.neeza.core.config.NeezaMockConfig;
-import io.github.hotspacode.neeza.core.util.StringUtil;
+import io.github.hotspacode.neeza.base.config.NeezaBaseConfig;
+import io.github.hotspacode.neeza.base.util.StringUtil;
 import io.github.hotspacode.neeza.transport.api.command.CommandHandler;
 import io.github.hotspacode.neeza.transport.api.command.CommandRequest;
 import io.github.hotspacode.neeza.transport.api.command.CommandResponse;
@@ -73,9 +73,9 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
         FullHttpResponse httpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1,
                 HttpResponseStatus.valueOf(statusCode),
                 //todo change to config properties
-                Unpooled.copiedBuffer(message, Charset.forName(NeezaMockConfig.DEFAULT_CHARSET)));
+                Unpooled.copiedBuffer(message, Charset.forName(NeezaBaseConfig.DEFAULT_CHARSET)));
 
-        httpResponse.headers().set("Content-Type", "text/plain; charset=" + NeezaMockConfig.DEFAULT_CHARSET);
+        httpResponse.headers().set("Content-Type", "text/plain; charset=" + NeezaBaseConfig.DEFAULT_CHARSET);
         ctx.write(httpResponse);
 
         ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);

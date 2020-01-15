@@ -1,10 +1,10 @@
 package io.github.hotspacode.neeza.spy.service;
 
-import io.github.hotspacode.neeza.core.NeezaMockConstant;
-import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
 import io.github.hotspacode.neeza.base.api.IMockSpyService;
 import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.dto.MockTransport;
+import io.github.hotspacode.neeza.base.util.NeezaConstant;
+import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
 import org.objectweb.asm.Type;
 
 import java.lang.reflect.Method;
@@ -15,7 +15,7 @@ public class MockSpyService implements IMockSpyService {
     private static FastJSONSerialization neezaSerialization = new FastJSONSerialization();
 
     @Override
-    public MockTransport transport(String targetClassName,String targetMethodName ,String argumentTypeDescriptors, List<Object> localVariable) {
+    public MockTransport transport(String targetClassName, String targetMethodName, String argumentTypeDescriptors, List<Object> localVariable) {
         MockTransport mockTransport = new MockTransport(false);
 
         try {
@@ -46,7 +46,7 @@ public class MockSpyService implements IMockSpyService {
 
             if (null == targetMethod) {
                 return mockTransport;
-            }else {
+            } else {
                 mockTransport.setMethodReturnClass(targetMethod.getReturnType());
                 mockTransport.setPrimitive(targetMethod.getReturnType().isPrimitive());
                 mockTransport.getMethodReturnClass().isPrimitive();
@@ -58,7 +58,7 @@ public class MockSpyService implements IMockSpyService {
 
             //调用mock server
             //todo 指定为方法签名
-            String mockUrl = System.getProperty(NeezaMockConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
+            String mockUrl = System.getProperty(NeezaConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
             String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
 
             //todo 全局参数mock报错是否支持继续

@@ -1,7 +1,7 @@
 package io.github.hotspacode.neeza.transport.netty.http.codec;
 
 
-import io.github.hotspacode.neeza.core.config.NeezaMockConfig;
+import io.github.hotspacode.neeza.base.config.NeezaBaseConfig;
 
 import java.nio.charset.Charset;
 
@@ -25,6 +25,6 @@ public class StringEncoder implements Encoder<String> {
 
     @Override
     public byte[] encode(String s) {
-        return encode(s, Charset.forName(NeezaMockConfig.DEFAULT_CHARSET));
+        return encode(s, Charset.forName(NeezaBaseConfig.DEFAULT_CHARSET));
     }
 }
