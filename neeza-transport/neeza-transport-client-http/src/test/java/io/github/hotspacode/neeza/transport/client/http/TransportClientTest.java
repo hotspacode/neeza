@@ -13,7 +13,8 @@ public class TransportClientTest {
 
     @Test
     public void testClient() {
-
+        TransportClient transportClient = new TransportClient();
+        transportClient.executeCommand("localhost", 8818, "ssdsd",false);
     }
 }
 
