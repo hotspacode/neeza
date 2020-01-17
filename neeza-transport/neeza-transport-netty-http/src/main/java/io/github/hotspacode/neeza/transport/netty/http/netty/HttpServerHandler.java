@@ -91,7 +91,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
                 body = encoder.encode(response.getResult());
             }
         } else {
-            body = response.getException().getMessage().getBytes(CommandUtil.REQUEST_TARGET);
+            body = response.getException().getMessage().getBytes(NeezaBaseConfig.DEFAULT_CHARSET);
         }
 
         HttpResponseStatus status = response.isSuccess() ? OK : BAD_REQUEST;
@@ -99,7 +99,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<Object> {
         FullHttpResponse httpResponse = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, status,
                 Unpooled.copiedBuffer(body));
 
-        httpResponse.headers().set("Content-Type", "text/plain; charset=" + CommandUtil.REQUEST_TARGET);
+        httpResponse.headers().set("Content-Type", "text/plain; charset=" + NeezaBaseConfig.DEFAULT_CHARSET);
 
         //if (keepAlive) {
         //    httpResponse.headers().setInt(HttpHeaderNames.CONTENT_LENGTH, httpResponse.content().readableBytes());

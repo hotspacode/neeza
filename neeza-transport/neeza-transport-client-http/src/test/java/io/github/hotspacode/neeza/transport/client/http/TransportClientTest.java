@@ -3,6 +3,7 @@ package io.github.hotspacode.neeza.transport.client.http;
 import org.junit.Test;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -14,14 +15,20 @@ public class TransportClientTest {
     }
 
     @Test
-    public void testClient() {
+    public void testClient() throws ExecutionException, InterruptedException {
         TransportClient transportClient = new TransportClient();
-        CompletableFuture<Object> objectCompletableFuture = transportClient.executeCommand("localhost", 8818, "ssdsd", false).thenApply(json -> {
+        CompletableFuture<Object> objectCompletableFuture = transportClient.executeCommand("localhost", 8818, "test", false).thenApply(json -> {
             System.out.println(json);
             return json;
         });
 
+        try {
+            Object o = objectCompletableFuture.get();
 
+            System.out.printf(o.toString());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
 
