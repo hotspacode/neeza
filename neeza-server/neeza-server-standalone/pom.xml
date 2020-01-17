@@ -39,6 +39,22 @@
             <version>${neeza.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.github.hotspacode</groupId>
+            <artifactId>neeza-transport-api</artifactId>
+            <version>${neeza.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.hotspacode</groupId>
+            <artifactId>neeza-transport-netty-http</artifactId>
+            <version>${neeza.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.hotspacode</groupId>
+            <artifactId>neeza-transport-client-http</artifactId>
+            <version>${neeza.version}</version>
+        </dependency>
+
     </dependencies>
 
 
