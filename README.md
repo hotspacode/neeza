@@ -1,7 +1,5 @@
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/hotspacode/neeza) 
-
 # Neeza: 让Java Mock变得更简单
-
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/hotspacode/neeza) 
 [![Build Status](https://travis-ci.org/hotspacode/neeza.svg?branch=master)](https://travis-ci.org/hotspacode/neeza)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Gitter](https://badges.gitter.im/hotspacode/neeza.svg)](https://gitter.im/hotspacode/neeza)
