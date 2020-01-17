@@ -1,11 +1,9 @@
 tasks:
-  - init: mvn install -DskipTests=false
+  - init: mvn install -DskipTests=true
 image:
   file: .gitpod.Dockerfile
-<<<<<<< HEAD
-=======
 
 vscode:
   extensions:
     - formulahendry.code-runner@0.9.15:WUpvbF4Wg44WiaFa7exZBw==
->>>>>>> origin/moxingwang/gitpod-setup
+    - awesomektvn.scratchpad@0.1.0:/FSncxsq88+nMc/Gq/DdVg==
