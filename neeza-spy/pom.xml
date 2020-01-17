@@ -47,7 +47,7 @@
                             <addClasspath>true</addClasspath>
                         </manifest>
                         <manifestEntries>
-                            <Class-Path>tools.jar</Class-Path>
+                            <!-- <Class-Path>tools.jar</Class-Path> -->
                             <Can-Retransform-Classes>true</Can-Retransform-Classes>
                         </manifestEntries>
                     </archive>
