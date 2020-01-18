@@ -26,6 +26,7 @@ public class HttpServer {
 
 
     public void start() throws Exception {
+        System.out.println("netty http server started !");
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup(2);
         try {
