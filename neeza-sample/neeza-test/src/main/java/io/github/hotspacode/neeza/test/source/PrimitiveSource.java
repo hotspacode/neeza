@@ -7,14 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrimitiveSource {
-    public float createSource(String a, String b) {
+    public int createSource(String a, String b) {
         List<Object> methodParams = new ArrayList<>();
         methodParams.add(a);
         methodParams.add(b);
 
         MockTransport mockResponse = MockSpy.getMockData(Thread.currentThread().getStackTrace()[1],methodParams,null);
         if (mockResponse.isMocked()) {
-            return mockResponse.getObject(mockResponse);
+            return Integer.valueOf(mockResponse.getObject(mockResponse));
         }
 
 

@@ -70,32 +70,40 @@ public class PrimitiveMethodAdapter extends AdviceAdapter {
 
 
         String returnClassName = returnClass.getName().replace(".", "/");
-        mv.visitTypeInsn(CHECKCAST, returnClassName);
+        mv.visitTypeInsn(CHECKCAST, "java/lang/String");
 
 
         //byte、short、int、long、float、double、char、boolean
         if (Byte.class.equals(returnClass)) {
+            mv.visitMethodInsn(INVOKESTATIC, returnClassName, "valueOf", "(Ljava/lang/String;)Ljava/lang/Byte;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, returnClassName, "byteValue", "()B", false);
             mv.visitInsn(IRETURN);
         } else if (Short.class.equals(returnClass)) {
+            mv.visitMethodInsn(INVOKESTATIC, returnClassName, "valueOf", "(Ljava/lang/String;)Ljava/lang/Short;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, returnClassName, "shortValue", "()S", false);
             mv.visitInsn(IRETURN);
         } else if (Integer.class.equals(returnClass)) {
+            mv.visitMethodInsn(INVOKESTATIC, returnClassName, "valueOf", "(Ljava/lang/String;)Ljava/lang/Integer;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, returnClassName, "intValue", "()I", false);
             mv.visitInsn(IRETURN);
         } else if (Long.class.equals(returnClass)) {
+            mv.visitMethodInsn(INVOKESTATIC, returnClassName, "valueOf", "(Ljava/lang/String;)Ljava/lang/Long;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, returnClassName, "longValue", "()J", false);
             mv.visitInsn(IRETURN);
         } else if (Float.class.equals(returnClass)) {
+            mv.visitMethodInsn(INVOKESTATIC, returnClassName, "valueOf", "(Ljava/lang/String;)Ljava/lang/Float;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, returnClassName, "floatValue", "()F", false);
             mv.visitInsn(FRETURN);
         } else if (Double.class.equals(returnClass)) {
+            mv.visitMethodInsn(INVOKESTATIC, returnClassName, "valueOf", "(Ljava/lang/String;)Ljava/lang/Double;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, returnClassName, "doubleValue", "()D", false);
             mv.visitInsn(DRETURN);
         } else if (Character.class.equals(returnClass)) {
+            mv.visitMethodInsn(INVOKESTATIC, returnClassName, "valueOf", "(Ljava/lang/String;)Ljava/lang/Character;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, returnClassName, "charValue", "()C", false);
             mv.visitInsn(IRETURN);
         } else if (Boolean.class.equals(returnClass)) {
+            mv.visitMethodInsn(INVOKESTATIC, returnClassName, "valueOf", "(Ljava/lang/String;)Ljava/lang/Boolean;", false);
             mv.visitMethodInsn(INVOKEVIRTUAL, returnClassName, "booleanValue", "()Z", false);
             mv.visitInsn(IRETURN);
         }
