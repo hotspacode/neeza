@@ -17,7 +17,7 @@ public class TransportClientTest {
     @Test
     public void testClient() throws ExecutionException, InterruptedException {
         TransportClient transportClient = new TransportClient();
-        CompletableFuture<Object> objectCompletableFuture = transportClient.executeCommand("test", false).thenApply(json -> {
+        CompletableFuture<Object> objectCompletableFuture = transportClient.execute("neeza/mock/string/io.github.hotspacode.neeza.test.mock.CommonMessageService.public java.lang.String io.github.hotspacode.neeza.test.mock.CommonMessageService.getString(java.lang.String,java.lang.String)", false).thenApply(json -> {
             System.out.println(json);
             return json;
         });

@@ -20,7 +20,7 @@
 
 # Quick Start
 
-- mvn clean package 
+- mvn clean package -Dmaven.test.skip=true
 - -javaagent:neeza-agent/target/neeza-agent-1.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 

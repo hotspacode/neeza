@@ -31,6 +31,10 @@ public class MockTransport implements Serializable {
         if (null == methodSpiResponseDTO.getResponse()) {
             return null;
         }
+        if (methodSpiResponseDTO.isPrimitive()) {
+            return (T) methodSpiResponseDTO.getResponse();
+        }
+
         return (T) methodSpiResponseDTO.getNeezaSerialization().deserialize(methodSpiResponseDTO.getResponse().getBytes(), methodSpiResponseDTO.getMethodReturnClass());
     }
 

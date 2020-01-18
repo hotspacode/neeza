@@ -104,20 +104,20 @@ public class TransportClient {
         return EntityUtils.toString(response.getEntity(), charset != null ? charset : Charset.forName(DEFAULT_CHARSET));
     }
 
-    public CompletableFuture<String> executeCommand(String api, boolean useHttpPost) {
-        return executeCommand(TransportClientConfig.getServerIp(), TransportClientConfig.getServerPort(), api, useHttpPost);
+    public CompletableFuture<String> execute(String api, boolean useHttpPost) {
+        return execute(TransportClientConfig.getServerIp(), TransportClientConfig.getServerPort(), api, useHttpPost);
     }
 
-    public CompletableFuture<String> executeCommand(String api, Map<String, String> params, boolean useHttpPost) {
-        return executeCommand(TransportClientConfig.getServerIp(), TransportClientConfig.getServerPort(), api, params, useHttpPost);
+    public CompletableFuture<String> execute(String api, Map<String, String> params, boolean useHttpPost) {
+        return execute(TransportClientConfig.getServerIp(), TransportClientConfig.getServerPort(), api, params, useHttpPost);
     }
 
-    public CompletableFuture<String> executeCommand(String ip, int port, String api, boolean useHttpPost) {
-        return executeCommand(ip, port, api, null, useHttpPost);
+    public CompletableFuture<String> execute(String ip, int port, String api, boolean useHttpPost) {
+        return execute(ip, port, api, null, useHttpPost);
     }
 
 
-    public CompletableFuture<String> executeCommand(String ip, int port, String api, Map<String, String> params, boolean useHttpPost) {
+    public CompletableFuture<String> execute(String ip, int port, String api, Map<String, String> params, boolean useHttpPost) {
         CompletableFuture<String> future = new CompletableFuture<>();
         if (StringUtil.isBlank(ip) || StringUtil.isBlank(api)) {
             future.completeExceptionally(new IllegalArgumentException("Bad URL or command name"));

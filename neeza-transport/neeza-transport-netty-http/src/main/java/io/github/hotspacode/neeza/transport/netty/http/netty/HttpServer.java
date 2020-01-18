@@ -39,7 +39,7 @@ public class HttpServer {
             int port;
             try {
                 if (StringUtil.isEmpty(TransportConfig.getPort())) {
-                    port = NeezaConstant.DEFAULT_PORT;
+                    port = NeezaConstant.DEFAULT_TRANSPORT_PORT;
                 } else {
                     port = Integer.valueOf(TransportConfig.getPort());
                 }
@@ -55,7 +55,7 @@ public class HttpServer {
 
                 try {
                     // Bind and start to accept incoming connections.
-                    channelFuture = b.bind(NeezaConstant.DEFAULT_PORT).sync(); // (7)
+                    channelFuture = b.bind(NeezaConstant.DEFAULT_TRANSPORT_PORT).sync(); // (7)
                     break;
                 } catch (Exception e) {
                     TimeUnit.MILLISECONDS.sleep(30);

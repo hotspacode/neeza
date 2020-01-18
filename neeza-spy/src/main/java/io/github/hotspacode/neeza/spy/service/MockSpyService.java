@@ -5,14 +5,19 @@ import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.dto.MockTransport;
 import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
+import io.github.hotspacode.neeza.transport.client.http.TransportClient;
 import org.objectweb.asm.Type;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 
 public class MockSpyService implements IMockSpyService {
-    private static FastJSONSerialization neezaSerialization = new FastJSONSerialization();
+    private FastJSONSerialization neezaSerialization = new FastJSONSerialization();
+    private TransportClient transportClient = new TransportClient();
 
     @Override
     public MockTransport transport(String targetClassName, String targetMethodName, String argumentTypeDescriptors, List<Object> localVariable) {
@@ -58,8 +63,16 @@ public class MockSpyService implements IMockSpyService {
 
             //调用mock server
             //todo 指定为方法签名
-            String mockUrl = System.getProperty(NeezaConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
-            String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
+//            String mockUrl = System.getProperty(NeezaConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
+//            String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
+
+            Map<String, String> paramMap = new HashMap<>();
+            paramMap.put("methodName", targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString());
+            CompletableFuture<String> mockDataCompletableFuture = transportClient.execute("neeza/mock/string", paramMap, false)
+                    .thenApply(json -> {
+                        return json;
+                    });
+            String responseStr = mockDataCompletableFuture.get();
 
             //todo 全局参数mock报错是否支持继续
 

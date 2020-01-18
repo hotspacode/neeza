@@ -12,7 +12,7 @@ public final class TransportClientConfig {
     }
 
     private String serverIp = "localhost";
-    private int serverPort = NeezaConstant.DEFAULT_PORT;
+    private int serverPort = NeezaConstant.DEFAULT_SERVER_PORT;
 
     public static TransportClientConfig getConfig() {
         return config;

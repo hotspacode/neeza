@@ -21,7 +21,7 @@ public class CommonMessageService {
     }
 
 
-    public int getInt(String aa, List<Set<Object>> b) {
+    public int testInt(String aa, List<Set<Object>> b) {
 
 
         System.out.println("方法未被mock");
