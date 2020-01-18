@@ -17,7 +17,7 @@ public class TransportClientTest {
     @Test
     public void testClient() throws ExecutionException, InterruptedException {
         TransportClient transportClient = new TransportClient();
-        CompletableFuture<Object> objectCompletableFuture = transportClient.executeCommand("localhost", 8818, "test", false).thenApply(json -> {
+        CompletableFuture<Object> objectCompletableFuture = transportClient.executeCommand("test", false).thenApply(json -> {
             System.out.println(json);
             return json;
         });

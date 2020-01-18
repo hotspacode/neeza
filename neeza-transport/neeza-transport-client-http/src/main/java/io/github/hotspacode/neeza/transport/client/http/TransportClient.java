@@ -2,6 +2,7 @@ package io.github.hotspacode.neeza.transport.client.http;
 
 import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.base.util.StringUtil;
+import io.github.hotspacode.neeza.transport.client.http.config.TransportClientConfig;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -101,6 +102,14 @@ public class TransportClient {
         } catch (Exception ignore) {
         }
         return EntityUtils.toString(response.getEntity(), charset != null ? charset : Charset.forName(DEFAULT_CHARSET));
+    }
+
+    public CompletableFuture<String> executeCommand(String api, boolean useHttpPost) {
+        return executeCommand(TransportClientConfig.getServerIp(), TransportClientConfig.getServerPort(), api, useHttpPost);
+    }
+
+    public CompletableFuture<String> executeCommand(String api, Map<String, String> params, boolean useHttpPost) {
+        return executeCommand(TransportClientConfig.getServerIp(), TransportClientConfig.getServerPort(), api, params, useHttpPost);
     }
 
     public CompletableFuture<String> executeCommand(String ip, int port, String api, boolean useHttpPost) {

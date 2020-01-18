@@ -1,5 +1,6 @@
 package io.github.hotspacode.neeza.transport.netty.http.netty;
 
+import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.base.util.StringUtil;
 import io.github.hotspacode.neeza.transport.api.command.CommandHandler;
 import io.github.hotspacode.neeza.transport.api.config.TransportConfig;
@@ -19,8 +20,6 @@ import java.util.concurrent.TimeUnit;
  * @author moxingwang
  */
 public class HttpServer {
-    private static final Integer DEFAULT_PORT = 8818;
-
     private Channel channel;
 
     final static Map<String, CommandHandler> handlerMap = new ConcurrentHashMap<String, CommandHandler>();
@@ -40,7 +39,7 @@ public class HttpServer {
             int port;
             try {
                 if (StringUtil.isEmpty(TransportConfig.getPort())) {
-                    port = DEFAULT_PORT;
+                    port = NeezaConstant.DEFAULT_PORT;
                 } else {
                     port = Integer.valueOf(TransportConfig.getPort());
                 }
@@ -56,7 +55,7 @@ public class HttpServer {
 
                 try {
                     // Bind and start to accept incoming connections.
-                    channelFuture = b.bind(DEFAULT_PORT).sync(); // (7)
+                    channelFuture = b.bind(NeezaConstant.DEFAULT_PORT).sync(); // (7)
                     break;
                 } catch (Exception e) {
                     TimeUnit.MILLISECONDS.sleep(30);
