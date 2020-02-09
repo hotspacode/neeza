@@ -16,9 +16,13 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class MockSpyService implements IMockSpyService {
-    private final ConcurrentHashMap<String, MockData> cache = new ConcurrentHashMap<>();
+    private static final ConcurrentHashMap<String, MockData> cache = new ConcurrentHashMap<>();
     private FastJSONSerialization neezaSerialization = new FastJSONSerialization();
     private TransportClient transportClient = new TransportClient();
+
+    public static void expireKey(String key){
+        cache.remove(key);
+    }
 
     @Override
     public MockTransport transport(String targetClassName, String targetMethodName, String argumentTypeDescriptors, List<Object> localVariable) throws ClassNotFoundException {
@@ -83,6 +87,8 @@ public class MockSpyService implements IMockSpyService {
                 //todo 全局参数mock报错是否支持继续
 
                 mockData = neezaSerialization.deserialize(responseStr.getBytes(), MockData.class);
+
+                cache.put(methodName, mockData);
             } catch (Exception e) {
                 e.printStackTrace();
             }

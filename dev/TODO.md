@@ -28,3 +28,4 @@
     - spy和server通信spi api定义
 # todo
 - MockSpyService类里面的FastJSONSerialization和TransportClient使用单例模式或者可配置加载
+- 日志加入
