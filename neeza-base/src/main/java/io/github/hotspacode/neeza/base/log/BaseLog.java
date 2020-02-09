@@ -13,7 +13,9 @@ public class BaseLog {
         String fileName = "/logs/" + logName;
 
         try {
-            handler = new FileHandler(fileName + ".%d", 1024 * 1024 * 200, 4, true);
+            handler = new FileLogHandler(fileName + ".%d", 1024 * 1024 * 200, 4, true);
+            handler.setEncoding("UTF-8");
+            handler.setFormatter(new LogFormatter());
         } catch (IOException e) {
             e.printStackTrace();
         }
