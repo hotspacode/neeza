@@ -3,7 +3,6 @@ package io.github.hotspacode.neeza.agent;
 import io.github.hotspacode.neeza.agent.adapter.ObjectMethodAdapter;
 import io.github.hotspacode.neeza.agent.adapter.PrimitiveMethodAdapter;
 import io.github.hotspacode.neeza.agent.adapter.VoidMethodAdapter;
-import io.github.hotspacode.neeza.base.annotation.NeezaMock;
 import org.objectweb.asm.*;
 import org.objectweb.asm.commons.AdviceAdapter;
 
@@ -12,6 +11,8 @@ import java.util.stream.Stream;
 
 
 public class EnhancerAdapter extends ClassVisitor implements Opcodes {
+
+    public static final String NEEZA_MOCK_ANNOTATION_NAME = "io/github/hotspacode/neeza/base/annotation/NeezaMock";
 
     private boolean isInterface;
     private boolean isAnnotationType = false;
@@ -33,7 +34,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
         System.out.println(descriptor);
 
-        if (descriptor.contains(NeezaMock.class.toString().replace(".", "/").replace("interface ", ""))) {
+        if (descriptor.contains(NEEZA_MOCK_ANNOTATION_NAME)) {
             isAnnotationType = true;
         }
         return this.cv != null ? this.cv.visitAnnotation(descriptor, visible) : null;
@@ -64,7 +65,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
 
             String argumentTypeDescriptors = "";
-            if(argumentTypes.length > 0 ){
+            if (argumentTypes.length > 0) {
                 argumentTypeDescriptors = Stream.of(argumentTypes).map(Type::getDescriptor).collect(Collectors.joining(","));
             }
 
@@ -73,7 +74,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
 
             if (Type.VOID == methodReturnType) {
-                adviceAdapter = new VoidMethodAdapter(mv, access, name, descriptor, argumentTypeSize,argumentTypeDescriptors);
+                adviceAdapter = new VoidMethodAdapter(mv, access, name, descriptor, argumentTypeSize, argumentTypeDescriptors);
             } else {
                 Class returnClass = null;
 
@@ -109,9 +110,9 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
                 }
 
                 if (isPrimitive) {
-                    adviceAdapter = new PrimitiveMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize,argumentTypeDescriptors);
+                    adviceAdapter = new PrimitiveMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize, argumentTypeDescriptors);
                 } else {
-                    adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize,argumentTypeDescriptors);
+                    adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize, argumentTypeDescriptors);
                 }
             }
 
