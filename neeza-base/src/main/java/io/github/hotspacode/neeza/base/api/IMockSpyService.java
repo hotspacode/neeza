@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface IMockSpyService {
 
-    MockTransport transport(String targetClassName,String targetMethodName ,String argumentTypeDescriptors, List<Object> localVariable);
+    MockTransport transport(String targetClassName,String targetMethodName ,String argumentTypeDescriptors, List<Object> localVariable) throws ClassNotFoundException;
 
 }
