@@ -4,9 +4,12 @@ import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.server.standalone.service.StaticMockService;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.server.ServerHttpRequest;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/mock")
@@ -15,10 +18,10 @@ public class MockController {
     @GetMapping("/string")
     public String mock(@RequestParam(value = "methodName") String methodName,
                        @RequestParam(value = "clientPort") String clientPort,
-                       ServerHttpRequest request) {
+                       HttpServletRequest request) {
         String ip = getIpAddress(request);
 
-        NeezaLog.info("neeza method mock request s%:s%", ip, clientPort);
+        NeezaLog.info("neeza method mock request {0}:{1}", ip, clientPort);
 
         MockData mockDataDTO = new MockData();
         mockDataDTO.setType(MockData.Type.NONE);
@@ -58,33 +61,28 @@ public class MockController {
     }
 
 
-    public static String getIpAddress(ServerHttpRequest request) {
-        HttpHeaders headers = request.getHeaders();
-        String ip = headers.getFirst("x-forwarded-for");
-        if (ip != null && ip.length() != 0 && !"unknown".equalsIgnoreCase(ip)) {
-            // 多次反向代理后会有多个ip值，第一个ip才是真实ip
-            if (ip.indexOf(",") != -1) {
-                ip = ip.split(",")[0];
-            }
-        }
+    public static String getIpAddress(HttpServletRequest request) {
+        String ip = request.getHeader("x-forwarded-for");
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = headers.getFirst("Proxy-Client-IP");
+            ip = request.getHeader("Proxy-Client-IP");
         }
+
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = headers.getFirst("WL-Proxy-Client-IP");
+            ip = request.getHeader("WL-Proxy-Client-IP");
         }
+
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = headers.getFirst("HTTP_CLIENT_IP");
+            ip = request.getHeader("HTTP_CLIENT_IP");
         }
+
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = headers.getFirst("HTTP_X_FORWARDED_FOR");
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
         }
+
         if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = headers.getFirst("X-Real-IP");
+            ip = request.getRemoteAddr();
         }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddress().getAddress().getHostAddress();
-        }
+
         return ip;
     }
 

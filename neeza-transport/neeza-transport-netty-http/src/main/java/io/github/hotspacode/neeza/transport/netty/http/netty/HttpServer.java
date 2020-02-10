@@ -47,7 +47,7 @@ public class HttpServer {
                     port = Integer.valueOf(TransportConfig.getPort());
                 }
             } catch (Exception e) {
-                NeezaLog.info("Illegal port: s%", TransportConfig.getPort());
+                NeezaLog.info("Illegal port:{0}", TransportConfig.getPort());
                 throw new IllegalArgumentException("Illegal port: " + TransportConfig.getPort());
             }
 
