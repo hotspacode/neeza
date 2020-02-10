@@ -2,8 +2,11 @@ package io.github.hotspacode.neeza.server.standalone.controller;
 
 import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.base.dto.MockData;
-import io.github.hotspacode.neeza.base.log.NeezaLog;
+import io.github.hotspacode.neeza.server.standalone.service.ClientManagementService;
 import io.github.hotspacode.neeza.server.standalone.service.StaticMockService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,40 +18,50 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/mock")
 public class MockController {
 
+    private static final Logger logger = LoggerFactory.getLogger(MockController.class);
+
+    @Autowired
+    private ClientManagementService clientManagementService;
+
     @GetMapping("/string")
-    public String mock(@RequestParam(value = "methodName") String methodName,
-                       @RequestParam(value = "clientPort") String clientPort,
+    public String mock(@RequestParam(value = "methodDesc") String methodDesc,
+                       @RequestParam(value = "clientPort") Integer clientPort,
                        HttpServletRequest request) {
         String ip = getIpAddress(request);
 
-        NeezaLog.info("neeza method mock request {0}:{1}", ip, clientPort);
+        logger.info("neeza method mock request {}:{}", ip, clientPort);
+
+        {
+            clientManagementService.loadClient(ip,clientPort);
+        }
+
 
         MockData mockDataDTO = new MockData();
         mockDataDTO.setType(MockData.Type.NONE);
 
-        System.out.println("mock服务被调用到" + methodName);
+        System.out.println("mock服务被调用到" + methodDesc);
 
-        if (methodName.contains("testMap")) {
+        if (methodDesc.contains("testMap")) {
             mockDataDTO.setType(MockData.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.mapMock);
-        } else if (methodName.contains("testString")) {
+        } else if (methodDesc.contains("testString")) {
             mockDataDTO.setType(MockData.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.mapMock);
-        } else if (methodName.contains("testOrderResult")) {
+        } else if (methodDesc.contains("testOrderResult")) {
             mockDataDTO.setType(MockData.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.orderResultMock);
-        } else if (methodName.contains("testVoid")) {
+        } else if (methodDesc.contains("testVoid")) {
             mockDataDTO.setType(MockData.Type.VoidReturn);
-        } else if (methodName.contains("testInt")) {
+        } else if (methodDesc.contains("testInt")) {
             mockDataDTO.setType(MockData.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.intMock);
-        } else if (methodName.contains("testInteger")) {
+        } else if (methodDesc.contains("testInteger")) {
             mockDataDTO.setType(MockData.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.intMock);
-        } else if (methodName.contains("testDouble")) {
+        } else if (methodDesc.contains("testDouble")) {
             mockDataDTO.setType(MockData.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.doubleMock);
-        } else if (methodName.contains("testArrayList")) {
+        } else if (methodDesc.contains("testArrayList")) {
             mockDataDTO.setType(MockData.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.testArrayList);
         } else {

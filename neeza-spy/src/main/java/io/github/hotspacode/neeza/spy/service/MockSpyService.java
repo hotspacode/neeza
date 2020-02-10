@@ -71,12 +71,12 @@ public class MockSpyService implements IMockSpyService {
 //            String mockUrl = System.getProperty(NeezaConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
 //            String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
 
-        String methodName = targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
+        String methodDesc = targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
         MockData mockData = null;
 
-        if ((mockData = cache.get(methodName)) == null) {
+        if ((mockData = cache.get(methodDesc)) == null) {
             Map<String, String> paramMap = new HashMap<>();
-            paramMap.put("methodName", methodName);
+            paramMap.put("methodDesc", methodDesc);
             paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
 
             try {
@@ -90,7 +90,7 @@ public class MockSpyService implements IMockSpyService {
 
                 mockData = neezaSerialization.deserialize(responseStr.getBytes(), MockData.class);
 
-                cache.put(methodName, mockData);
+                cache.put(methodDesc, mockData);
             } catch (Exception e) {
                 e.printStackTrace();
             }
