@@ -1,7 +1,9 @@
 package io.github.hotspacode.neeza.transport.netty.http.netty;
 
+import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.base.util.StringUtil;
+import io.github.hotspacode.neeza.transport.api.TransportServerStatus;
 import io.github.hotspacode.neeza.transport.api.command.CommandHandler;
 import io.github.hotspacode.neeza.transport.api.config.TransportConfig;
 import io.netty.bootstrap.ServerBootstrap;
@@ -26,7 +28,7 @@ public class HttpServer {
 
 
     public void start() throws Exception {
-        System.out.println("netty http server started !");
+        NeezaLog.info("netty http server started !");
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup(2);
         try {
@@ -45,6 +47,7 @@ public class HttpServer {
                     port = Integer.valueOf(TransportConfig.getPort());
                 }
             } catch (Exception e) {
+                NeezaLog.info("Illegal port: s%", TransportConfig.getPort());
                 throw new IllegalArgumentException("Illegal port: " + TransportConfig.getPort());
             }
 
@@ -52,13 +55,13 @@ public class HttpServer {
             ChannelFuture channelFuture = null;
             int retryCount = 0;
             while (true) {
-                int newPort = getNewPort(port, retryCount);
-
                 try {
+                    TransportServerStatus.setRealPort(port);
                     // Bind and start to accept incoming connections.
                     channelFuture = b.bind(NeezaConstant.DEFAULT_TRANSPORT_PORT).sync(); // (7)
                     break;
                 } catch (Exception e) {
+                    port = getNewPort(port, retryCount);
                     TimeUnit.MILLISECONDS.sleep(30);
                     retryCount++;
                 }

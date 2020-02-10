@@ -4,6 +4,7 @@ import io.github.hotspacode.neeza.base.api.IMockSpyService;
 import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.dto.MockTransport;
 import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
+import io.github.hotspacode.neeza.transport.api.TransportServerStatus;
 import io.github.hotspacode.neeza.transport.client.http.TransportClient;
 import org.objectweb.asm.Type;
 
@@ -20,7 +21,7 @@ public class MockSpyService implements IMockSpyService {
     private FastJSONSerialization neezaSerialization = new FastJSONSerialization();
     private TransportClient transportClient = new TransportClient();
 
-    public static void expireKey(String key){
+    public static void expireKey(String key) {
         cache.remove(key);
     }
 
@@ -76,6 +77,7 @@ public class MockSpyService implements IMockSpyService {
         if ((mockData = cache.get(methodName)) == null) {
             Map<String, String> paramMap = new HashMap<>();
             paramMap.put("methodName", methodName);
+            paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
 
             try {
                 CompletableFuture<String> mockDataCompletableFuture = transportClient.execute("neeza/mock/string", paramMap, false)
