@@ -20,7 +20,7 @@ public class MockDataService {
 
     private static final Map<String, ConcurrentHashMap<String, Object>> cache = new ConcurrentHashMap<>();
 
-    public void saveData(String methodDesc, MockData data, String ip, String port) {
+    public String load(String methodDesc, MockData data, String ip, String port) {
         logger.info("save method desc {},{}", methodDesc, JSON.toJSONString(data));
 
         //todo 校验 daat
@@ -40,7 +40,7 @@ public class MockDataService {
 
             if (Objects.equals(data.getBody(), cacheMockData.getBody())) {
                 logger.info("no update {},{}", methodDesc, JSON.toJSONString(data));
-                return;
+                return "no update";
             }
         } else {
             cacheMap = new ConcurrentHashMap<>();
@@ -66,6 +66,7 @@ public class MockDataService {
             }
         }
 
+        return "OK";
     }
 
     public MockData pullData(String methodDesc, String ip, String port) {

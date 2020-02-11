@@ -81,7 +81,7 @@ public class MockSpyService implements IMockSpyService {
             paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
 
             try {
-                CompletableFuture<String> mockDataCompletableFuture = transportClient.execute("neeza/mock/string", paramMap, false)
+                CompletableFuture<String> mockDataCompletableFuture = transportClient.execute("neeza/mock/pull", paramMap, false)
                         .thenApply(json -> {
                             return json;
                         });

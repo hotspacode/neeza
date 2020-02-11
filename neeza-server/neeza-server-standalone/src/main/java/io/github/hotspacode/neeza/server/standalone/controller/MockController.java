@@ -23,8 +23,8 @@ public class MockController {
     @Autowired
     private MockDataService mockDataService;
 
-    @GetMapping("/string")
-    public String mock(@RequestParam(value = "methodDesc") String methodDesc,
+    @GetMapping("/pull")
+    public String pull(@RequestParam(value = "methodDesc") String methodDesc,
                        @RequestParam(value = "clientPort") String clientPort,
                        HttpServletRequest request) {
         String ip = getIpAddress(request);
@@ -68,6 +68,15 @@ public class MockController {
         return JSON.toJSONString(mockDataDTO);
     }
 
+    @GetMapping("/load")
+    public String load(@RequestParam(value = "methodDesc") String methodDesc,
+                       @RequestParam(value = "clientIp", required = false) String clientIp,
+                       @RequestParam(value = "clientPort", required = false) String clientPort,
+                       @RequestParam(value = "mockDataType") MockData.Type mockDataType,
+                       @RequestParam(value = "mockDataBody") String mockDataBody) {
+        MockData mockData = new MockData(mockDataType, mockDataBody);
+        return mockDataService.load(methodDesc, mockData, clientIp, clientPort);
+    }
 
     public static String getIpAddress(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
