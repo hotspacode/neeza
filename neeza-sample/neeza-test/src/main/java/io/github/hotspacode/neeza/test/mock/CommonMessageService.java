@@ -34,4 +34,11 @@ public class CommonMessageService {
         System.out.println("方法未被mock");
     }
 
+    public String load(String aa, String ddd) {
+
+
+        System.out.println("方法未被mock");
+        return "not mock OK";
+    }
+
 }

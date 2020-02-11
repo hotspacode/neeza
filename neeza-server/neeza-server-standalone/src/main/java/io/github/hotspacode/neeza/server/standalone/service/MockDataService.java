@@ -38,7 +38,7 @@ public class MockDataService {
                 cacheMockData = (MockData) cacheMap.get(PREFIX_IP_PORT + ip + ":" + port);
             }
 
-            if (Objects.equals(data.getBody(), cacheMockData.getBody())) {
+            if (Objects.equals(data.getType(), cacheMockData.getType()) && Objects.equals(data.getBody(), cacheMockData.getBody())) {
                 logger.info("no update {},{}", methodDesc, JSON.toJSONString(data));
                 return "no update";
             }
@@ -81,6 +81,9 @@ public class MockDataService {
         mockData = (MockData) dataMap.get(PREFIX_IP_PORT + ip + ":" + port);
         if (null == mockData) {
             mockData = (MockData) dataMap.get(PREFIX_TEMPLATE_DATA);
+            if (null == mockData) {
+                mockData = MockData.getNullValue();
+            }
             dataMap.put(PREFIX_IP_PORT + ip + ":" + port, dataMap);
         }
 

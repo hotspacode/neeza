@@ -3,7 +3,6 @@ package io.github.hotspacode.neeza.base.dto;
 import java.io.Serializable;
 
 public class MockData implements Serializable {
-
     private Type type;
     private String body;
 
@@ -14,10 +13,15 @@ public class MockData implements Serializable {
     public MockData() {
     }
 
+    public static MockData getNullValue(){
+        return new MockData(Type.NONE, null);
+    }
+
     public MockData(Type type, String body) {
         this.type = type;
         this.body = body;
     }
+
 
     public Type getType() {
         return type;

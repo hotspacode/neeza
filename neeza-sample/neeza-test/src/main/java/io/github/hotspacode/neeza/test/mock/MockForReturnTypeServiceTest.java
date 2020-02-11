@@ -11,6 +11,7 @@ public class MockForReturnTypeServiceTest {
         CommonMessageService commonMessageService = new CommonMessageService();
 //        System.out.println("执行结果:" + commonMessageService.getString("1111111111","fsdddddddddd"));
         System.out.println("执行结果:" + commonMessageService.testInt("1111111111",null));
+        System.out.println("执行结果:" + commonMessageService.load("1111111111",null));
 //        commonMessageService.getVoid("1111111111","fsdddddddddd");
         //        commonMessageService.testOrderResult();
 
