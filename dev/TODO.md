@@ -29,4 +29,4 @@
 # todo
 - MockSpyService类里面的FastJSONSerialization和TransportClient使用单例模式或者可配置加载
 - [done]日志加入
-- 如何转换成fastjson
+- 如何转换成fastjson, 如何把一个泛型new 模拟出参数来
