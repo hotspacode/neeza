@@ -7,7 +7,11 @@ public class MockData implements Serializable {
     private String body;
 
     public enum Type {
-        NONE,ReturnBody, VoidReturn, ReturnNull
+        //未被mock到或者表达NULL VALUE的意思
+        NONE,
+        ReturnBody,
+        VoidReturn,
+        ReturnNull
     }
 
     public MockData() {
