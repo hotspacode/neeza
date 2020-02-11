@@ -6,7 +6,7 @@ import io.github.hotspacode.neeza.transport.api.command.CommandHandler;
 import io.github.hotspacode.neeza.transport.api.command.CommandRequest;
 import io.github.hotspacode.neeza.transport.api.command.CommandResponse;
 
-@CommandMapping(name = "spy/mock/data/change", desc = "neeza mock data change handler")
+@CommandMapping(name = "neeza/spy/mock/data/change", desc = "neeza mock data change handler")
 public class MockDataChangeHandler implements CommandHandler<String> {
 
     @Override

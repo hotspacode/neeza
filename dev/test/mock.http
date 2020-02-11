@@ -1,3 +1,4 @@
-GET http://localhost:8080/neeza/mock/string/fwerf.fsd.fds
+### method mock data change handler
+GET http://127.0.0.1:8817/neeza/spy/mock/data/change
 
 ###
