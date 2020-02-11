@@ -28,7 +28,6 @@ public class HttpServer {
 
 
     public void start() throws Exception {
-        NeezaLog.info("netty http server started !");
         EventLoopGroup bossGroup = new NioEventLoopGroup(1);
         EventLoopGroup workerGroup = new NioEventLoopGroup(2);
         try {
@@ -67,6 +66,7 @@ public class HttpServer {
                 }
             }
 
+            NeezaLog.info("netty http server started at {0} !", port);
 
             // Wait until the server socket is closed.
             // In this example, this does not happen, but you can do that to gracefully
@@ -74,6 +74,7 @@ public class HttpServer {
             channelFuture.channel().closeFuture().sync();
 
             channel = channelFuture.channel();
+
         } finally {
             workerGroup.shutdownGracefully();
             bossGroup.shutdownGracefully();

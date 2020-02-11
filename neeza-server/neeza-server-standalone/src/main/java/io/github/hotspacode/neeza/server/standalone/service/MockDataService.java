@@ -84,7 +84,7 @@ public class MockDataService {
             if (null == mockData) {
                 mockData = MockData.getNullValue();
             }
-            dataMap.put(PREFIX_IP_PORT + ip + ":" + port, dataMap);
+            dataMap.put(PREFIX_IP_PORT + ip + ":" + port, mockData);
         }
 
         return mockData;

@@ -1,6 +1,6 @@
 package io.github.hotspacode.neeza.spy.handler;
 
-import io.github.hotspacode.neeza.spy.service.MockSpyService;
+import io.github.hotspacode.neeza.spy.MockSpyService;
 import io.github.hotspacode.neeza.transport.api.annotation.CommandMapping;
 import io.github.hotspacode.neeza.transport.api.command.CommandHandler;
 import io.github.hotspacode.neeza.transport.api.command.CommandRequest;

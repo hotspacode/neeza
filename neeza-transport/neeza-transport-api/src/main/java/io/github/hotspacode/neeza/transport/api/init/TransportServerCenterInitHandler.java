@@ -1,6 +1,7 @@
 package io.github.hotspacode.neeza.transport.api.init;
 
 import io.github.hotspacode.neeza.base.common.SpiLoader;
+import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.transport.api.TransportServerCenter;
 
 public class TransportServerCenterInitHandler {
@@ -15,10 +16,8 @@ public class TransportServerCenterInitHandler {
             serverCenter.beforeStart();
             serverCenter.start();
         } catch (Exception e) {
-            e.printStackTrace();
+            NeezaLog.warn("neeza server start fail",e);
         }
-
-        //todo log info
     }
 
 }
