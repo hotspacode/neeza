@@ -3,6 +3,7 @@ package io.github.hotspacode.neeza.spy.service;
 import io.github.hotspacode.neeza.base.api.IMockSpyService;
 import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.dto.MockTransport;
+import io.github.hotspacode.neeza.base.util.StringUtil;
 import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
 import io.github.hotspacode.neeza.transport.api.TransportServerStatus;
 import io.github.hotspacode.neeza.transport.client.http.TransportClient;
@@ -88,7 +89,9 @@ public class MockSpyService implements IMockSpyService {
 
                 //todo 全局参数mock报错是否支持继续
 
-                mockData = neezaSerialization.deserialize(responseStr.getBytes(), MockData.class);
+                if (StringUtil.isNotBlank(responseStr)) {
+                    mockData = neezaSerialization.deserialize(responseStr.getBytes(), MockData.class);
+                }
 
                 cache.put(methodDesc, mockData);
             } catch (Exception e) {

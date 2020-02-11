@@ -2,7 +2,7 @@ package io.github.hotspacode.neeza.server.standalone.controller;
 
 import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.base.dto.MockData;
-import io.github.hotspacode.neeza.server.standalone.service.ClientManagementService;
+import io.github.hotspacode.neeza.server.standalone.service.MockDataService;
 import io.github.hotspacode.neeza.server.standalone.service.StaticMockService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,19 +21,15 @@ public class MockController {
     private static final Logger logger = LoggerFactory.getLogger(MockController.class);
 
     @Autowired
-    private ClientManagementService clientManagementService;
+    private MockDataService mockDataService;
 
     @GetMapping("/string")
     public String mock(@RequestParam(value = "methodDesc") String methodDesc,
-                       @RequestParam(value = "clientPort") Integer clientPort,
+                       @RequestParam(value = "clientPort") String clientPort,
                        HttpServletRequest request) {
         String ip = getIpAddress(request);
 
         logger.info("neeza method mock request {}:{}", ip, clientPort);
-
-        {
-            clientManagementService.loadClient(ip,clientPort);
-        }
 
 
         MockData mockDataDTO = new MockData();
@@ -65,8 +61,7 @@ public class MockController {
             mockDataDTO.setType(MockData.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.testArrayList);
         } else {
-            mockDataDTO.setType(MockData.Type.ReturnBody);
-            mockDataDTO.setBody(StaticMockService.mapMock);
+            mockDataDTO = mockDataService.pullData(methodDesc, ip, clientPort);
         }
 
 
