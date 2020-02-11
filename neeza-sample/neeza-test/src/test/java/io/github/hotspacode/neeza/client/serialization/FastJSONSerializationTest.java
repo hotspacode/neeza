@@ -30,4 +30,21 @@ public class FastJSONSerializationTest {
         obj.add("3");
         System.out.println(new String(fastJSONSerialization.serialize(obj)));
     }
+
+    @Test
+    public void testOrder(){
+        Order order = new Order();
+        List<OrderItem> orderItems = new ArrayList<>();
+        OrderItem orderItem = new OrderItem();
+        orderItem.setId(1L);
+        orderItems.add(orderItem);
+        order.setItems(orderItems);
+
+        FastJSONSerialization fastJSONSerialization = new FastJSONSerialization();
+        System.out.println(new String(fastJSONSerialization.serialize(order)));
+
+        Order deserialize = fastJSONSerialization.deserialize(fastJSONSerialization.serialize(order), Order.class);
+        System.out.println(1);
+
+    }
 }
