@@ -80,7 +80,7 @@ public class MockSpyService implements IMockSpyService {
             paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
 
             try {
-                CompletableFuture<String> mockDataCompletableFuture = NeezaServer.getTransportClient().execute("neeza/mock/pull", paramMap, false)
+                CompletableFuture<String> mockDataCompletableFuture = NeezaServer.getTransportClient().execute(NeezaServer.getServerIp(),NeezaServer.getServerPort(),"neeza/mock/pull", paramMap, false)
                         .thenApply(json -> {
                             return json;
                         });

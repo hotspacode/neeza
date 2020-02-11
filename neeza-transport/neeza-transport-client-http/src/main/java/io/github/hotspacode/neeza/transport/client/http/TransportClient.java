@@ -108,10 +108,6 @@ public class TransportClient {
         return execute(TransportClientConfig.getServerIp(), TransportClientConfig.getServerPort(), api, useHttpPost);
     }
 
-    public CompletableFuture<String> execute(String api, Map<String, String> params, boolean useHttpPost) {
-        return execute(TransportClientConfig.getServerIp(), TransportClientConfig.getServerPort(), api, params, useHttpPost);
-    }
-
     public CompletableFuture<String> execute(String ip, int port, String api, boolean useHttpPost) {
         return execute(ip, port, api, null, useHttpPost);
     }

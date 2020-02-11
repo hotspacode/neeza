@@ -1,12 +1,13 @@
 package io.github.hotspacode.neeza.test.mock;
 
 import io.github.hotspacode.neeza.base.annotation.NeezaMock;
+import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.spy.NeezaServer;
 
 @NeezaMock
 public class MockForReturnTypeServiceTest {
     public static void main(String[] args) {
-        NeezaServer.start();
+        NeezaServer.start("localhost", NeezaConstant.DEFAULT_SERVER_PORT);
 
 //        MockForReturnTypeService mockService = new MockForReturnTypeService();
         CommonMessageService commonMessageService = new CommonMessageService();

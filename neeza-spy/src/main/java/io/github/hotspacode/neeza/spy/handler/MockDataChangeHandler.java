@@ -1,5 +1,6 @@
 package io.github.hotspacode.neeza.spy.handler;
 
+import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.spy.MockSpyService;
 import io.github.hotspacode.neeza.transport.api.annotation.CommandMapping;
 import io.github.hotspacode.neeza.transport.api.command.CommandHandler;
@@ -11,11 +12,11 @@ public class MockDataChangeHandler implements CommandHandler<String> {
 
     @Override
     public CommandResponse<String> handle(CommandRequest request) {
-        if (null == request.getBody()) {
-            return CommandResponse.ofSuccess("body is NULL!");
-        }
+        String methodDesc = request.getParam("methodDesc");
 
-        MockSpyService.expireKey(new String(request.getBody()));
+        NeezaLog.info("method expire {0}",methodDesc);
+
+        MockSpyService.expireKey(methodDesc);
 
         return CommandResponse.ofSuccess("received!");
     }

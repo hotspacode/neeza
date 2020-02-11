@@ -3,12 +3,17 @@ package io.github.hotspacode.neeza.server.standalone.service;
 import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.util.StringUtil;
+import io.github.hotspacode.neeza.transport.api.TransportServerStatus;
+import io.github.hotspacode.neeza.transport.client.http.TransportClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -19,6 +24,9 @@ public class MockDataService {
     private static final String PREFIX_TEMPLATE_DATA = "TEMPLATEDATA:";
 
     private static final Map<String, ConcurrentHashMap<String, Object>> cache = new ConcurrentHashMap<>();
+
+    @Autowired
+    private TransportClient transportClient;
 
     public String load(String methodDesc, MockData data, String ip, String port) {
         logger.info("save method desc {},{}", methodDesc, JSON.toJSONString(data));
@@ -92,6 +100,15 @@ public class MockDataService {
 
     private void dataChangeNotice(String methodDesc, String ip, String port) {
         try {
+            Map<String, String> paramMap = new HashMap<>();
+            paramMap.put("methodDesc", methodDesc);
+            paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
+
+            CompletableFuture<String> mockDataCompletableFuture = transportClient.execute(ip,Integer.valueOf(port),"neeza/spy/mock/data/change", paramMap, false)
+                    .thenApply(json -> {
+                        return json;
+                    });
+            String responseStr = mockDataCompletableFuture.get();
 
         } catch (Exception e) {
 

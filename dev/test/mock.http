@@ -1,4 +1,4 @@
 ### method mock data change handler
-GET http://127.0.0.1:8817/neeza/spy/mock/data/change
+GET http://127.0.0.1:8817/neeza/spy/mock/data/change?methodDesc=fs
 
 ###
