@@ -28,8 +28,8 @@ public class OrderController {
         return orderService.listOrderItem();
     }
 
-    @GetMapping("listOrderItem")
-    public Map orderMap(String key, String value) {
+    @GetMapping("orderMap")
+    public Map orderMap(@RequestParam(value = "key")String key,@RequestParam(value = "value") String value) {
         return orderService.orderMap(key,value);
     }
 
