@@ -1,5 +1,6 @@
 package io.github.hotspacode.neeza.test.springboot.service.impl;
 
+import io.github.hotspacode.neeza.base.annotation.NeezaMock;
 import io.github.hotspacode.neeza.test.springboot.pojo.Order;
 import io.github.hotspacode.neeza.test.springboot.pojo.OrderItem;
 import io.github.hotspacode.neeza.test.springboot.service.IOrderService;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
+@NeezaMock
 public class OrderService implements IOrderService {
     @Override
     public Order getOrder(Long orderId) {

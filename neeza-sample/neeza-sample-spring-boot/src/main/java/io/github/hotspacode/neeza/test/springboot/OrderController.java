@@ -1,5 +1,6 @@
 package io.github.hotspacode.neeza.test.springboot;
 
+import io.github.hotspacode.neeza.base.annotation.NeezaMock;
 import io.github.hotspacode.neeza.test.springboot.pojo.Order;
 import io.github.hotspacode.neeza.test.springboot.pojo.OrderItem;
 import io.github.hotspacode.neeza.test.springboot.service.IOrderService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Map;
 
+@NeezaMock
 @RestController("order")
 public class OrderController {
     @Autowired
@@ -18,7 +20,6 @@ public class OrderController {
 
 
     @GetMapping("getOrder")
-    @NeezaMock
     public Order getOrder(@RequestParam(value = "orderId") Long orderId) {
         return orderService.getOrder(orderId);
     }
