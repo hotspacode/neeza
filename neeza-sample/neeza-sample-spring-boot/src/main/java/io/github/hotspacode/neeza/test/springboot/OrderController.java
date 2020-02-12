@@ -18,6 +18,7 @@ public class OrderController {
 
 
     @GetMapping("getOrder")
+    @NeezaMock
     public Order getOrder(@RequestParam(value = "orderId") Long orderId) {
         return orderService.getOrder(orderId);
     }
