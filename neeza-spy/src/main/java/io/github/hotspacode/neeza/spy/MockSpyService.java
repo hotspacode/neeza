@@ -3,6 +3,7 @@ package io.github.hotspacode.neeza.spy;
 import io.github.hotspacode.neeza.base.api.IMockSpyService;
 import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.dto.MockTransport;
+import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.base.util.StringUtil;
 import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
 import io.github.hotspacode.neeza.transport.api.TransportServerStatus;
@@ -63,14 +64,6 @@ public class MockSpyService implements IMockSpyService {
             mockTransport.setNeezaSerialization(neezaSerialization);
         }
 
-
-        //调用本地内存
-
-        //调用mock server
-        //todo 指定为方法签名
-//            String mockUrl = System.getProperty(NeezaConstant.SIMPLE_MOCK_VM_SERVER_URL) + targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
-//            String responseStr = org.apache.http.util.EntityUtils.toString(org.apache.http.impl.client.HttpClients.createDefault().execute(new org.apache.http.client.methods.HttpGet(mockUrl)).getEntity(), "UTF-8");
-
         String methodDesc = targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
         MockData mockData = null;
 
@@ -80,13 +73,11 @@ public class MockSpyService implements IMockSpyService {
             paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
 
             try {
-                CompletableFuture<String> mockDataCompletableFuture = NeezaServer.getTransportClient().execute(NeezaServer.getServerIp(),NeezaServer.getServerPort(),"neeza/mock/pull", paramMap, false)
+                CompletableFuture<String> mockDataCompletableFuture = NeezaServer.getTransportClient().execute(NeezaServer.getServerIp(), NeezaServer.getServerPort(), "neeza/mock/pull", paramMap, false)
                         .thenApply(json -> {
                             return json;
                         });
                 String responseStr = mockDataCompletableFuture.get();
-
-                //todo 全局参数mock报错是否支持继续
 
                 if (StringUtil.isNotBlank(responseStr)) {
                     mockData = neezaSerialization.deserialize(responseStr.getBytes(), MockData.class);
@@ -102,6 +93,14 @@ public class MockSpyService implements IMockSpyService {
             mockTransport.setMocked(false);
         } else {
             mockTransport.setMocked(true);
+
+            if (StringUtil.isNotBlank(mockData.getMethodReturnClass())) {
+                try {
+                    mockTransport.setMethodReturnClass(Class.forName(mockData.getMethodReturnClass()));
+                } catch (Exception e) {
+                    NeezaLog.warn("错误的方法返回类型" + targetMethodName, e);
+                }
+            }
 
             if (MockData.Type.ReturnBody.equals(mockData.getType())) {
                 mockTransport.setResponse(mockData.getBody());

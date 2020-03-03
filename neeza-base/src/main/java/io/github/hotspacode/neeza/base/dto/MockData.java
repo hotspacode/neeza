@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class MockData implements Serializable {
     private Type type;
     private String body;
+    private String methodReturnClass;
 
     public enum Type {
         //未被mock到或者表达NULL VALUE的意思
@@ -41,5 +42,13 @@ public class MockData implements Serializable {
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getMethodReturnClass() {
+        return methodReturnClass;
+    }
+
+    public void setMethodReturnClass(String methodReturnClass) {
+        this.methodReturnClass = methodReturnClass;
     }
 }
