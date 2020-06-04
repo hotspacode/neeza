@@ -1,6 +1,7 @@
 package io.github.hotspacode.neeza.test.springboot.controller;
 
 import io.github.hotspacode.neeza.base.annotation.NeezaMock;
+import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
 import io.github.hotspacode.neeza.test.springboot.pojo.Order;
 import io.github.hotspacode.neeza.test.springboot.pojo.OrderItem;
 import io.github.hotspacode.neeza.test.springboot.service.IOrderService;
@@ -36,4 +37,15 @@ public class OrderController {
         return orderService.orderMap(key,value);
     }
 
+/*    public static void main(String[] args) {
+        FastJSONSerialization fastJSONSerialization = new FastJSONSerialization();
+        Order order = new Order();
+        order.setId(5438843L);
+        order.setMarketName("service内部");
+        order.setShopName("shop内部name");
+
+        System.out.println(new String(fastJSONSerialization.serialize(order)));
+
+
+    }*/
 }

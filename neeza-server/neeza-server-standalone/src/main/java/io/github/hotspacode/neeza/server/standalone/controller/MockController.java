@@ -60,6 +60,9 @@ public class MockController {
         } else if (methodDesc.contains("testArrayList")) {
             mockDataDTO.setType(MockData.Type.ReturnBody);
             mockDataDTO.setBody(StaticMockService.testArrayList);
+        } else if (methodDesc.contains("order")) {
+            mockDataDTO.setType(MockData.Type.ReturnBody);
+            mockDataDTO.setBody("{\"@type\":\"io.github.hotspacode.neeza.test.springboot.pojo.Order\",\"id\":5438843,\"marketName\":\"service内部\",\"shopName\":\"shop内部name\"}");
         } else {
             mockDataDTO = mockDataService.pullData(methodDesc, ip, clientPort);
         }
