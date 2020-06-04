@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @NeezaMock
+@RestController
 @RequestMapping("order")
 public class OrderController {
     @Autowired

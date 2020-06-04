@@ -5,6 +5,7 @@ import io.github.hotspacode.neeza.test.springboot.pojo.Order;
 import io.github.hotspacode.neeza.test.springboot.pojo.OrderItem;
 import io.github.hotspacode.neeza.test.springboot.service.IOrderService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Map;
 @NeezaMock
 public class OrderService implements IOrderService {
     @Override
+    @Transactional
     public Order getOrder(Long orderId) {
         Order order = new Order();
         order.setId(orderId);
