@@ -10,8 +10,8 @@ public class NeezaServer {
     private static String serverIp;
     private static Integer serverPort;
 
-    public synchronized static void start(String serverIp,Integer serverPort) {
-        System.getProperties().setProperty(NeezaConstant.SIMPLE_MOCK_VM_PACKAGE_NAME, "io/github/hotspacode/neeza/test");
+    public synchronized static void start(String serverIp,Integer serverPort,String packageName) {
+        System.getProperties().setProperty(NeezaConstant.SIMPLE_MOCK_VM_PACKAGE_NAME, packageName);
 
         NeezaServer.serverIp = serverIp;
         NeezaServer.serverPort = serverPort;
