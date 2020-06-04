@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.test.springboot;
+package io.github.hotspacode.neeza.test.springboot.controller;
 
 import io.github.hotspacode.neeza.base.annotation.NeezaMock;
 import io.github.hotspacode.neeza.test.springboot.pojo.Order;
