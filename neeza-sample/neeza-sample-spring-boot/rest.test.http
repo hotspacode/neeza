@@ -1,10 +1,10 @@
 ###
-http://localhost:8080/getOrder?orderId=11
+http://localhost:8080/order/getOrder?orderId=11
 
 ###
-GET http://localhost:8080/listOrderItem
+GET http://localhost:8080/order/listOrderItem
 
 ###
-GET http://localhost:8080/orderMap?key=key1&value=value111
+GET http://localhost:8080/order/orderMap?key=key1&value=value111
 
 ###
