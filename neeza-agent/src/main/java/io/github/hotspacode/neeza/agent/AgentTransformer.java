@@ -45,6 +45,9 @@ public class AgentTransformer implements ClassFileTransformer {
 
             System.out.println("最终执行：" + className + "------targetClassName：" + targetClassName);
 
+            if (className.contains("$$")) {
+                return null;
+            }
 
             ClassReader cr = new ClassReader(className);
             ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
