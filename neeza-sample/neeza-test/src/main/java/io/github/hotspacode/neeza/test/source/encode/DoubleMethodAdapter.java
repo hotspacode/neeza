@@ -10,7 +10,7 @@ public class DoubleMethodAdapter extends AdviceAdapter {
     private String returnClassType;
 
     public DoubleMethodAdapter(MethodVisitor mv, int access, String name, String desc, String returnClassType) {
-        super(ASM7, mv, access, name, desc);
+        super(ASM5, mv, access, name, desc);
         this.returnClassType = returnClassType;
     }
 

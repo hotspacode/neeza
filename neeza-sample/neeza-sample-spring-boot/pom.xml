@@ -53,6 +53,12 @@
             <artifactId>spring-tx</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.chinaredstar</groupId>
+            <artifactId>p-trade-oc-api</artifactId>
+            <version>3.0.73.RELEASE</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

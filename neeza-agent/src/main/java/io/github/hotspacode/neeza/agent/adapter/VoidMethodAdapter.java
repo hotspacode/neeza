@@ -11,7 +11,7 @@ public class VoidMethodAdapter extends AdviceAdapter {
     private String argumentTypeDescriptors;
 
     public VoidMethodAdapter(MethodVisitor mv, int access, String name, String desc,int argumentTypeSize,String argumentTypeDescriptors) {
-        super(ASM7, mv, access, name, desc);
+        super(ASM5, mv, access, name, desc);
         this.argumentTypeSize = argumentTypeSize;
         this.argumentTypeDescriptors = argumentTypeDescriptors;
     }

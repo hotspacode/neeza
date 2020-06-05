@@ -12,7 +12,7 @@ public class PrimitiveMethodAdapter extends AdviceAdapter {
     private String argumentTypeDescriptors;
 
     public PrimitiveMethodAdapter(MethodVisitor mv, int access, String name, String desc, Class returnClass, int argumentTypeSize,String argumentTypeDescriptors) {
-        super(ASM7, mv, access, name, desc);
+        super(ASM5, mv, access, name, desc);
         this.returnClass = returnClass;
         this.argumentTypeSize = argumentTypeSize;
         this.argumentTypeDescriptors = argumentTypeDescriptors;

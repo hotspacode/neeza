@@ -8,7 +8,7 @@ import org.objectweb.asm.commons.AdviceAdapter;
 public class IntegerObjMethodAdapter extends AdviceAdapter {
 
     public IntegerObjMethodAdapter(MethodVisitor mv, int access, String name, String desc) {
-        super(ASM7, mv, access, name, desc);
+        super(ASM5, mv, access, name, desc);
     }
 
 

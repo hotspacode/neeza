@@ -5,6 +5,7 @@ import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
 import io.github.hotspacode.neeza.test.springboot.pojo.Order;
 import io.github.hotspacode.neeza.test.springboot.pojo.OrderItem;
 import io.github.hotspacode.neeza.test.springboot.service.IOrderService;
+import io.github.hotspacode.neeza.test.springboot.service.OrderWorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +21,14 @@ import java.util.Map;
 public class OrderController {
     @Autowired
     private IOrderService orderService;
+    @Autowired
+    private OrderWorkerService orderWorkerService;
 
 
     @GetMapping("getOrder")
     public Order getOrder(@RequestParam(value = "orderId") Long orderId) {
+//        orderWorkerService.addOrderWorker(null);
+        orderWorkerService.addOrderWorker();
         return orderService.getOrder(orderId);
     }
 

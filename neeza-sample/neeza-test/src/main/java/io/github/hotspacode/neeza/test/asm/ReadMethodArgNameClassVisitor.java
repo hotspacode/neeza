@@ -25,7 +25,7 @@ public class ReadMethodArgNameClassVisitor extends ClassVisitor {
         int len = methodType.getArgumentTypes().length;
         List<String> argumentNames = new ArrayList<String>();
         nameArgMap.put(name, argumentNames);
-        ReadMethodArgNameMethodVisitor visitor = new ReadMethodArgNameMethodVisitor(Opcodes.ASM7);
+        ReadMethodArgNameMethodVisitor visitor = new ReadMethodArgNameMethodVisitor(Opcodes.ASM5);
         visitor.argumentNames = argumentNames;
         visitor.argLen = len;
         return visitor;
