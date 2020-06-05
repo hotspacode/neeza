@@ -19,7 +19,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
 
     public EnhancerAdapter(ClassVisitor classVisitor) {
-        super(ASM7, classVisitor);
+        super(ASM5, classVisitor);
     }
 
 
@@ -50,6 +50,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
 
 
         if (isAnnotationType && !isInterface && mv != null && !name.equals("<init>") && !name.equals("<clinit>")) {
+            System.out.println("访问成功: " + Type.getReturnType(descriptor).getSort() + "--" + name + "--" + descriptor);
 
             int methodReturnType = Type.getReturnType(descriptor).getSort();
 
@@ -112,6 +113,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
                 if (isPrimitive) {
                     adviceAdapter = new PrimitiveMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize, argumentTypeDescriptors);
                 } else {
+                    System.out.println("访问方法"+name+descriptor+returnClassName);
                     adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize, argumentTypeDescriptors);
                 }
             }

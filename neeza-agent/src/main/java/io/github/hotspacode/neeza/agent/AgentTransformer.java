@@ -57,6 +57,7 @@ public class AgentTransformer implements ClassFileTransformer {
 
             return cw.toByteArray();
         } catch (Exception e) {
+            System.out.println("发生错误"+className);
             e.printStackTrace();
         }
 
