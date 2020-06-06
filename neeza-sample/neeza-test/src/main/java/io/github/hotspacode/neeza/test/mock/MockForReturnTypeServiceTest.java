@@ -4,10 +4,14 @@ import io.github.hotspacode.neeza.base.annotation.NeezaMock;
 import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.spy.NeezaServer;
+import io.github.hotspacode.neeza.test.mock.mock2.IOrderService;
+import io.github.hotspacode.neeza.test.mock.mock2.OrderService;
 
 @NeezaMock
 public class MockForReturnTypeServiceTest {
     public static void main(String[] args) {
+        IOrderService orderService = new OrderService();
+        orderService.getOrder(1L);
         NeezaServer.start("localhost", NeezaConstant.DEFAULT_SERVER_PORT,"io/github/hotspacode/neeza");
         new ItemPromotionVo();
         new MockData();

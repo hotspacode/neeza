@@ -113,7 +113,7 @@ public class EnhancerAdapter extends ClassVisitor implements Opcodes {
                 if (isPrimitive) {
                     adviceAdapter = new PrimitiveMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize, argumentTypeDescriptors);
                 } else {
-                    System.out.println("访问方法"+name+descriptor+returnClassName);
+                    System.out.println("访问方法参数"+argumentTypeSize+"方法"+name+descriptor+returnClassName);
                     adviceAdapter = new ObjectMethodAdapter(mv, access, name, descriptor, returnClass, argumentTypeSize, argumentTypeDescriptors);
                 }
             }

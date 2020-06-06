@@ -50,7 +50,8 @@ public class AgentTransformer implements ClassFileTransformer {
             }
 
             ClassReader cr = new ClassReader(className);
-            ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+            //COMPUTE_FRAMES非常重要牵扯到for循环”stack=1, locals=0, args_size=0“locals的变化
+            ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
             EnhancerAdapter enhancerAdapter = new EnhancerAdapter(cw);
 
             cr.accept(enhancerAdapter, ClassReader.EXPAND_FRAMES);
