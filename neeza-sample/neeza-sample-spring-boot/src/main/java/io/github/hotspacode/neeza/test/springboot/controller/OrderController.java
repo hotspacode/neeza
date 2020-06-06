@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-@NeezaMock
 @RestController
 @RequestMapping("order")
 public class OrderController {
@@ -29,7 +28,7 @@ public class OrderController {
     @GetMapping("getOrder")
     public Order getOrder(@RequestParam(value = "orderId") Long orderId) {
 //        orderWorkerService.addOrderWorker(null);
-        orderWorkerService.addOrderWorker();
+//        orderWorkerService.addOrderWorker();
         return orderService.getOrder(orderId);
     }
 
