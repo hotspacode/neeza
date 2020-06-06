@@ -10,14 +10,18 @@ public class ApiMockData {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "app_id",nullable = false)
+    @Column(nullable = false)
+    private Integer method_type;
+
+    @Column(nullable = false)
     private String app_id;
 
-    @Column(name = "api_name",nullable = false)
+    @Column(nullable = false)
     private String api_name;
 
-    @Column(name = "api_data",nullable = true)
+    @Column(nullable = true)
     private String api_data;
+
 
     public Long getId() {
         return id;
@@ -25,6 +29,14 @@ public class ApiMockData {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getMethod_type() {
+        return method_type;
+    }
+
+    public void setMethod_type(Integer method_type) {
+        this.method_type = method_type;
     }
 
     public String getApp_id() {

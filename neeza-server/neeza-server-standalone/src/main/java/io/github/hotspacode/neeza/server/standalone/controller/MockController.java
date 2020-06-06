@@ -2,6 +2,7 @@ package io.github.hotspacode.neeza.server.standalone.controller;
 
 import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.base.dto.MockData;
+import io.github.hotspacode.neeza.server.standalone.service.AliMockDataService;
 import io.github.hotspacode.neeza.server.standalone.service.MockDataService;
 import io.github.hotspacode.neeza.server.standalone.service.StaticMockService;
 import org.slf4j.Logger;
@@ -22,6 +23,8 @@ public class MockController {
 
     @Autowired
     private MockDataService mockDataService;
+    @Autowired
+    private AliMockDataService aliMockDataService;
 
     @GetMapping("/pull")
     public String pull(@RequestParam(value = "methodDesc") String methodDesc,
@@ -31,7 +34,7 @@ public class MockController {
 
         logger.info("NEEZA请求{}:{},{}", ip, clientPort,methodDesc);
 
-
+/*
         MockData mockDataDTO = new MockData();
         mockDataDTO.setType(MockData.Type.NONE);
 
@@ -63,8 +66,9 @@ public class MockController {
             mockDataDTO.setBody("{\"@type\":\"io.github.hotspacode.neeza.test.springboot.pojo.Order\",\"id\":5438843,\"marketName\":\"service内部\",\"shopName\":\"shop内部name\"}");
         } else {
             mockDataDTO = mockDataService.pullData(methodDesc, ip, clientPort);
-        }
+        }*/
 
+        MockData mockDataDTO = aliMockDataService.getData(methodDesc);
 
         return JSON.toJSONString(mockDataDTO);
     }
