@@ -29,13 +29,11 @@ public class MockController {
                        HttpServletRequest request) {
         String ip = getIpAddress(request);
 
-        logger.info("neeza method mock request {}:{}", ip, clientPort);
+        logger.info("NEEZA请求{}:{},{}", ip, clientPort,methodDesc);
 
 
         MockData mockDataDTO = new MockData();
         mockDataDTO.setType(MockData.Type.NONE);
-
-        System.out.println("mock服务被调用到" + methodDesc);
 
         if (methodDesc.contains("testMap")) {
             mockDataDTO.setType(MockData.Type.ReturnBody);
