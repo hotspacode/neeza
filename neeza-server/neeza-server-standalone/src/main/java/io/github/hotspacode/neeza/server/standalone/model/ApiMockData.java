@@ -1,0 +1,53 @@
+package io.github.hotspacode.neeza.server.standalone.model;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "api_mock_data")
+public class ApiMockData {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "app_id",nullable = false)
+    private String app_id;
+
+    @Column(name = "api_name",nullable = false)
+    private String api_name;
+
+    @Column(name = "api_data",nullable = true)
+    private String api_data;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getApp_id() {
+        return app_id;
+    }
+
+    public void setApp_id(String app_id) {
+        this.app_id = app_id;
+    }
+
+    public String getApi_name() {
+        return api_name;
+    }
+
+    public void setApi_name(String api_name) {
+        this.api_name = api_name;
+    }
+
+    public String getApi_data() {
+        return api_data;
+    }
+
+    public void setApi_data(String api_data) {
+        this.api_data = api_data;
+    }
+}
