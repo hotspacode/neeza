@@ -1,5 +1,6 @@
 package io.github.hotspacode.neeza.spy;
 
+import com.alibaba.fastjson.parser.ParserConfig;
 import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.transport.api.init.TransportServerCenterInitHandler;
 import io.github.hotspacode.neeza.transport.client.http.TransportClient;
@@ -12,6 +13,7 @@ public class NeezaServer {
 
     public synchronized static void start(String serverIp,Integer serverPort,String packageName) {
         System.getProperties().setProperty(NeezaConstant.SIMPLE_MOCK_VM_PACKAGE_NAME, packageName);
+        ParserConfig.getGlobalInstance().addAccept(packageName.replace("/","."));
 
         NeezaServer.serverIp = serverIp;
         NeezaServer.serverPort = serverPort;
