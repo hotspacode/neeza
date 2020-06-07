@@ -10,7 +10,7 @@ import io.github.hotspacode.neeza.transport.api.command.CommandResponse;
 public class MockPushServiceHandler implements CommandHandler<String> {
     @Override
     public CommandResponse<String> handle(CommandRequest request) {
-        String methodDesc = request.getParam("methodDesc");
+        String methodDesc = request.getParam("body");
 
         NeezaLog.info("data push {0}",methodDesc);
 

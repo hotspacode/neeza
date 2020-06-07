@@ -12,7 +12,7 @@ public class MockDataChangeHandler implements CommandHandler<String> {
 
     @Override
     public CommandResponse<String> handle(CommandRequest request) {
-        String methodDesc = request.getParam("methodDesc");
+        String methodDesc = request.getParam("body");
 
         NeezaLog.info("method expire {0}",methodDesc);
 

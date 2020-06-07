@@ -101,7 +101,7 @@ public class MockDataService {
     private void dataChangeNotice(String methodDesc, String ip, String port) {
         try {
             Map<String, String> paramMap = new HashMap<>();
-            paramMap.put("methodDesc", methodDesc);
+            paramMap.put("body", methodDesc);
             paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
 
             CompletableFuture<String> mockDataCompletableFuture = transportClient.execute(ip,Integer.valueOf(port),"neeza/spy/mock/data/change", paramMap, false)
