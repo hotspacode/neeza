@@ -9,7 +9,7 @@ import io.github.hotspacode.neeza.base.api.INeezaSerialization;
 
 public  class FastJSONSerialization implements INeezaSerialization {
     public byte[] serialize(Object data) {
-        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
+//        ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
 
         SerializeWriter out = new SerializeWriter();
         JSONSerializer serializer = new JSONSerializer(out);
