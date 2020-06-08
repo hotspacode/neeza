@@ -2,6 +2,7 @@ package io.github.hotspacode.neeza.server.standalone.controller;
 
 import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.base.dto.MockData;
+import io.github.hotspacode.neeza.core.cache.NeezaMockCache;
 import io.github.hotspacode.neeza.server.standalone.service.ApiMockDataService;
 import io.github.hotspacode.neeza.server.standalone.service.MockDataService;
 import org.slf4j.Logger;
@@ -27,12 +28,15 @@ public class MockController {
 
     @GetMapping("/pull")
     public String pull(@RequestParam(value = "methodDesc") String methodDesc,
-                       @RequestParam(value = "clientPort") String clientPort,
+                       @RequestParam(value = "clientPort") Integer clientPort,
                        HttpServletRequest request) {
         String ip = getIpAddress(request);
 
         logger.info("NEEZA请求{}:{},{}", ip, clientPort, methodDesc);
         MockData mockDataDTO = apiMockDataService.getData(methodDesc);
+
+        NeezaMockCache.cacheClientMethod(ip, clientPort, methodDesc);
+        NeezaMockCache.cacheMethodClients(methodDesc,ip,clientPort);
 
         return JSON.toJSONString(mockDataDTO);
     }
