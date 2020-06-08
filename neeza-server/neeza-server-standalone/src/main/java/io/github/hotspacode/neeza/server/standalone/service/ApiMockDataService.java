@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AliMockDataService {
+public class ApiMockDataService {
 
     @Autowired
     private ApiMockDataRepository apiMockDataRepository;

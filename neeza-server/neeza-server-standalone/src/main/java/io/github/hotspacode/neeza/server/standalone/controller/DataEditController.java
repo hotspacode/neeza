@@ -3,6 +3,7 @@ package io.github.hotspacode.neeza.server.standalone.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +17,7 @@ public class DataEditController {
      *
      * @return
      */
-    @GetMapping("/publish")
+    @PostMapping("/publish")
     public String publish() {
 
         //落库
@@ -31,7 +32,7 @@ public class DataEditController {
      *
      * @return
      */
-    @GetMapping("/push")
+    @PostMapping("/push")
     public String push() {
         //推送到应用
 
