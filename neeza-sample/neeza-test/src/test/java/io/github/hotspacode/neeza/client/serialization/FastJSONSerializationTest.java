@@ -1,5 +1,7 @@
 package io.github.hotspacode.neeza.client.serialization;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.junit.Test;
 import io.github.hotspacode.neeza.core.serialization.FastJSONSerialization;
 
@@ -39,6 +41,8 @@ public class FastJSONSerializationTest {
         orderItem.setId(1L);
         orderItems.add(orderItem);
         order.setItems(orderItems);
+
+        System.out.println(JSON.toJSONString(order, SerializerFeature.WriteMapNullValue));
 
         FastJSONSerialization fastJSONSerialization = new FastJSONSerialization();
         System.out.println(new String(fastJSONSerialization.serialize(order)));

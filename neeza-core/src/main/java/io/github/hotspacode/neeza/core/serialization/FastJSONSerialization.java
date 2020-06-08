@@ -14,7 +14,7 @@ public  class FastJSONSerialization implements INeezaSerialization {
         SerializeWriter out = new SerializeWriter();
         JSONSerializer serializer = new JSONSerializer(out);
         serializer.config(SerializerFeature.WriteEnumUsingToString, true);//<1>
-        serializer.config(SerializerFeature.WriteClassName, true);//<1>
+//        serializer.config(SerializerFeature.WriteClassName, true);//<1>
         serializer.write(data);
         return out.toBytes(CHARSET_NAME);
     }
