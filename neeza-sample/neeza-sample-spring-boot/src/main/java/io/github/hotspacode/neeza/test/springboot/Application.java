@@ -11,7 +11,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class Application {
 
 	public static void main(String[] args) {
-		NeezaServer.start("localhost", NeezaConstant.DEFAULT_SERVER_PORT,"io/github/hotspacode/neeza/test/springboot/service");
+		NeezaServer.start("localhost", NeezaConstant.DEFAULT_SERVER_PORT,"io.github.hotspacode.neeza.test.springboot.service");
 		SpringApplication.run(Application.class, args);
 	}
 

@@ -12,8 +12,8 @@ public class NeezaServer {
     private static Integer serverPort;
 
     public synchronized static void start(String serverIp,Integer serverPort,String packageName) {
-        System.getProperties().setProperty(NeezaConstant.SIMPLE_MOCK_VM_PACKAGE_NAME, packageName);
-        ParserConfig.getGlobalInstance().addAccept(packageName.replace("/","."));
+        System.getProperties().setProperty(NeezaConstant.SIMPLE_MOCK_VM_PACKAGE_NAME, packageName.replace(".","/"));
+        ParserConfig.getGlobalInstance().addAccept(packageName);
 
         NeezaServer.serverIp = serverIp;
         NeezaServer.serverPort = serverPort;
