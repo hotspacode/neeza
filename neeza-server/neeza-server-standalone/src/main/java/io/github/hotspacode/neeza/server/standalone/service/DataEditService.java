@@ -1,13 +1,19 @@
 package io.github.hotspacode.neeza.server.standalone.service;
 
+import com.alibaba.fastjson.JSON;
+import io.github.hotspacode.neeza.base.dto.PushTransportData;
 import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.server.standalone.dao.ApiMockDataRepository;
 import io.github.hotspacode.neeza.server.standalone.model.ApiMockData;
+import io.github.hotspacode.neeza.transport.client.http.TransportClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class DataEditService {
@@ -15,9 +21,11 @@ public class DataEditService {
     private NoticeService noticeService;
     @Autowired
     private ApiMockDataRepository apiMockDataRepository;
+    @Autowired
+    private TransportClient transportClient;
 
     public void publish(String methodDesc, String content, Integer methodType) {
-        NeezaLog.info("发布方法{}",methodDesc);
+        NeezaLog.info("发布方法{}", methodDesc);
         ApiMockData apiMockDataExample = new ApiMockData();
         apiMockDataExample.setApi_name(methodDesc);
         Example<ApiMockData> example = Example.of(apiMockDataExample);
@@ -49,7 +57,26 @@ public class DataEditService {
         noticeService.noticeClient(methodDesc);
     }
 
-    public void push() {
+    public String push(PushTransportData pushTransportData, String ip, String port) {
+        NeezaLog.info("push操作{},{},{}", ip, port, pushTransportData);
+        return pushService(pushTransportData, ip, port);
+    }
 
+    private String pushService(PushTransportData pushTransportData, String ip, String port) {
+        try {
+            Map<String, String> paramMap = new HashMap<>();
+            paramMap.put("body", JSON.toJSONString(pushTransportData));
+
+            CompletableFuture<String> mockDataCompletableFuture = transportClient.execute(ip, Integer.valueOf(port), "neeza/spy/mock/data/push", paramMap, false)
+                    .thenApply(json -> {
+                        return json;
+                    });
+            String responseStr = mockDataCompletableFuture.get();
+
+            return responseStr;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
     }
 }

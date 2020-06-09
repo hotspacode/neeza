@@ -16,3 +16,9 @@ Content-Type: application/json
     "methodType":1,
     "content":"{\"id\":5438843,\"marketName\":\"service内部mysql11122\",\"shopName\":\"mysql shop内部name11\"}"
 }
+
+### mock server edit data push
+post http://localhost:8818/neeza/data/push/localhost/8817
+Content-Type: application/json
+
+{"methodName":"push1","serviceName":"testPushService"}

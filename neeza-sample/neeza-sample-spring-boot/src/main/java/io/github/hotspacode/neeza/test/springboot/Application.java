@@ -1,18 +1,17 @@
 package io.github.hotspacode.neeza.test.springboot;
 
-import io.github.hotspacode.neeza.base.util.NeezaConstant;
-import io.github.hotspacode.neeza.spy.NeezaServer;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy
+@EnableAutoConfiguration
 public class Application {
 
-	public static void main(String[] args) {
-		NeezaServer.start("localhost", NeezaConstant.DEFAULT_SERVER_PORT,"io.github.hotspacode.neeza.test.springboot.service");
-		SpringApplication.run(Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
 }

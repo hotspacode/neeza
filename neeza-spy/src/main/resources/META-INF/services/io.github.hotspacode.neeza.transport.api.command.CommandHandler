@@ -1,1 +1,2 @@
 io.github.hotspacode.neeza.spy.handler.MockDataChangeHandler
+io.github.hotspacode.neeza.spy.handler.MockPushServiceHandler

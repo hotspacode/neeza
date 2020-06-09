@@ -1,3 +1,4 @@
+/*
 package io.github.hotspacode.neeza.spy.provider;
 
 
@@ -23,3 +24,4 @@ public final class MockPushSpyServiceProvider {
     private MockPushSpyServiceProvider() {
     }
 }
+*/
