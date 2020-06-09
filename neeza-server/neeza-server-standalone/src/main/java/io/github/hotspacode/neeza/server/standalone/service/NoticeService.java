@@ -1,5 +1,7 @@
 package io.github.hotspacode.neeza.server.standalone.service;
 
+import com.alibaba.fastjson.JSON;
+import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.core.cache.NeezaMockCache;
 import io.github.hotspacode.neeza.transport.api.TransportServerStatus;
 import io.github.hotspacode.neeza.transport.client.http.TransportClient;
@@ -27,7 +29,9 @@ public class NoticeService {
         if (CollectionUtils.isEmpty(methodClients)) {
             return;
         }
-        //线程池
+
+        NeezaLog.info("通知客户端方法mock发生变化{}", JSON.toJSONString(methodClients));
+
         executorService.execute(() -> {
             for (String methodClient : methodClients) {
                 String[] split = methodClient.split(":");
