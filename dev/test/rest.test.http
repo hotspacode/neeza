@@ -1,0 +1,18 @@
+###
+http://localhost:8080/order/getOrder?orderId=11
+
+###
+GET http://localhost:8080/order/listOrderItem
+
+###
+GET http://localhost:8080/order/orderMap?key=key1&value=value111
+
+### mock server edit data
+post http://localhost:8818/neeza/data/publish
+Content-Type: application/json
+
+{
+    "methodDesc":"io.github.hotspacode.neeza.test.springboot.service.impl.OrderService.public io.github.hotspacode.neeza.test.springboot.pojo.Order io.github.hotspacode.neeza.test.springboot.service.impl.OrderService.getOrder(java.lang.Long)",
+    "methodType":1,
+    "content":"{\"id\":5438843,\"marketName\":\"service内部mysql11122\",\"shopName\":\"mysql shop内部name11\"}"
+}

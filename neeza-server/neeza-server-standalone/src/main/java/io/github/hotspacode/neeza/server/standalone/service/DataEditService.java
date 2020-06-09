@@ -1,5 +1,6 @@
 package io.github.hotspacode.neeza.server.standalone.service;
 
+import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.server.standalone.dao.ApiMockDataRepository;
 import io.github.hotspacode.neeza.server.standalone.model.ApiMockData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class DataEditService {
     private ApiMockDataRepository apiMockDataRepository;
 
     public void publish(String methodDesc, String content, Integer methodType) {
+        NeezaLog.info("发布方法{}",methodDesc);
         ApiMockData apiMockDataExample = new ApiMockData();
         apiMockDataExample.setApi_name(methodDesc);
         Example<ApiMockData> example = Example.of(apiMockDataExample);
