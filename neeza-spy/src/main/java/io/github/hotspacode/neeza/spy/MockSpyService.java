@@ -67,8 +67,7 @@ public class MockSpyService implements IMockSpyService {
         String methodDesc = targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
         MockData mockData = null;
 
-//        if ((mockData = cache.get(methodDesc)) == null) {
-        if (mockData  == null) {
+        if ((mockData = cache.get(methodDesc)) == null) {
             Map<String, String> paramMap = new HashMap<>();
             paramMap.put("methodDesc", methodDesc);
             paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
