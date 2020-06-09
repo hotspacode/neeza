@@ -10,13 +10,17 @@ import org.springframework.util.CollectionUtils;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.*;
 
 @Service
 public class NoticeService {
     @Autowired
     private TransportClient transportClient;
+
+    int poolSize = Runtime.getRuntime().availableProcessors();
+    BlockingQueue<Runnable> queue = new ArrayBlockingQueue<>(512);
+    RejectedExecutionHandler policy = new ThreadPoolExecutor.DiscardPolicy();
+    ExecutorService executorService = new ThreadPoolExecutor(poolSize, poolSize, 0, TimeUnit.SECONDS, queue, policy);
 
     public void noticeClient(String methodDesc) {
         Set<String> methodClients = NeezaMockCache.getMethodClients(methodDesc);
@@ -24,14 +28,16 @@ public class NoticeService {
             return;
         }
         //线程池
-        for (String methodClient : methodClients) {
-            String[] split = methodClient.split(":");
-            try {
-                dataChangeNotice(methodDesc, split[0], split[1]);
-            } catch (Exception e) {
-                //客户端异常处理流程
+        executorService.execute(() -> {
+            for (String methodClient : methodClients) {
+                String[] split = methodClient.split(":");
+                try {
+                    dataChangeNotice(methodDesc, split[0], split[1]);
+                } catch (Exception e) {
+                    //todo 客户端异常处理流程
+                }
             }
-        }
+        });
     }
 
     private String dataChangeNotice(String methodDesc, String ip, String port) throws ExecutionException, InterruptedException {
