@@ -1,5 +1,6 @@
 package io.github.hotspacode.neeza.server.standalone.controller;
 
+import io.github.hotspacode.neeza.base.dto.Result;
 import io.github.hotspacode.neeza.server.api.dto.DataEditPublishRequestDTO;
 import io.github.hotspacode.neeza.server.standalone.service.DataEditService;
 import org.slf4j.Logger;
@@ -24,12 +25,9 @@ public class DataEditController {
      * @return
      */
     @PostMapping("/publish")
-    public String publish(@RequestBody DataEditPublishRequestDTO request) {
-
-        //落库
-
-        //通知应用
-        return null;
+    public Result publish(@RequestBody DataEditPublishRequestDTO request) {
+        dataEditService.publish(request.getMethodDesc(), request.getContent(), request.getMethodType());
+        return Result.success();
     }
 
     /**
@@ -38,12 +36,12 @@ public class DataEditController {
      * @return
      */
     @PostMapping("/push")
-    public String push() {
+    public Result push() {
         //推送到应用
 
         //落库日志
 
-        return null;
+        return Result.success();
     }
 
 }
