@@ -23,6 +23,7 @@ public class NoticeService {
         if (CollectionUtils.isEmpty(methodClients)) {
             return;
         }
+        //线程池
         for (String methodClient : methodClients) {
             String[] split = methodClient.split(":");
             try {
