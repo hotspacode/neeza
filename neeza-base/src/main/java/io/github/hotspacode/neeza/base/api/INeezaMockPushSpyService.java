@@ -1,6 +1,6 @@
 package io.github.hotspacode.neeza.base.api;
 
-public interface IMockPushSpyService {
+public interface INeezaMockPushSpyService {
 
     Object getService(String serviceName);
 
