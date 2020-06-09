@@ -18,7 +18,6 @@
     <modules>
         <module>neeza-test</module>
         <module>neeza-sample-spring-boot</module>
-        <module>neeza-sample-dubbo</module>
     </modules>
 
 
