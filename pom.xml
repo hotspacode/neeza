@@ -19,9 +19,7 @@
         <module>neeza-core</module>
         <module>neeza-spy</module>
         <module>neeza-transport</module>
-        <module>neeza-store</module>
         <module>neeza-server</module>
-        <module>neeza-client</module>
         <module>neeza-sample</module>
     </modules>
 

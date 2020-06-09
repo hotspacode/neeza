@@ -33,7 +33,7 @@ public class MockController {
         String ip = getIpAddress(request);
 
         logger.info("NEEZA请求{}:{},{}", ip, clientPort, methodDesc);
-        MockData mockDataDTO = apiMockDataService.getData(methodDesc);
+        MockData mockDataDTO = apiMockDataService.getData(methodDesc,ip,clientPort);
 
         NeezaMockCache.cacheClientMethod(ip, clientPort, methodDesc);
         NeezaMockCache.cacheMethodClients(methodDesc,ip,clientPort);
