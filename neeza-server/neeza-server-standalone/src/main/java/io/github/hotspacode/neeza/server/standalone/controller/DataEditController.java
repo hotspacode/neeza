@@ -1,7 +1,9 @@
 package io.github.hotspacode.neeza.server.standalone.controller;
 
+import io.github.hotspacode.neeza.server.standalone.service.DataEditService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/data")
 public class DataEditController {
     private static final Logger logger = LoggerFactory.getLogger(DataEditController.class);
+
+    @Autowired
+    private DataEditService dataEditService;
 
     /**
      * 发布mock数据
@@ -23,7 +28,6 @@ public class DataEditController {
         //落库
 
         //通知应用
-
         return null;
     }
 

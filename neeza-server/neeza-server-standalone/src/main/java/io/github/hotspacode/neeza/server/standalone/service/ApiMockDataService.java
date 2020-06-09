@@ -2,6 +2,7 @@ package io.github.hotspacode.neeza.server.standalone.service;
 
 
 import io.github.hotspacode.neeza.base.dto.MockData;
+import io.github.hotspacode.neeza.core.cache.NeezaMockCache;
 import io.github.hotspacode.neeza.server.standalone.dao.ApiMockDataRepository;
 import io.github.hotspacode.neeza.server.standalone.model.ApiMockData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class ApiMockDataService {
     @Autowired
     private ApiMockDataRepository apiMockDataRepository;
 
-    public MockData getData(String methodDesc) {
+    public MockData getData(String methodDesc,String ip,Integer port) {
         MockData mockDataDTO = new MockData();
         mockDataDTO.setType(MockData.Type.NONE);
 
@@ -41,6 +42,10 @@ public class ApiMockDataService {
                     break;
             }
         }
+
+        //缓存操作
+        NeezaMockCache.cacheClientMethod(ip, port,methodDesc);
+        NeezaMockCache.cacheMethodClients(methodDesc,ip,port);
 
         return mockDataDTO;
     }
