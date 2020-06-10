@@ -11,6 +11,8 @@
     - 汇报所有push服务
     - 汇报已经mock的接口
     - 汇报加了可以mock的所有接口
+    - withoOutAnotation
+    - appName
 
 ## Introduction
 
