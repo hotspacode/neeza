@@ -14,6 +14,7 @@ public class NeezaServer {
     private static Integer serverPort;
     private static INeezaMockPushSpyService neezaMockPushSpyService;
     private static NeezaServer instance = null;
+    private static String appName;
 
     private NeezaServer() {
     }
@@ -68,13 +69,18 @@ public class NeezaServer {
         }
     }
 
-    protected static String getServerIp() {
+    public static String getServerIp() {
         return serverIp;
     }
 
 
-    protected static Integer getServerPort() {
+    public static Integer getServerPort() {
         return serverPort;
     }
+
+    public static String getAppName() {
+        return appName;
+    }
+
 
 }
