@@ -1,6 +1,5 @@
 package io.github.hotspacode.neeza.spy;
 
-import io.github.hotspacode.neeza.base.api.INeezaMockPushSpyService;
 import io.github.hotspacode.neeza.base.dto.PushTransportData;
 import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.base.util.MethodInvokeUtil;
@@ -11,11 +10,11 @@ public class MockPushService {
     private static FastJSONSerialization neezaSerialization = new FastJSONSerialization();
 
     public static Object push(PushTransportData transportData) throws ClassNotFoundException {
-        INeezaMockPushSpyService mockPushSpyService = NeezaServer.getPushService();
-        if (null == mockPushSpyService) {
+        Object service = NeezaServer.getService(transportData.getServiceName());
+        if (null == service) {
             NeezaLog.warn("push service未获取到");
         }
-        Object service = mockPushSpyService.getService(transportData.getServiceName());
+
         Object[] params = null;
         if (null != transportData.getParamList() && !transportData.getParamList().isEmpty()) {
             params = new Object[transportData.getParamList().size()];

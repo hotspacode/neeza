@@ -1,25 +1,27 @@
 package io.github.hotspacode.neeza.spy;
 
 import com.alibaba.fastjson.parser.ParserConfig;
-import io.github.hotspacode.neeza.base.api.INeezaMockPushSpyService;
 import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.base.util.NeezaConstant;
+import io.github.hotspacode.neeza.base.util.StringUtil;
 import io.github.hotspacode.neeza.transport.api.init.TransportServerCenterInitHandler;
 import io.github.hotspacode.neeza.transport.client.http.TransportClient;
+
+import java.util.Map;
 
 public class NeezaServer {
     private static volatile TransportClient transportClient = null;
     private static volatile TransportServerCenterInitHandler initHandler = null;
     private static String serverIp;
     private static Integer serverPort;
-    private static INeezaMockPushSpyService neezaMockPushSpyService;
+    private static Map<String, Object> pushServiceMap;
     private static NeezaServer instance = null;
     private static String appName;
 
     private NeezaServer() {
     }
 
-    public static synchronized NeezaServer getInstance(){
+    public static synchronized NeezaServer getInstance() {
         if (null == instance) {
             instance = new NeezaServer();
         }
@@ -28,8 +30,8 @@ public class NeezaServer {
     }
 
     public synchronized NeezaServer start(String serverIp, Integer serverPort, String packageName) {
-        NeezaLog.info("neeza server初始化{},{},{}",serverIp,serverPort,packageName);
-        System.getProperties().setProperty(NeezaConstant.SIMPLE_MOCK_VM_PACKAGE_NAME, packageName.replace(".","/"));
+        NeezaLog.info("neeza server初始化{},{},{}", serverIp, serverPort, packageName);
+        System.getProperties().setProperty(NeezaConstant.SIMPLE_MOCK_VM_PACKAGE_NAME, packageName.replace(".", "/"));
         ParserConfig.getGlobalInstance().addAccept(packageName);
 
         NeezaServer.serverIp = serverIp;
@@ -47,13 +49,17 @@ public class NeezaServer {
         return this;
     }
 
-    public synchronized NeezaServer registerPush(INeezaMockPushSpyService pushSpyService){
-        neezaMockPushSpyService = pushSpyService;
+    public synchronized NeezaServer registerPushServices(Map<String, Object> serviceMap) {
+        pushServiceMap = serviceMap;
         return this;
     }
 
-    public static INeezaMockPushSpyService getPushService(){
-        return neezaMockPushSpyService;
+    public static Object getService(String serviceId) {
+        if (StringUtil.isBlank(serviceId) || pushServiceMap == null || pushServiceMap.isEmpty()) {
+            return null;
+        }
+
+        return pushServiceMap.get(serviceId);
     }
 
     protected static TransportClient getTransportClient() {

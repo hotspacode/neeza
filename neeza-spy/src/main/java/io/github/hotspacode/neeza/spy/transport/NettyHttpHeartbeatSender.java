@@ -2,6 +2,7 @@ package io.github.hotspacode.neeza.spy.transport;
 
 import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.base.util.StringUtil;
+import io.github.hotspacode.neeza.core.util.IpUtil;
 import io.github.hotspacode.neeza.core.util.PidUtil;
 import io.github.hotspacode.neeza.spy.NeezaServer;
 import io.github.hotspacode.neeza.transport.api.HeartbeatSender;
@@ -36,23 +37,27 @@ public class NettyHttpHeartbeatSender implements HeartbeatSender {
         if (StringUtil.isEmpty(NeezaServer.getServerIp())) {
             return false;
         }
-        URIBuilder uriBuilder = new URIBuilder();
-        uriBuilder.setScheme("http")
-                .setHost(NeezaServer.getServerIp())
-                .setPort(NeezaServer.getServerPort())
-                .setPath(TransportConfig.SERVER_HEARTBEAT_URL)
-                .setParameter("appName", NeezaServer.getAppName())
-                .setParameter("version", NeezaConstant.VERSION)
-                .setParameter("hostname", null)
-                .setParameter("ip", null)
-                .setParameter("port", TransportConfig.getPort())
-                .setParameter("pid", String.valueOf(PidUtil.getPid()));
+        try {
+            URIBuilder uriBuilder = new URIBuilder();
+            uriBuilder.setScheme("http")
+                    .setHost(NeezaServer.getServerIp())
+                    .setPort(NeezaServer.getServerPort())
+                    .setPath(TransportConfig.SERVER_HEARTBEAT_URL)
+                    .setParameter("appName", NeezaServer.getAppName())
+                    .setParameter("version", NeezaConstant.VERSION)
+                    .setParameter("ip", IpUtil.getIp())
+                    .setParameter("port", TransportConfig.getPort())
+                    .setParameter("pid", String.valueOf(PidUtil.getPid()));
 
-        HttpGet request = new HttpGet(uriBuilder.build());
-        request.setConfig(requestConfig);
-        CloseableHttpResponse response = client.execute(request);
-        response.close();
-        return true;
+            HttpGet request = new HttpGet(uriBuilder.build());
+            request.setConfig(requestConfig);
+            CloseableHttpResponse response = client.execute(request);
+            response.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
