@@ -1,6 +1,7 @@
 package io.github.hotspacode.neeza.spy;
 
 import com.alibaba.fastjson.parser.ParserConfig;
+import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.base.util.StringUtil;
@@ -8,8 +9,10 @@ import io.github.hotspacode.neeza.transport.api.init.TransportServerCenterInitHa
 import io.github.hotspacode.neeza.transport.client.http.TransportClient;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class NeezaServer {
+    private static final ConcurrentHashMap<String, MockData> methodMockDataCacheMap = new ConcurrentHashMap<>();
     private static volatile TransportClient transportClient = null;
     private static volatile TransportServerCenterInitHandler initHandler = null;
     private static String serverIp;
@@ -88,5 +91,15 @@ public class NeezaServer {
         return appName;
     }
 
+    public static void expireMethodMcckKey(String key) {
+        methodMockDataCacheMap.remove(key);
+    }
+
+    public static MockData getMethodMockCache(String key){
+        return methodMockDataCacheMap.get(key);
+    }
+    public static void cacheMethodMock(String key,MockData mockData){
+        methodMockDataCacheMap.put(key,mockData);
+    }
 
 }

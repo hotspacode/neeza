@@ -13,6 +13,7 @@ public class MockPushService {
         Object service = NeezaServer.getService(transportData.getServiceName());
         if (null == service) {
             NeezaLog.warn("push service未获取到");
+            return null;
         }
 
         Object[] params = null;

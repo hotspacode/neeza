@@ -49,6 +49,8 @@ public class NettyHttpHeartbeatSender implements HeartbeatSender {
                     .setParameter("port", TransportConfig.getPort())
                     .setParameter("pid", String.valueOf(PidUtil.getPid()));
 
+            //todo 汇报所有push service和mock method
+
             HttpGet request = new HttpGet(uriBuilder.build());
             request.setConfig(requestConfig);
             CloseableHttpResponse response = client.execute(request);

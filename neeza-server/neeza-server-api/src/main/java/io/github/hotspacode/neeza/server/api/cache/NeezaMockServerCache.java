@@ -1,10 +1,10 @@
-package io.github.hotspacode.neeza.core.cache;
+package io.github.hotspacode.neeza.server.api.cache;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class NeezaMockCache {
+public class NeezaMockServerCache {
     //ip:port->methods
     private static final ConcurrentHashMap<String, Set<String>> clientMethodCache = new ConcurrentHashMap<>();
     //method->ip:ports

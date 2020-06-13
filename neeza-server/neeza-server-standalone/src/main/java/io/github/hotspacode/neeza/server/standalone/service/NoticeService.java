@@ -2,7 +2,7 @@ package io.github.hotspacode.neeza.server.standalone.service;
 
 import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.base.log.NeezaLog;
-import io.github.hotspacode.neeza.core.cache.NeezaMockCache;
+import io.github.hotspacode.neeza.server.api.cache.NeezaMockServerCache;
 import io.github.hotspacode.neeza.transport.api.TransportServerStatus;
 import io.github.hotspacode.neeza.transport.client.http.TransportClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class NoticeService {
     ExecutorService executorService = new ThreadPoolExecutor(poolSize, poolSize, 0, TimeUnit.SECONDS, queue, policy);
 
     public void noticeClient(String methodDesc) {
-        Set<String> methodClients = NeezaMockCache.getMethodClients(methodDesc);
+        Set<String> methodClients = NeezaMockServerCache.getMethodClients(methodDesc);
         if (CollectionUtils.isEmpty(methodClients)) {
             return;
         }

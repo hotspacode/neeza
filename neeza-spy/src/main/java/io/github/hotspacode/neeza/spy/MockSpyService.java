@@ -15,16 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class MockSpyService implements IMockSpyService {
-    private static final ConcurrentHashMap<String, MockData> cache = new ConcurrentHashMap<>();
     private FastJSONSerialization neezaSerialization = new FastJSONSerialization();
-
-
-    public static void expireKey(String key) {
-        cache.remove(key);
-    }
 
     @Override
     public MockTransport transport(String targetClassName, String targetMethodName, String argumentTypeDescriptors, List<Object> localVariable) throws ClassNotFoundException {
@@ -67,7 +60,7 @@ public class MockSpyService implements IMockSpyService {
         String methodDesc = targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
         MockData mockData = null;
 
-        if ((mockData = cache.get(methodDesc)) == null) {
+        if ((mockData = NeezaServer.getMethodMockCache(methodDesc)) == null) {
             Map<String, String> paramMap = new HashMap<>();
             paramMap.put("methodDesc", methodDesc);
             paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
@@ -83,7 +76,7 @@ public class MockSpyService implements IMockSpyService {
                     mockData = neezaSerialization.deserialize(responseStr.getBytes(), MockData.class);
                 }
 
-                cache.put(methodDesc, mockData);
+                NeezaServer.cacheMethodMock(methodDesc, mockData);
             } catch (Exception e) {
                 e.printStackTrace();
             }

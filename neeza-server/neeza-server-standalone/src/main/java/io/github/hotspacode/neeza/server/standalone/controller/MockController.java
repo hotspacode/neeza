@@ -2,7 +2,7 @@ package io.github.hotspacode.neeza.server.standalone.controller;
 
 import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.base.dto.MockData;
-import io.github.hotspacode.neeza.core.cache.NeezaMockCache;
+import io.github.hotspacode.neeza.server.api.cache.NeezaMockServerCache;
 import io.github.hotspacode.neeza.server.standalone.service.ApiMockDataService;
 import io.github.hotspacode.neeza.server.standalone.service.MockDataService;
 import org.slf4j.Logger;
@@ -35,8 +35,8 @@ public class MockController {
         logger.info("NEEZA请求{}:{},{}", ip, clientPort, methodDesc);
         MockData mockDataDTO = apiMockDataService.getData(methodDesc,ip,clientPort);
 
-        NeezaMockCache.cacheClientMethod(ip, clientPort, methodDesc);
-        NeezaMockCache.cacheMethodClients(methodDesc,ip,clientPort);
+        NeezaMockServerCache.cacheClientMethod(ip, clientPort, methodDesc);
+        NeezaMockServerCache.cacheMethodClients(methodDesc,ip,clientPort);
 
         return JSON.toJSONString(mockDataDTO);
     }

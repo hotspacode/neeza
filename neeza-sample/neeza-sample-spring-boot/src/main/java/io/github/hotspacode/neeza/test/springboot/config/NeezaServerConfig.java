@@ -19,8 +19,7 @@ public class NeezaServerConfig {
                 "localhost",
                 NeezaConstant.DEFAULT_SERVER_PORT,
                 "io.github.hotspacode.neeza.test.springboot.service")
-                .registerPush((String methodDesc) -> {
-                    return applicationContext.getBean(methodDesc);
-                });
+                .registerPushServices(null)
+                ;
     }
 }
