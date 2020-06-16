@@ -1,5 +1,6 @@
 package io.github.hotspacode.neeza.spy.transport;
 
+import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.base.util.StringUtil;
 import io.github.hotspacode.neeza.core.util.IpUtil;
@@ -50,6 +51,7 @@ public class NettyHttpHeartbeatSender implements HeartbeatSender {
                     .setParameter("pid", String.valueOf(PidUtil.getPid()));
 
             //todo 汇报所有push service和mock method
+            uriBuilder.setParameter("mockedServiceSet", JSON.toJSONString(NeezaServer.getMockedService().keySet()));
 
             HttpGet request = new HttpGet(uriBuilder.build());
             request.setConfig(requestConfig);
