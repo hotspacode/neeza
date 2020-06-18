@@ -35,14 +35,26 @@ public class DataEditController {
      */
     @PostMapping("/push/{ip}/{port}")
     public Result push(@RequestBody PushTransportData request,
-                       @PathVariable(value = "ip")String ip,
-                       @PathVariable(value = "port")String port
-                       ) {
+                       @PathVariable(value = "ip") String ip,
+                       @PathVariable(value = "port") String port
+    ) {
         //推送到应用
 
         //落库日志
 
-        return Result.success(dataEditService.push(request,ip, port));
+        return Result.success(dataEditService.push(request, ip, port));
+    }
+
+    /**
+     * 返回所有接口
+     */
+    @PostMapping("/api/list")
+    public Result apiList(@PathVariable(value = "appName") String appName) {
+        //推送到应用
+
+        //落库日志
+
+        return Result.success();
     }
 
 }
