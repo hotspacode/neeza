@@ -22,6 +22,7 @@ public class HeartbeatSenderInit {
     }
 
     public void init(){
+        initSchedulerIfNeeded();
         HeartbeatSender heartbeatSender = new NettyHttpHeartbeatSender();
         scheduleHeartbeatTask(heartbeatSender);
     }

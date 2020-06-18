@@ -5,6 +5,7 @@ import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.base.util.StringUtil;
+import io.github.hotspacode.neeza.spy.init.HeartbeatSenderInit;
 import io.github.hotspacode.neeza.transport.api.init.TransportServerCenterInitHandler;
 import io.github.hotspacode.neeza.transport.client.http.TransportClient;
 
@@ -48,6 +49,8 @@ public class NeezaServer {
         if (null == transportClient) {
             initTransportClient();
         }
+
+        new HeartbeatSenderInit().init();
 
         return this;
     }
@@ -95,14 +98,15 @@ public class NeezaServer {
         methodMockDataCacheMap.remove(key);
     }
 
-    public static MockData getMethodMockCache(String key){
+    public static MockData getMethodMockCache(String key) {
         return methodMockDataCacheMap.get(key);
     }
-    public static void cacheMethodMock(String key,MockData mockData){
-        methodMockDataCacheMap.put(key,mockData);
+
+    public static void cacheMethodMock(String key, MockData mockData) {
+        methodMockDataCacheMap.put(key, mockData);
     }
 
-    public static Map<String, MockData> getMockedService(){
+    public static Map<String, MockData> getMockedService() {
         return methodMockDataCacheMap;
     }
 
