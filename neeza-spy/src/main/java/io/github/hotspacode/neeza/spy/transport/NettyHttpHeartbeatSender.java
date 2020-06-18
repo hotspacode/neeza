@@ -51,7 +51,9 @@ public class NettyHttpHeartbeatSender implements HeartbeatSender {
                     .setParameter("pid", String.valueOf(PidUtil.getPid()));
 
             //todo 汇报所有push service和cached mock method  首次汇报所有mock method
-            uriBuilder.setParameter("mockedServiceSet", JSON.toJSONString(NeezaServer.getMockedService().keySet()));
+            uriBuilder.setParameter("pulledMethodSet", JSON.toJSONString(NeezaServer.getPullMethod().keySet()));
+            uriBuilder.setParameter("pushEnableServiceList", null);
+            uriBuilder.setParameter("pullEnableServiceList", null);
 
             HttpGet request = new HttpGet(uriBuilder.build());
             request.setConfig(requestConfig);

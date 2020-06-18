@@ -106,7 +106,7 @@ public class NeezaServer {
         methodMockDataCacheMap.put(key, mockData);
     }
 
-    public static Map<String, MockData> getMockedService() {
+    public static Map<String, MockData> getPullMethod() {
         return methodMockDataCacheMap;
     }
 
