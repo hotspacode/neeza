@@ -1,68 +1,42 @@
 package io.github.hotspacode.neeza.spy;
 
-import io.github.hotspacode.neeza.core.domain.core.Entity;
+import io.github.hotspacode.neeza.base.annotation.NeezaMock;
 import io.github.hotspacode.neeza.core.domain.core.clazz.NeezaClazz;
-import sun.reflect.generics.reflectiveObjects.ParameterizedTypeImpl;
 
-import java.lang.reflect.Field;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class ClassReader {
 
-    public static void readMethod(Class service) {
-        Method[] declaredMethods = service.getDeclaredMethods();
-        if (null != declaredMethods && declaredMethods.length > 0) {
-            for (Method declaredMethod : declaredMethods) {
-                //解析返回对象
-                //返回对象
-                {
-                    Type genericReturnType = declaredMethod.getGenericReturnType();
-                    if (genericReturnType instanceof ParameterizedTypeImpl) {
-                        ParameterizedTypeImpl typeImpl = (ParameterizedTypeImpl) genericReturnType;
-                        Type[] actualTypeArguments = typeImpl.getActualTypeArguments();
-                        Class<?> rawType = typeImpl.getRawType();
-                        Type ownerType = typeImpl.getOwnerType();
-
-                        Class<? extends Type> aClass = genericReturnType.getClass();
-
-                        System.out.println(1);
-                    }
-                }
-
-                //解析参数列表对象
-
-            }
-        }
-
-    }
-
     public static NeezaClazz readClass(Class clazz) {
         NeezaClazz neezaClazz = new NeezaClazz();
-        neezaClazz.setType(clazz.getTypeName());
+        neezaClazz.setName(clazz.getName());
+        neezaClazz.setGenericString(clazz.toGenericString());
 
-        Field[] declaredFields = clazz.getDeclaredFields();
-        if (null == declaredFields || declaredFields.length == 0) {
-            return neezaClazz;
-        }
-
-        List<NeezaClazz> filds = new ArrayList<>();
-        for (Field declaredField : declaredFields) {
-            if (declaredField.getClass().isPrimitive()) {
-                NeezaClazz clazzFild = new NeezaClazz();
-                clazzFild.setType(declaredField.getClass().getTypeName());
-                filds.add(clazzFild);
-            }else {
-                filds.add(readClass(declaredField.getClass()));
+        Annotation[] annotations = clazz.getAnnotations();
+        if (null != annotations && annotations.length > 0) {
+            for (Annotation annotation : annotations) {
+                if (NeezaMock.class.getName().equals(annotation.annotationType().getName())) {
+                    neezaClazz.setEnableMethodMockPull(true);
+                    break;
+                }
             }
         }
-        neezaClazz.setFields(filds);
+        Method[] declaredMethods = clazz.getDeclaredMethods();
+        if (null != declaredMethods && declaredMethods.length > 0) {
+            List<NeezaClazz.NeezaMethod> methods = new ArrayList<>();
+            for (Method declaredMethod : declaredMethods) {
+                NeezaClazz.NeezaMethod method = new NeezaClazz.NeezaMethod();
+                method.setName(declaredMethod.getName());
+                method.setGenericString(declaredMethod.toGenericString());
+                methods.add(method);
+            }
+            neezaClazz.setMethods(methods);
+        }
 
-
-        System.out.println(1);
         return neezaClazz;
     }
 
@@ -72,8 +46,10 @@ public class ClassReader {
 
 }
 
+@NeezaMock
 class A<T> {
     private String a;
+
     public void t1(String a, String[] b) {
 
     }
