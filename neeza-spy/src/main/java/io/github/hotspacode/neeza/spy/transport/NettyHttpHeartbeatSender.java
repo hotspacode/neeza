@@ -5,6 +5,7 @@ import io.github.hotspacode.neeza.base.util.NeezaConstant;
 import io.github.hotspacode.neeza.base.util.StringUtil;
 import io.github.hotspacode.neeza.core.util.IpUtil;
 import io.github.hotspacode.neeza.core.util.PidUtil;
+import io.github.hotspacode.neeza.spy.ClassReader;
 import io.github.hotspacode.neeza.spy.NeezaServer;
 import io.github.hotspacode.neeza.transport.api.HeartbeatSender;
 import io.github.hotspacode.neeza.transport.api.config.TransportConfig;
@@ -19,7 +20,9 @@ public class NettyHttpHeartbeatSender implements HeartbeatSender {
     private final CloseableHttpClient client;
 
     private final int timeoutMs = 3000;
-    private final int INTERVAL_MILLISECONDS = 60000;
+    private final int INTERVAL_MILLISECONDS = 3000;
+
+    private boolean mockClassesNoticed = false;
 
 
     private final RequestConfig requestConfig = RequestConfig.custom()
@@ -50,15 +53,16 @@ public class NettyHttpHeartbeatSender implements HeartbeatSender {
                     .setParameter("port", TransportConfig.getPort())
                     .setParameter("pid", String.valueOf(PidUtil.getPid()));
 
-            //todo 汇报所有push service和cached mock method  首次汇报所有mock method
-            uriBuilder.setParameter("pulledMethodSet", JSON.toJSONString(NeezaServer.getPullMethod().keySet()));
-            uriBuilder.setParameter("pushEnableServiceList", null);
-            uriBuilder.setParameter("pullEnableServiceList", null);
+            uriBuilder.setParameter("pulledMethods", JSON.toJSONString(NeezaServer.getPullMethod().keySet()));
+            if (!mockClassesNoticed) {
+                uriBuilder.setParameter("mockClasses", JSON.toJSONString(ClassReader.getMockClasses()));
+            }
 
             HttpGet request = new HttpGet(uriBuilder.build());
             request.setConfig(requestConfig);
             CloseableHttpResponse response = client.execute(request);
             response.close();
+            mockClassesNoticed = true;
             return true;
         } catch (Exception e) {
             e.printStackTrace();
