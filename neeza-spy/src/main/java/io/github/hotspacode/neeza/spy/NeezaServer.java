@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class NeezaServer {
+    private static String packageName = null;
     private static final ConcurrentHashMap<String, MockData> methodMockDataCacheMap = new ConcurrentHashMap<>();
     private static volatile TransportClient transportClient = null;
     private static volatile TransportServerCenterInitHandler initHandler = null;
@@ -35,7 +36,9 @@ public class NeezaServer {
 
     public synchronized NeezaServer start(String serverIp, Integer serverPort, String packageName) {
         NeezaLog.info("neeza server初始化{},{},{}", serverIp, serverPort, packageName);
-        System.getProperties().setProperty(NeezaConstant.SIMPLE_MOCK_VM_PACKAGE_NAME, packageName.replace(".", "/"));
+        NeezaServer.packageName = packageName;
+        System.getProperties().setProperty(NeezaConstant.SIMPLE_MOCK_VM_PACKAGE_NAME,
+                NeezaServer.packageName.replace(".", "/"));
         ParserConfig.getGlobalInstance().addAccept(packageName);
 
         NeezaServer.serverIp = serverIp;
@@ -110,4 +113,7 @@ public class NeezaServer {
         return methodMockDataCacheMap;
     }
 
+    public static String getPackageName() {
+        return packageName;
+    }
 }

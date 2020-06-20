@@ -2,6 +2,7 @@ package io.github.hotspacode.neeza.spy;
 
 import io.github.hotspacode.neeza.base.annotation.NeezaMock;
 import io.github.hotspacode.neeza.core.domain.core.clazz.NeezaClazz;
+import io.github.hotspacode.neeza.core.util.PackageUtil;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -10,6 +11,21 @@ import java.util.List;
 import java.util.Map;
 
 public class ClassReader {
+
+    public static List<NeezaClazz> getMockClass(){
+        String packageName = NeezaServer.getPackageName();
+        List<String> classNames = PackageUtil.getClassName(packageName, true);
+
+        if (null != classNames && classNames.size() > 0) {
+            List<NeezaClazz> neezaClazzes = new ArrayList<>();
+
+
+
+            return neezaClazzes;
+        }
+
+        return null;
+    }
 
     public static NeezaClazz readClass(Class clazz) {
         NeezaClazz neezaClazz = new NeezaClazz();
