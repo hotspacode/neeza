@@ -2,16 +2,16 @@ package io.github.hotspacode.neeza.server.standalone.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import io.github.hotspacode.neeza.base.annotation.NeezaMock;
 import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.base.util.StringUtil;
-import io.github.hotspacode.neeza.core.domain.core.clazz.NeezaClazz;
+import io.github.hotspacode.neeza.base.dto.NeezaClazz;
+import io.github.hotspacode.neeza.server.standalone.service.MockDataService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Set;
 
 /**
@@ -21,6 +21,9 @@ import java.util.Set;
 @RequestMapping("/heartbeat")
 public class HeartbeatController {
 
+    @Autowired
+    private MockDataService mockDataService;
+
     @GetMapping("/pull")
     public String pull(@RequestParam(value = "appName") String appName,
                        @RequestParam(value = "version") String version,
@@ -28,8 +31,7 @@ public class HeartbeatController {
                        @RequestParam(value = "port") String port,
                        @RequestParam(value = "pid") String pid,
                        @RequestParam(value = "pulledMethods",required = false) String pulledMethodsStr,
-                       @RequestParam(value = "mockClasses",required = false) String mockClassesStr,
-                       HttpServletRequest request) {
+                       @RequestParam(value = "mockClasses",required = false) String mockClassesStr) {
         NeezaLog.info("心跳检测到服务端{0}",pid);
         Set<String> pulledMethods = null;
         Set<NeezaClazz> mockClasses = null;

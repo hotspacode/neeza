@@ -1,7 +1,7 @@
 package io.github.hotspacode.neeza.spy;
 
 import io.github.hotspacode.neeza.base.annotation.NeezaMock;
-import io.github.hotspacode.neeza.core.domain.core.clazz.NeezaClazz;
+import io.github.hotspacode.neeza.base.dto.NeezaClazz;
 import io.github.hotspacode.neeza.core.util.PackageUtil;
 
 import java.lang.annotation.Annotation;

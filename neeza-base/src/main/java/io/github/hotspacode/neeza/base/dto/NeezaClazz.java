@@ -1,4 +1,4 @@
-package io.github.hotspacode.neeza.core.domain.core.clazz;
+package io.github.hotspacode.neeza.base.dto;
 
 import java.io.Serializable;
 import java.util.List;

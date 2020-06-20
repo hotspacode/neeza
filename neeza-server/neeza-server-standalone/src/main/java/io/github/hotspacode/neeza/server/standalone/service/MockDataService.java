@@ -3,6 +3,8 @@ package io.github.hotspacode.neeza.server.standalone.service;
 import com.alibaba.fastjson.JSON;
 import io.github.hotspacode.neeza.base.dto.MockData;
 import io.github.hotspacode.neeza.base.util.StringUtil;
+import io.github.hotspacode.neeza.base.dto.NeezaClazz;
+import io.github.hotspacode.neeza.server.api.dto.MockCacheContainer;
 import io.github.hotspacode.neeza.transport.api.TransportServerStatus;
 import io.github.hotspacode.neeza.transport.client.http.TransportClient;
 import org.slf4j.Logger;
@@ -10,9 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -25,8 +25,18 @@ public class MockDataService {
 
     private static final Map<String, ConcurrentHashMap<String, Object>> cache = new ConcurrentHashMap<>();
 
+    private Set<MockCacheContainer> cacheContainers = new HashSet<>();
+
     @Autowired
     private TransportClient transportClient;
+
+    public void heartbeat(String appName, String ip,
+                          String port, Set<String> pulledMethods,
+                          Set<NeezaClazz> mockClasses) {
+        MockCacheContainer cacheContainer = null;
+
+
+    }
 
     public String load(String methodDesc, MockData data, String ip, String port) {
         logger.info("save method desc {},{}", methodDesc, JSON.toJSONString(data));
@@ -77,26 +87,6 @@ public class MockDataService {
         return "OK";
     }
 
-    public MockData pullData(String methodDesc, String ip, String port) {
-        MockData mockData = null;
-
-        ConcurrentHashMap<String, Object> dataMap = cache.get(methodDesc);
-        if (null == dataMap) {
-            dataMap = new ConcurrentHashMap<>();
-            cache.put(methodDesc, dataMap);
-        }
-
-        mockData = (MockData) dataMap.get(PREFIX_IP_PORT + ip + ":" + port);
-        if (null == mockData) {
-            mockData = (MockData) dataMap.get(PREFIX_TEMPLATE_DATA);
-            if (null == mockData) {
-                mockData = MockData.getNullValue();
-            }
-            dataMap.put(PREFIX_IP_PORT + ip + ":" + port, mockData);
-        }
-
-        return mockData;
-    }
 
     private void dataChangeNotice(String methodDesc, String ip, String port) {
         try {
@@ -104,7 +94,7 @@ public class MockDataService {
             paramMap.put("body", methodDesc);
             paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
 
-            CompletableFuture<String> mockDataCompletableFuture = transportClient.execute(ip,Integer.valueOf(port),"neeza/spy/mock/data/change", paramMap, false)
+            CompletableFuture<String> mockDataCompletableFuture = transportClient.execute(ip, Integer.valueOf(port), "neeza/spy/mock/data/change", paramMap, false)
                     .thenApply(json -> {
                         return json;
                     });
