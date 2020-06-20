@@ -6,41 +6,92 @@ import io.github.hotspacode.neeza.core.util.PackageUtil;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class ClassReader {
+public final class ClassReader {
 
-    public static List<NeezaClazz> getMockClass(){
-        String packageName = NeezaServer.getPackageName();
-        List<String> classNames = PackageUtil.getClassName(packageName, true);
+    private static Map<NeezaClazz, NeezaClazz> mockCache = null;
 
-        if (null != classNames && classNames.size() > 0) {
-            List<NeezaClazz> neezaClazzes = new ArrayList<>();
-
-
-
-            return neezaClazzes;
-        }
-
-        return null;
+    private ClassReader() {
     }
 
-    public static NeezaClazz readClass(Class clazz) {
-        NeezaClazz neezaClazz = new NeezaClazz();
-        neezaClazz.setName(clazz.getName());
-        neezaClazz.setGenericString(clazz.toGenericString());
+    public static synchronized Set<NeezaClazz> getMockClasses() {
+        if (null == mockCache) {
+            mockCache = getMockClass();
+        }
 
-        Annotation[] annotations = clazz.getAnnotations();
-        if (null != annotations && annotations.length > 0) {
-            for (Annotation annotation : annotations) {
-                if (NeezaMock.class.getName().equals(annotation.annotationType().getName())) {
-                    neezaClazz.setEnableMethodMockPull(true);
-                    break;
+        return mockCache.keySet();
+    }
+
+    protected static synchronized Map<NeezaClazz, NeezaClazz> getMockClass() {
+        Map<NeezaClazz, NeezaClazz> clazzNeezaClazzMap = new HashMap<>();
+
+        List<String> classNames = PackageUtil.getClassName(NeezaServer.getPackageName(), true);
+        if (null != classNames && classNames.size() > 0) {
+            for (String className : classNames) {
+                try {
+                    NeezaClazz neezaClazz = readClass(Class.forName(className), false);
+                    if (null != neezaClazz) {
+                        clazzNeezaClazzMap.put(neezaClazz, neezaClazz);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         }
+
+        Map<String, Object> pushServiceMap = NeezaServer.getPushServiceMap();
+
+        if (null != pushServiceMap && !pushServiceMap.isEmpty()) {
+            for (Map.Entry<String, Object> stringObjectEntry : pushServiceMap.entrySet()) {
+                try {
+                    NeezaClazz neezaClazz = readClass(stringObjectEntry.getValue().getClass(), true);
+                    NeezaClazz neezaClazzGenerated = clazzNeezaClazzMap.get(neezaClazz);
+
+                    if (neezaClazzGenerated != null) {
+                        neezaClazzGenerated.setServiceName(stringObjectEntry.getKey());
+                        neezaClazzGenerated.setEnableMethodMockPush(true);
+                    } else {
+                        neezaClazz.setServiceName(stringObjectEntry.getKey());
+                        clazzNeezaClazzMap.put(neezaClazz, neezaClazz);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+        return clazzNeezaClazzMap;
+    }
+
+    protected static NeezaClazz readClass(Class clazz, boolean isPushService) {
+        NeezaClazz neezaClazz = null;
+
+        if (isPushService) {
+            neezaClazz = new NeezaClazz();
+            neezaClazz.setEnableMethodMockPush(true);
+        } else {
+            Annotation[] annotations = clazz.getAnnotations();
+            if (null != annotations && annotations.length > 0) {
+                for (Annotation annotation : annotations) {
+                    if (NeezaMock.class.getName().equals(annotation.annotationType().getName())) {
+                        neezaClazz = new NeezaClazz();
+                        neezaClazz.setEnableMethodMockPull(true);
+                        break;
+                    }
+                }
+            }
+
+            if (null == neezaClazz) {
+                return null;
+            }
+        }
+
+
+        neezaClazz.setName(clazz.getName());
+        neezaClazz.setGenericString(clazz.toGenericString());
+
         Method[] declaredMethods = clazz.getDeclaredMethods();
         if (null != declaredMethods && declaredMethods.length > 0) {
             List<NeezaClazz.NeezaMethod> methods = new ArrayList<>();
@@ -56,25 +107,4 @@ public class ClassReader {
         return neezaClazz;
     }
 
-    public static void main(String[] args) {
-        ClassReader.readClass(A.class);
-    }
-
-}
-
-@NeezaMock
-class A<T> {
-    private String a;
-
-    public void t1(String a, String[] b) {
-
-    }
-
-    public Map<String, Object> t2(List<String> a) {
-        return null;
-    }
-
-    public T t3() {
-        return null;
-    }
 }

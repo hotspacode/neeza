@@ -116,4 +116,8 @@ public class NeezaServer {
     public static String getPackageName() {
         return packageName;
     }
+
+    public static Map<String, Object> getPushServiceMap() {
+        return pushServiceMap;
+    }
 }

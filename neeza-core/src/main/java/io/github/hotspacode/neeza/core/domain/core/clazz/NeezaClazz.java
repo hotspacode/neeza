@@ -7,9 +7,18 @@ import java.util.Objects;
 public class NeezaClazz implements Serializable {
     private String name;
     private String genericString;
+    private String serviceName;
     private List<NeezaMethod> methods;
     private boolean enableMethodMockPull = false;
     private boolean enableMethodMockPush = false;
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
 
     public String getName() {
         return name;
@@ -64,7 +73,7 @@ public class NeezaClazz implements Serializable {
         return Objects.hash(genericString);
     }
 
-    public static class NeezaMethod{
+    public static class NeezaMethod {
         private String name;
         private String genericString;
 
