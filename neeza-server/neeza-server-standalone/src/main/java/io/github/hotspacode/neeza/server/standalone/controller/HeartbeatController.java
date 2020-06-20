@@ -27,8 +27,8 @@ public class HeartbeatController {
                        @RequestParam(value = "ip") String ip,
                        @RequestParam(value = "port") String port,
                        @RequestParam(value = "pid") String pid,
-                       @RequestParam(value = "pulledMethods") String pulledMethodsStr,
-                       @RequestParam(value = "mockClasses") String mockClassesStr,
+                       @RequestParam(value = "pulledMethods",required = false) String pulledMethodsStr,
+                       @RequestParam(value = "mockClasses",required = false) String mockClassesStr,
                        HttpServletRequest request) {
         NeezaLog.info("心跳检测到服务端{0}",pid);
         Set<String> pulledMethods = null;
