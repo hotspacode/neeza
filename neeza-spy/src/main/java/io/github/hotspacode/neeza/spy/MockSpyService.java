@@ -57,7 +57,10 @@ public class MockSpyService implements IMockSpyService {
             mockTransport.setNeezaSerialization(neezaSerialization);
         }
 
-        String methodDesc = targetMethod.getDeclaringClass().getName() + "." + targetMethod.toGenericString();
+        String className = targetMethod.getDeclaringClass().toGenericString();
+        String methodName = targetMethod.toGenericString();
+        String methodDesc = className + ":" + methodName;
+
         MockData mockData = null;
 
         if ((mockData = NeezaServer.getMethodMockCache(methodDesc)) == null) {
