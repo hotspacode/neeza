@@ -16,12 +16,13 @@ public class ApiMockDataService {
     @Autowired
     private ApiMockDataRepository apiMockDataRepository;
 
-    public MockData getData(String methodDesc, String ip, Integer port) {
+    public MockData getData(String appName,String methodDesc) {
         MockData mockDataDTO = new MockData();
         mockDataDTO.setType(MockData.Type.NONE);
 
         ApiMockData apiMockDataExample = new ApiMockData();
         apiMockDataExample.setApi_name(methodDesc);
+        apiMockDataExample.setApp_id(appName);
         Example<ApiMockData> example = Example.of(apiMockDataExample);
 
         Optional<ApiMockData> one = apiMockDataRepository.findOne(example);

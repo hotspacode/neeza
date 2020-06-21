@@ -24,7 +24,7 @@ public class DataEditController {
      */
     @PostMapping("/publish")
     public Result publish(@RequestBody DataEditPublishRequestDTO request) {
-        dataEditService.publish(request.getMethodDesc(), request.getContent(), request.getMethodType());
+        dataEditService.publish(request.getAppName(), request.getMethodDesc(), request.getContent(), request.getMethodType());
         return Result.success();
     }
 

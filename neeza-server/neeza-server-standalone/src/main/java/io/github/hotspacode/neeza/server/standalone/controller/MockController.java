@@ -26,13 +26,14 @@ public class MockController {
     private ApiMockDataService apiMockDataService;
 
     @GetMapping("/pull")
-    public String pull(@RequestParam(value = "methodDesc") String methodDesc,
+    public String pull(@RequestParam(value = "appName") String appName,
+                       @RequestParam(value = "methodDesc") String methodDesc,
                        @RequestParam(value = "clientPort") Integer clientPort,
                        HttpServletRequest request) {
         String ip = getIpAddress(request);
 
-        logger.info("NEEZA请求{}:{},{}", ip, clientPort, methodDesc);
-        MockData mockDataDTO = apiMockDataService.getData(methodDesc, ip, clientPort);
+        logger.info("NEEZA请求{}:{},{},{}", appName, ip,clientPort, methodDesc);
+        MockData mockDataDTO = apiMockDataService.getData(appName,methodDesc);
 
         return JSON.toJSONString(mockDataDTO);
     }

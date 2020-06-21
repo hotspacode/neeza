@@ -24,9 +24,10 @@ public class DataEditService {
     @Autowired
     private MockDataService mockDataService;
 
-    public void publish(String methodDesc, String content, Integer methodType) {
-        NeezaLog.info("发布方法{}", methodDesc);
+    public void publish(String appName,String methodDesc, String content, Integer methodType) {
+        NeezaLog.info("发布方法{},{}",appName, methodDesc);
         ApiMockData apiMockDataExample = new ApiMockData();
+        apiMockDataExample.setApp_id(appName);
         apiMockDataExample.setApi_name(methodDesc);
         Example<ApiMockData> example = Example.of(apiMockDataExample);
 
@@ -41,7 +42,7 @@ public class DataEditService {
             }
         } else {
             apiMockData = new ApiMockData();
-            apiMockData.setApp_id("0");
+            apiMockData.setApp_id(appName);
             apiMockData.setApi_name(methodDesc);
             apiMockData.setApi_data(content);
             apiMockData.setMethod_type(methodType);

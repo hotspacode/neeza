@@ -65,6 +65,7 @@ public class MockSpyService implements IMockSpyService {
 
         if ((mockData = NeezaServer.getMethodMockCache(methodDesc)) == null) {
             Map<String, String> paramMap = new HashMap<>();
+            paramMap.put("appName", NeezaServer.getAppName());
             paramMap.put("methodDesc", methodDesc);
             paramMap.put("clientPort", TransportServerStatus.getRealPort() + "");
 

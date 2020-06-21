@@ -12,9 +12,10 @@ post http://localhost:8818/neeza/data/publish
 Content-Type: application/json
 
 {
+    "appName":"test1",
     "methodDesc":"public class io.github.hotspacode.neeza.test.springboot.service.impl.OrderService:public io.github.hotspacode.neeza.test.springboot.pojo.Order io.github.hotspacode.neeza.test.springboot.service.impl.OrderService.getOrder(java.lang.Long)",
     "methodType":1,
-    "content":"{\"id\":5438843,\"marketName\":\"serv11ice8my1s1ql11122\",\"shopName\":\"mysql shop内部name11\"}"
+    "content":"{\"id\":5438843,\"marketName\":\"11\",\"shopName\":\"mysql shop内部name11\"}"
 }
 
 ### mock server edit data push
