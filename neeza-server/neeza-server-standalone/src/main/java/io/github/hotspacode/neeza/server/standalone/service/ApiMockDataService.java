@@ -22,7 +22,7 @@ public class ApiMockDataService {
 
         ApiMockData apiMockDataExample = new ApiMockData();
         apiMockDataExample.setApi_name(methodDesc);
-        apiMockDataExample.setApp_id(appName);
+        apiMockDataExample.setApp_name(appName);
         Example<ApiMockData> example = Example.of(apiMockDataExample);
 
         Optional<ApiMockData> one = apiMockDataRepository.findOne(example);

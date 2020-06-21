@@ -27,7 +27,7 @@ public class DataEditService {
     public void publish(String appName,String methodDesc, String content, Integer methodType) {
         NeezaLog.info("发布方法{},{}",appName, methodDesc);
         ApiMockData apiMockDataExample = new ApiMockData();
-        apiMockDataExample.setApp_id(appName);
+        apiMockDataExample.setApp_name(appName);
         apiMockDataExample.setApi_name(methodDesc);
         Example<ApiMockData> example = Example.of(apiMockDataExample);
 
@@ -42,7 +42,7 @@ public class DataEditService {
             }
         } else {
             apiMockData = new ApiMockData();
-            apiMockData.setApp_id(appName);
+            apiMockData.setApp_name(appName);
             apiMockData.setApi_name(methodDesc);
             apiMockData.setApi_data(content);
             apiMockData.setMethod_type(methodType);
