@@ -8,6 +8,7 @@ import io.github.hotspacode.neeza.core.util.PidUtil;
 import io.github.hotspacode.neeza.spy.ClassReader;
 import io.github.hotspacode.neeza.spy.NeezaServer;
 import io.github.hotspacode.neeza.transport.api.HeartbeatSender;
+import io.github.hotspacode.neeza.transport.api.TransportServerStatus;
 import io.github.hotspacode.neeza.transport.api.config.TransportConfig;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -41,6 +42,10 @@ public class NettyHttpHeartbeatSender implements HeartbeatSender {
         if (StringUtil.isEmpty(NeezaServer.getServerIp())) {
             return false;
         }
+        int realPort = TransportServerStatus.getRealPort();
+        if (realPort == 0) {
+            return false;
+        }
         try {
             URIBuilder uriBuilder = new URIBuilder();
             uriBuilder.setScheme("http")
@@ -50,7 +55,7 @@ public class NettyHttpHeartbeatSender implements HeartbeatSender {
                     .setParameter("appName", NeezaServer.getAppName())
                     .setParameter("version", NeezaConstant.VERSION)
                     .setParameter("ip", IpUtil.getIp())
-                    .setParameter("port", TransportConfig.getPort())
+                    .setParameter("port",  String.valueOf(realPort))
                     .setParameter("pid", String.valueOf(PidUtil.getPid()));
 
             uriBuilder.setParameter("pulledMethods", JSON.toJSONString(NeezaServer.getPullMethod().keySet()));

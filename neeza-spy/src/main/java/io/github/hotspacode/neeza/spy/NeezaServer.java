@@ -34,7 +34,7 @@ public class NeezaServer {
         return instance;
     }
 
-    public synchronized NeezaServer start(String serverIp, Integer serverPort, String packageName) {
+    public synchronized NeezaServer start(String serverIp, Integer serverPort, String packageName,String appName) {
         NeezaLog.info("neeza server初始化{},{},{}", serverIp, serverPort, packageName);
         NeezaServer.packageName = packageName;
         System.getProperties().setProperty(NeezaConstant.SIMPLE_MOCK_VM_PACKAGE_NAME,
@@ -43,6 +43,7 @@ public class NeezaServer {
 
         NeezaServer.serverIp = serverIp;
         NeezaServer.serverPort = serverPort;
+        NeezaServer.appName = appName;
 
         if (null == initHandler) {
             initHandler = new TransportServerCenterInitHandler();
@@ -120,4 +121,5 @@ public class NeezaServer {
     public static Map<String, Object> getPushServiceMap() {
         return pushServiceMap;
     }
+
 }

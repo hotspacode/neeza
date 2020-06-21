@@ -13,7 +13,10 @@ public class MockForReturnTypeServiceTest {
         IOrderService orderService = new OrderService();
         orderService.getOrder(1L);
         NeezaServer.getInstance().
-                start("localhost", NeezaConstant.DEFAULT_SERVER_PORT,"io.github.hotspacode.neeza");
+                start("localhost",
+                        NeezaConstant.DEFAULT_SERVER_PORT,
+                        "io.github.hotspacode.neeza"
+                ,"test1");
         new ItemPromotionVo();
         new MockData();
 //        MockForReturnTypeService mockService = new MockForReturnTypeService();
