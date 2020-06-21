@@ -10,10 +10,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableJpaRepositories(basePackages = "io.github.hotspacode.neeza.server.standalone.dao")
 @EntityScan(basePackages = "io.github.hotspacode.neeza.server.standalone.model")
-public class ServerStandaloneApplication {
+public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServerStandaloneApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
 }
