@@ -84,4 +84,20 @@ public class MockDataService {
         return collect;
     }
 
+    public List<String> serviceList(String appName){
+        Set<ServerNeezaClazz> clazzes = mockCacheContainer.get(appName);
+        return clazzes.stream().map(p -> p.getGenericString()).collect(Collectors.toList());
+    }
+
+    public ServerNeezaClazz methodDetail(String appName,String methodDesc){
+        Set<ServerNeezaClazz> clazzes = mockCacheContainer.get(appName);
+        for (ServerNeezaClazz clazz : clazzes) {
+            if (clazz.getGenericString().equals(methodDesc)) {
+                return clazz;
+            }
+        }
+
+        return null;
+    }
+
 }

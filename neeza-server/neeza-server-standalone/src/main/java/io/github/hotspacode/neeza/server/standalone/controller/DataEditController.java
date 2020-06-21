@@ -43,16 +43,4 @@ public class DataEditController {
         return Result.success(push);
     }
 
-    /**
-     * 返回所有接口
-     */
-    @PostMapping("/api/list")
-    public Result apiList(@PathVariable(value = "appName") String appName) {
-        //推送到应用
-
-        //落库日志
-
-        return Result.success();
-    }
-
 }

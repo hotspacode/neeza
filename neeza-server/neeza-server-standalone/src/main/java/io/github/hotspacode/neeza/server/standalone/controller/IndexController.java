@@ -1,11 +1,13 @@
 package io.github.hotspacode.neeza.server.standalone.controller;
 
 import io.github.hotspacode.neeza.base.dto.Result;
+import io.github.hotspacode.neeza.base.dto.ServerNeezaClazz;
 import io.github.hotspacode.neeza.server.standalone.service.MockDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -29,8 +31,7 @@ public class IndexController {
     @RequestMapping("/app/list")
     @ResponseBody
     public Result<List<String>> appList() {
-        List<String> appList = mockDataService.getAppList();
-        return Result.success(appList);
+        return Result.success(mockDataService.getAppList());
     }
 
     /**
@@ -41,9 +42,7 @@ public class IndexController {
     @RequestMapping("/service/list/{appName}")
     @ResponseBody
     public Result<List<String>> serviceList(@PathVariable(value = "appName") String appName) {
-
-
-        return Result.success();
+        return Result.success(mockDataService.serviceList(appName));
     }
 
     /**
@@ -53,9 +52,8 @@ public class IndexController {
      */
     @RequestMapping("/method/detail/{appName}")
     @ResponseBody
-    public Result<List<String>> methodDetail(@PathVariable(value = "methodDesc") String methodDesc) {
-
-
-        return Result.success();
+    public Result<ServerNeezaClazz> methodDetail(@PathVariable(value = "appName") String appName,
+                                                 @RequestParam(value = "methodDesc") String methodDesc) {
+        return Result.success(mockDataService.methodDetail(appName, methodDesc));
     }
 }
