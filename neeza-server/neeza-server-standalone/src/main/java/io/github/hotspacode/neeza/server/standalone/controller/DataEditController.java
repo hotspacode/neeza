@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/data")
+@RequestMapping("/neeza/data")
 public class DataEditController {
     private static final Logger logger = LoggerFactory.getLogger(DataEditController.class);
 

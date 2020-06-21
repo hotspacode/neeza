@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/mock")
+@RequestMapping("/neeza/mock")
 public class MockController {
 
     private static final Logger logger = LoggerFactory.getLogger(MockController.class);

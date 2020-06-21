@@ -19,7 +19,7 @@ import java.util.Set;
  * 心跳请求
  */
 @RestController
-@RequestMapping("/heartbeat")
+@RequestMapping("/neeza/heartbeat")
 public class HeartbeatController {
 
     @Autowired
