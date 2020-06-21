@@ -16,7 +16,7 @@ public class MockPushServiceHandler implements CommandHandler<String> {
         CommandResponse<String> commandResponse = CommandResponse.ofSuccess(null);
         String body = request.getParam("body");
 
-        NeezaLog.info("data push {0}", body);
+        NeezaLog.info("data push {}", body);
 
         PushTransportData pushTransportData = JSON.parseObject(body, PushTransportData.class);
 
