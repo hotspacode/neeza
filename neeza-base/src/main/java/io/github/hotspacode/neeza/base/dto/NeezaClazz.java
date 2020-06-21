@@ -12,6 +12,7 @@ public class NeezaClazz implements Serializable {
     private boolean enableMethodMockPull = false;
     private boolean enableMethodMockPush = false;
 
+
     public String getServiceName() {
         return serviceName;
     }
@@ -59,6 +60,7 @@ public class NeezaClazz implements Serializable {
     public void setEnableMethodMockPush(boolean enableMethodMockPush) {
         this.enableMethodMockPush = enableMethodMockPush;
     }
+
 
     @Override
     public boolean equals(Object o) {

@@ -18,11 +18,11 @@ import java.util.concurrent.CompletableFuture;
 @Service
 public class DataEditService {
     @Autowired
-    private NoticeService noticeService;
-    @Autowired
     private ApiMockDataRepository apiMockDataRepository;
     @Autowired
     private TransportClient transportClient;
+    @Autowired
+    private MockDataService mockDataService;
 
     public void publish(String methodDesc, String content, Integer methodType) {
         NeezaLog.info("发布方法{}", methodDesc);
@@ -54,7 +54,7 @@ public class DataEditService {
         }
 
         //通知应用
-        noticeService.noticeClient(methodDesc);
+        mockDataService.noticeClient(methodDesc);
     }
 
     public String push(PushTransportData pushTransportData, String ip, String port) {

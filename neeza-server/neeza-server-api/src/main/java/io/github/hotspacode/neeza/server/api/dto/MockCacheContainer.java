@@ -1,73 +1,42 @@
 package io.github.hotspacode.neeza.server.api.dto;
 
 import io.github.hotspacode.neeza.base.dto.NeezaClazz;
+import io.github.hotspacode.neeza.base.dto.ServerNeezaClazz;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class MockCacheContainer implements Serializable {
-    private String appName;
-    private List<Client> clients;
+public class MockCacheContainer extends ConcurrentHashMap<String, Set<ServerNeezaClazz>> {
+    private Map<String,Set<String>> clientCaches = new HashMap<>();
+
+
+    public synchronized Set<ServerNeezaClazz> add(String key, String ip,
+                                                  String port, Set<String> pulledMethods,
+                                                  Set<ServerNeezaClazz> mockClasses) {
+        Set<ServerNeezaClazz> clazzes = get(key);
+        if (null == clazzes) {
+            clazzes = new HashSet<>();
+            put(key, clazzes);
+        }
+        if (mockClasses != null && mockClasses.size()>0) {
+            for (ServerNeezaClazz mockClass : mockClasses) {
+                if (!clazzes.contains(mockClass)) {
+                    clazzes.add(mockClass);
+                }
+            }
+        }
+
+        clientCaches.put(ip + ":" + port, pulledMethods);
+
+        return clazzes;
+    }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MockCacheContainer that = (MockCacheContainer) o;
-        return appName.equals(that.appName);
+    public Set<ServerNeezaClazz> get(Object key) {
+        return super.get(key);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(appName);
+    public Map<String, Set<String>> getClientCaches() {
+        return clientCaches;
     }
-
-    public String getAppName() {
-        return appName;
-    }
-
-    public void setAppName(String appName) {
-        this.appName = appName;
-    }
-
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
-
-    public static class Client{
-        private String ip;
-        private String port;
-        private Set<NeezaClazz> mockClasses;
-
-        public String getIp() {
-            return ip;
-        }
-
-        public void setIp(String ip) {
-            this.ip = ip;
-        }
-
-        public String getPort() {
-            return port;
-        }
-
-        public void setPort(String port) {
-            this.port = port;
-        }
-
-        public Set<NeezaClazz> getMockClasses() {
-            return mockClasses;
-        }
-
-        public void setMockClasses(Set<NeezaClazz> mockClasses) {
-            this.mockClasses = mockClasses;
-        }
-    }
-
 }

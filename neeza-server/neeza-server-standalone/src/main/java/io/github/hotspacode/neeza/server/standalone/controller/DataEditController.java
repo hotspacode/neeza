@@ -36,8 +36,7 @@ public class DataEditController {
     @PostMapping("/push/{ip}/{port}")
     public Result push(@RequestBody PushTransportData request,
                        @PathVariable(value = "ip") String ip,
-                       @PathVariable(value = "port") String port
-    ) {
+                       @PathVariable(value = "port") String port) {
         //推送到应用
 
         //落库日志
