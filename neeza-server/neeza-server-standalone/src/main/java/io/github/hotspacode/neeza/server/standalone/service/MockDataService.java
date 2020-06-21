@@ -43,7 +43,7 @@ public class MockDataService {
         Map<String, Set<String>> clientCaches = mockCacheContainer.getClientCaches();
         Set<Map.Entry<String, Set<String>>> entries = clientCaches.entrySet();
         for (Map.Entry<String, Set<String>> entry : entries) {
-            if (entries.contains(methodDesc)) {
+            if (entry.getValue().contains(methodDesc)) {
                 noticingClient.add(entry.getKey());
             }
         }

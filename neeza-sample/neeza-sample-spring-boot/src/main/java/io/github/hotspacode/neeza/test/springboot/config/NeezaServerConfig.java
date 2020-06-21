@@ -7,6 +7,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 public class NeezaServerConfig {
@@ -15,11 +17,18 @@ public class NeezaServerConfig {
 
     @PostConstruct
     public void init() {
-        NeezaServer.getInstance().start(
-                "localhost",
+        String[] beans = applicationContext.getBeanDefinitionNames();
+
+        Map<String, Object> serviceMap = new HashMap<>();
+        if (null != beans && beans.length > 0) {
+            for (String bean : beans) {
+                serviceMap.put(bean, applicationContext.getBean(bean));
+            }
+        }
+
+        NeezaServer.getInstance().registerPushServices(serviceMap).start("localhost",
                 NeezaConstant.DEFAULT_SERVER_PORT,
-                "io.github.hotspacode.neeza.test.springboot.service")
-                .registerPushServices(null)
-                ;
+                "io.github.hotspacode.neeza.test.springboot.service.impl"
+                , "test1");
     }
 }

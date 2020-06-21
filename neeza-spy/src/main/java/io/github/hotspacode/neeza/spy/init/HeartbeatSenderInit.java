@@ -21,7 +21,7 @@ public class HeartbeatSenderInit {
         }
     }
 
-    public void init(){
+    public void init() {
         initSchedulerIfNeeded();
         HeartbeatSender heartbeatSender = new NettyHttpHeartbeatSender();
         scheduleHeartbeatTask(heartbeatSender);
@@ -37,7 +37,7 @@ public class HeartbeatSenderInit {
                     NeezaLog.warn("[HeartbeatSender] Send heartbeat error", e);
                 }
             }
-        }, 5000, sender.intervalMilliseconds(), TimeUnit.MILLISECONDS);
+        }, 10000, sender.intervalMilliseconds(), TimeUnit.MILLISECONDS);
     }
 
 }

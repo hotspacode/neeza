@@ -33,7 +33,7 @@ public class HeartbeatController {
                        @RequestParam(value = "pid") String pid,
                        @RequestParam(value = "pulledMethods",required = false) String pulledMethodsStr,
                        @RequestParam(value = "mockClasses",required = false) String mockClassesStr) {
-        NeezaLog.info("心跳检测到服务端{0}",pid);
+//        NeezaLog.info("心跳检测到服务端{0}",pid);
         Set<String> pulledMethods = null;
         Set<ServerNeezaClazz> mockClasses = null;
 

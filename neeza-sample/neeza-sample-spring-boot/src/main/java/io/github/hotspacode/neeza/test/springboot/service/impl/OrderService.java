@@ -14,7 +14,7 @@ import java.util.Map;
 @NeezaMock
 public class OrderService implements IOrderService {
     @Override
-    @Transactional
+//    @Transactional
     public Order getOrder(Long orderId) {
         Order order = new Order();
         order.setId(orderId);
