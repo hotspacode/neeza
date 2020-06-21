@@ -12,11 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.*;
+import java.util.stream.Collectors;
 
 @Service
 public class MockDataService {
@@ -78,6 +76,12 @@ public class MockDataService {
                 });
         String responseStr = mockDataCompletableFuture.get();
         return responseStr;
+    }
+
+    public List<String> getAppList(){
+        Set<Map.Entry<String, Set<ServerNeezaClazz>>> entries = mockCacheContainer.entrySet();
+        List<String> collect = entries.stream().map(p -> p.getKey()).collect(Collectors.toList());
+        return collect;
     }
 
 }
