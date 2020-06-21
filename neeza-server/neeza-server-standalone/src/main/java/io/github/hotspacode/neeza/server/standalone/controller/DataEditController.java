@@ -38,10 +38,9 @@ public class DataEditController {
                        @PathVariable(value = "ip") String ip,
                        @PathVariable(value = "port") String port) {
         //推送到应用
+        String push = dataEditService.push(request, ip, port);
 
-        //落库日志
-
-        return Result.success(dataEditService.push(request, ip, port));
+        return Result.success(push);
     }
 
     /**

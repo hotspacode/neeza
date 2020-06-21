@@ -2,6 +2,7 @@ package io.github.hotspacode.neeza.server.standalone.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import io.github.hotspacode.neeza.base.dto.ServerNeezaClazz;
 import io.github.hotspacode.neeza.base.log.NeezaLog;
 import io.github.hotspacode.neeza.base.util.StringUtil;
 import io.github.hotspacode.neeza.base.dto.NeezaClazz;
@@ -34,19 +35,20 @@ public class HeartbeatController {
                        @RequestParam(value = "mockClasses",required = false) String mockClassesStr) {
         NeezaLog.info("心跳检测到服务端{0}",pid);
         Set<String> pulledMethods = null;
-        Set<NeezaClazz> mockClasses = null;
+        Set<ServerNeezaClazz> mockClasses = null;
 
         if (StringUtil.isNotBlank(pulledMethodsStr)) {
             pulledMethods = JSON.parseObject(pulledMethodsStr, new TypeReference<Set<String>>() {
             });
         }
         if (StringUtil.isNotBlank(mockClassesStr)) {
-            mockClasses = JSON.parseObject(mockClassesStr, new TypeReference<Set<NeezaClazz>>() {
+            mockClasses = JSON.parseObject(mockClassesStr, new TypeReference<Set<ServerNeezaClazz>>() {
             });
         }
 
+        mockDataService.heartbeat(appName, ip, port, pulledMethods, mockClasses);
 
-        return null;
+        return "OK";
     }
 
 }
